@@ -15,10 +15,16 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('parent_id')->nullable();
             $table->string('title', 200);
             $table->string('slug', 200);
             $table->json('settings');
             $table->timestamps();
+
+            $table->foreign('parent_id')
+                ->references('id')
+                ->on('pages')
+                ->onDelete('cascade');
         });
     }
 
