@@ -46,6 +46,22 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
     'transparent': 'transparent',
 
+    'primary': '#22292f',
+    'secondary': '#606f7b',
+    'tertiary': '#8795a1',
+
+    'primary-inverse': '#ffffff',
+    'secondary-inverse': '#f1f5f8',
+    'tertiary-inverse': 'dae1e7',
+
+    'smoke-darkest': 'rgba(0, 0, 0, 0.9)',
+    'smoke-darker': 'rgba(0, 0, 0, 0.75)',
+    'smoke-dark': 'rgba(0, 0, 0, 0.6)',
+    'smoke': 'rgba(0, 0, 0, 0.5)',
+    'smoke-light': 'rgba(0, 0, 0, 0.4)',
+    'smoke-lighter': 'rgba(0, 0, 0, 0.25)',
+    'smoke-lightest': 'rgba(0, 0, 0, 0.1)',
+
     'black': '#22292f',
     'grey-darkest': '#3d4852',
     'grey-darker': '#606f7b',
@@ -713,6 +729,7 @@ module.exports = {
 
     negativeMargin: {
         'px': '1px',
+        '2px': '2px',
         '0': '0',
         '1': '0.25rem',
         '2': '0.5rem',
@@ -777,6 +794,11 @@ module.exports = {
         '30': 30,
         '40': 40,
         '50': 50,
+        '60': 60,
+        '70': 70,
+        '80': 80,
+        '90': 90,
+        '100': 100,
     },
 
 
@@ -930,6 +952,8 @@ module.exports = {
             // center: true,
             // padding: '1rem',
         }),
+        require('./plugins/buttons'),
+        require('./plugins/rotate'),
     ],
 
 

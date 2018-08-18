@@ -1,4 +1,5 @@
 let mix = require('laravel-mix');
+var tailwindcss = require('tailwindcss');
 
 /*
  |--------------------------------------------------------------------------
@@ -11,7 +12,7 @@ let mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+mix.js('resources/js/main.js', 'public/js/app.js')
     .less('resources/less/app.less', 'public/css')
     .options({
         postCss: [
@@ -22,6 +23,7 @@ mix.js('resources/js/app.js', 'public/js')
 
 mix.browserSync('192.168.10.10');
 
+mix.disableNotifications();
 
 if (mix.inProduction()) {
     mix.version();

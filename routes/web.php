@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('cms', 'HomeController@index');
+Route::get('cms/{any}', 'HomeController@index')->where('any', '.*');
