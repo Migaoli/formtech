@@ -26,7 +26,7 @@ interface Validatable
     /**
      * @return array
      */
-    public function getRules(): array;
+    public function rules(): array;
 
     /**
      * @return mixed
@@ -36,5 +36,5 @@ interface Validatable
     /**
      * @return MessageBag
      */
-    public function getErrors(): MessageBag;
+    public function errors(): MessageBag;
 }

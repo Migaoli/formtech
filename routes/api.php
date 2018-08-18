@@ -24,3 +24,10 @@ Route::middleware('auth:api')
         Route::get('{id}', 'PagesController@get')->name('pages.get');
         Route::post('', 'PagesController@create')->name('pages.create');
     });
+
+Route::prefix('blocks')
+    ->group(function () {
+        Route::get('', 'BlockController@index')->name('blocks.index');
+        Route::post('', 'BlockController@create')->name('blocks.create');
+        Route::get('{name}', 'BlockController@get')->name('blocks.get');
+    });

@@ -24,7 +24,7 @@ trait Validates
      *
      * @return array
      */
-    abstract public function getRules(): array;
+    abstract public function rules(): array;
 
     /**
      * Override validation messages.
@@ -58,7 +58,7 @@ trait Validates
             ->getValidatorFactory()
             ->make(
                 $this->getData(),
-                $this->getRules(),
+                $this->rules(),
                 $this->getMessages()
             );
     }
@@ -102,7 +102,7 @@ trait Validates
      *
      * @return MessageBag
      */
-    public function getErrors(): MessageBag
+    public function errors(): MessageBag
     {
         return $this->getValidator()->errors();
     }

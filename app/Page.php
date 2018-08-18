@@ -25,7 +25,7 @@ class Page extends ValidatableModel
             ));
     }
 
-    public function getRules(): array
+    public function rules(): array
     {
         return [
             'title' => 'required|string|max:200',

@@ -17,7 +17,7 @@ class ValidatableModel extends Model implements Validatable
         return $this->getAttributes();
     }
 
-    public function getRules(): array
+    public function rules(): array
     {
         return $this->rules;
     }
