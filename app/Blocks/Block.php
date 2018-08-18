@@ -12,7 +12,7 @@ use Illuminate\Validation\Factory;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 
-abstract class Block extends \Eloquent implements Validatable
+class Block extends \Eloquent implements Validatable
 {
     protected $table = 'blocks';
 
@@ -24,9 +24,15 @@ abstract class Block extends \Eloquent implements Validatable
 
     private $validator;
 
-    abstract public function fields(): array;
+    public function fields(): array
+    {
+        return [];
+    }
 
-    abstract public function template(): string;
+    public function template(): string
+    {
+        return '';
+    }
 
     public function data(string $key = null, $default = null)
     {

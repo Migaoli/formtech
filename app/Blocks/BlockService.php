@@ -74,7 +74,7 @@ class BlockService implements Blocks
 
     public function create(string $name, array $attributes = []): Block
     {
-        $type = $this->getType($name);
+        $type = $this->getBlockType($name);
 
         if ($type === null) {
             throw BlockException::of("Unknown block type {$name}");

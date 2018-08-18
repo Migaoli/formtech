@@ -23,6 +23,11 @@ Route::middleware('auth:api')
     ->group(function () {
         Route::get('{id}', 'PagesController@get')->name('pages.get');
         Route::post('', 'PagesController@create')->name('pages.create');
+
+        Route::prefix('{pageId}/blocks')
+            ->group(function () {
+                Route::post('', 'PageBlockController@create')->name('pages.blocks.create');
+            });
     });
 
 Route::prefix('blocks')

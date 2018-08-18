@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Blocks\Block;
 use App\Validation\ValidatableModel;
 use App\Validation\Validates;
 use Illuminate\Validation\Rule;
@@ -46,6 +47,16 @@ class Page extends ValidatableModel
     public function subPages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(__CLASS__, 'parent_id');
+    }
+
+    public function addBlock(Block $block)
+    {
+        $this->blocks()->save($block);
+    }
+
+    public function blocks()
+    {
+        return $this->hasMany(Block::class);
     }
 
     public function title(): string
