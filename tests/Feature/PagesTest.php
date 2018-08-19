@@ -31,6 +31,24 @@ class PagesTest extends TestCase
     }
 
     /** @test */
+    public function user_can_get_list_of_all_pages()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        factory(Page::class, 10)->create();
+
+        $response = $this->get('api/pages');
+
+        $response->assertStatus(200)
+            ->assertJsonCount(10)
+            ->assertJsonFragment([
+                '*' => [
+                    'id', 'title', 'slug', 'settings', 'created_at', 'updated_at'
+                ]
+            ]);
+    }
+
+    /** @test */
     public function user_can_create_a_page()
     {
         $this->actingAs(factory(User::class)->create(), 'api');

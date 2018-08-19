@@ -18,15 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::middleware('auth:api')
-    ->prefix('pages')
+//Route::middleware('auth:api')
+    Route::prefix('pages')
     ->group(function () {
-        Route::get('{id}', 'PagesController@get')->name('pages.get');
+        Route::get('', 'PagesController@index')->name('pages.index');
         Route::post('', 'PagesController@create')->name('pages.create');
+        Route::get('{id}', 'PagesController@get')->name('pages.get');
+        Route::put('{id}', 'PagesController@update')->name('pages.update');
 
         Route::prefix('{pageId}/blocks')
             ->group(function () {
                 Route::post('', 'PageBlockController@create')->name('pages.blocks.create');
+                Route::put('{id}', 'PageBlockController@update')->name('pages.blocks.update');
             });
     });
 

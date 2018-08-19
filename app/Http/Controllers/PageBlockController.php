@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Blocks\Block;
 use App\Blocks\Blocks;
 use App\Page;
 use Illuminate\Http\Request;
@@ -30,8 +31,17 @@ class PageBlockController extends Controller
         $page->addBlock($block);
 
         return response()->json($block, 201);
+    }
 
+    public function update($pageId, $id, Request $request)
+    {
+        $block = Block::findOrFail($id);
 
+        $block->fill($request->only('data'));
+
+        $block->save();
+
+        return response()->json([], 204);
     }
 
 

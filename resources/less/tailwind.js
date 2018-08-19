@@ -46,6 +46,14 @@ View the full documentation at https://tailwindcss.com.
 let colors = {
     'transparent': 'transparent',
 
+    'brand-darkest': '#12283a',
+    'brand-darker': '#1c3d5a',
+    'brand-dark': '#2779bd',
+    'brand': '#3490dc',
+    'brand-light': '#6cb2eb',
+    'brand-lighter': '#bcdefa',
+    'brand-lightest': '#eff8ff',
+
     'primary': '#22292f',
     'secondary': '#606f7b',
     'tertiary': '#8795a1',
@@ -884,7 +892,7 @@ module.exports = {
     modules: {
         appearance: ['responsive'],
         backgroundAttachment: ['responsive'],
-        backgroundColors: ['responsive', 'hover', 'focus'],
+        backgroundColors: ['responsive', 'hover', 'group-hover', 'focus'],
         backgroundPosition: ['responsive'],
         backgroundRepeat: ['responsive'],
         backgroundSize: ['responsive'],
@@ -920,7 +928,7 @@ module.exports = {
         svgStroke: [],
         tableLayout: ['responsive'],
         textAlign: ['responsive'],
-        textColors: ['responsive', 'hover', 'focus'],
+        textColors: ['responsive', 'hover', 'group-hover', 'focus'],
         textSizes: ['responsive'],
         textStyle: ['responsive', 'hover', 'focus'],
         tracking: ['responsive'],
@@ -952,8 +960,8 @@ module.exports = {
             // center: true,
             // padding: '1rem',
         }),
-        require('./plugins/buttons'),
-        require('./plugins/rotate'),
+        require('./plugins/buttons')(),
+        require('./plugins/rotate')(),
     ],
 
 

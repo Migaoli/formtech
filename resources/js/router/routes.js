@@ -1,15 +1,49 @@
+import Index from '../pages/Index';
+import PageIndex from '../pages/website/page/Index';
+import PageOverview from '../pages/website/page/Overview';
+import PageView from '../pages/website/page/View';
+import PageSettings from '../pages/website/page/PageSettings';
+
 const routes = [
     {
         path: '/',
         component: Index,
-        redirect: 'home',
+        /*redirect: 'home',*/
         meta: {auth: true},
-        children: []
-    }, {
+        children: [
+            {
+                path: 'pages',
+                component: PageIndex,
+                children: [
+                    {
+                        path: '',
+                        name: 'pages',
+                        component: PageOverview,
+                    }, {
+                        path: ':id',
+                        component: PageView,
+                        children: [
+                            {
+                                path: '',
+                                name: 'pages.view',
+                                redirect: 'settings',
+                            },
+                            {
+                                path: 'settings',
+                                name: 'pages.view.settings',
+                                component: PageSettings,
+
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }, /*{
         path: '/login',
         name: 'login',
         component: Login
-    },
+    }*/
 
 ];
 

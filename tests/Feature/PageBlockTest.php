@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Blocks\TextBlock;
 use App\Page;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -58,5 +59,23 @@ class PageBlockTest extends TestCase
         $this->page->refresh();
 
         $this->assertEquals(1, $this->page->blocks()->count());
+    }
+
+    /** @test */
+    public function user_can_update_a_block()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        $block = factory(TextBlock::class)->make();
+        $this->page->addBlock($block);
+
+        $payload = ['data' => ['heading' => 'new heading'] + $block->data()];
+
+        $this->put("api/pages/{$this->page->id}/blocks/{$block->id}", $payload)
+            ->assertStatus(204);
+
+        $block->refresh();
+
+        $this->assertEquals('new heading', $block->data('heading'));
     }
 }

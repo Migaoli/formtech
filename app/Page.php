@@ -14,7 +14,7 @@ class Page extends ValidatableModel
     protected $fillable = ['title', 'slug', 'settings'];
 
     protected $casts = [
-        'settings' => 'array'
+        'settings' => 'json'
     ];
 
     public function __construct(array $attributes = [])
@@ -26,15 +26,41 @@ class Page extends ValidatableModel
             ));
     }
 
+    public static function tree()
+    {
+        $elements = Page::all()->toArray();
+        return static::buildTree($elements, null);
+    }
+
+    private static function buildTree(array &$elements, $parentId = 0): array
+    {
+        $branch = array();
+
+        foreach ($elements as &$element) {
+
+            if ($element['parent_id'] == $parentId) {
+                $children = static::buildTree($elements, $element['id']);
+                if ($children) {
+                    $element['children'] = $children;
+                }
+                $branch[$element['id']] = $element;
+                unset($element);
+            }
+        }
+        return $branch;
+    }
+
     public function rules(): array
     {
         return [
             'title' => 'required|string|max:200',
             'slug' => ['required', 'alpha_dash', 'max:200',
-                Rule::unique('pages')->where(function ($query) {
-                    $query->where('parent_id', $this->parent_id);
-                })],
-            'settings' => 'json'
+                Rule::unique('pages')
+                    ->where(function ($query) {
+                        $query->where('parent_id', $this->parent_id);
+                    })
+                    ->ignore($this->id)],
+            'settings' => ''
         ];
     }
 

@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
             $table->integer('parent_id')->nullable();
             $table->string('title', 200);
             $table->string('slug', 200);
+            $table->string('layout');
             $table->json('settings');
             $table->timestamps();
 
