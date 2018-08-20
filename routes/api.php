@@ -28,7 +28,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
         Route::prefix('{pageId}/blocks')
             ->group(function () {
+                Route::get('', 'PageBlockController@index')->name('pages.blocks.index');
                 Route::post('', 'PageBlockController@create')->name('pages.blocks.create');
+                Route::get('{id}', 'PageBlockController@get')->name('pages.blocks.get');
                 Route::put('{id}', 'PageBlockController@update')->name('pages.blocks.update');
             });
     });

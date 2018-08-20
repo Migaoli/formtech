@@ -10,6 +10,8 @@ Vue.use(Router);
 Vue.use(Filters);
 Vue.use(CopyHelper);
 
+Vue.config.ignoredElements = ['trix-editor'];
+
 
 const app = new Vue({
     router,

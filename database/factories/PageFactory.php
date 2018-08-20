@@ -7,7 +7,7 @@ $factory->define(\App\Page::class, function (Faker $faker) {
         'title' => $faker->domainWord,
         'slug' => $faker->slug(2),
         'layout' => 'normal',
-        'settings' => ['css' => '']
+        'settings' => ['css' => ''],
     ];
 });
 
@@ -16,7 +16,8 @@ $factory->define(\App\Blocks\TextBlock::class, function (Faker $faker) {
         'data' => [
             'heading' => $faker->sentence,
             'heading_alignment' => 'left',
-            'heading_type' => 'h1'
+            'heading_type' => 'h1',
+            'content' => '# Hello world!',
         ],
     ];
 });

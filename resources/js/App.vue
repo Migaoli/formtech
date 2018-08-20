@@ -12,6 +12,10 @@
             return {
                 asd: 123
             }
+        },
+
+        created() {
+
         }
     }
 </script>

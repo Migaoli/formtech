@@ -3,6 +3,7 @@ import PageIndex from '../pages/website/page/Index';
 import PageOverview from '../pages/website/page/Overview';
 import PageView from '../pages/website/page/View';
 import PageSettings from '../pages/website/page/PageSettings';
+import BlockView from '../pages/website/page/blocks/BlockView';
 
 const routes = [
     {
@@ -32,7 +33,10 @@ const routes = [
                                 path: 'settings',
                                 name: 'pages.view.settings',
                                 component: PageSettings,
-
+                            }, {
+                                path: 'blocks/:blockId',
+                                name: 'pages.blocks.view',
+                                component: BlockView,
                             }
                         ]
                     }

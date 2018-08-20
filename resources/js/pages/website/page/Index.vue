@@ -7,5 +7,9 @@
     export default {
         name: '',
 
+        created() {
+            this.$store.dispatch('blocks/fetch');
+        }
+
     }
 </script>

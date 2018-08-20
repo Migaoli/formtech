@@ -830,7 +830,7 @@ table {
 .form-search-bar {
   border-radius: .25rem;
   border-width: 1px;
-  background-color: #f1f5f8;
+  background-color: #f8fafc;
 }
 
 .form-search-bar input {
@@ -839,7 +839,7 @@ table {
           appearance: none;
   display: block;
   width: 100%;
-  background-color: #f1f5f8;
+  background-color: #f8fafc;
   color: #606f7b;
   border-radius: .25rem;
   padding-top: .75rem;
@@ -868,7 +868,7 @@ table {
           appearance: none;
   display: block;
   width: 100%;
-  background-color: #f1f5f8;
+  background-color: #f8fafc;
   color: #606f7b;
   border-radius: .25rem;
   padding-top: .75rem;
@@ -893,7 +893,7 @@ table {
           appearance: none;
   display: block;
   width: 100%;
-  background-color: #f1f5f8;
+  background-color: #f8fafc;
   color: #606f7b;
   border-radius: .25rem;
   padding-top: .75rem;
@@ -920,7 +920,7 @@ table {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  background-color: #f1f5f8;
+  background-color: #f8fafc;
   width: 1.5rem;
   height: 1.5rem;
   display: inline-block;

@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.12.0/trix.css"/>
+
     <title>Formtech</title>
 </head>
 <body class="bg-grey-lighter text-primary font-sans">

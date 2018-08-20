@@ -16,7 +16,13 @@ class BlockController extends Controller
 
     public function index()
     {
-        return response()->json($this->blocks->registeredBlocks());
+        $blockMetaData = collect($this->blocks->registeredBlocks())
+            ->map(function($type, $name) {
+                return $this->blocks->getMetaData($name);
+            })
+            ->keyBy('name');
+
+        return response()->json($blockMetaData);
     }
 
     public function get($name)

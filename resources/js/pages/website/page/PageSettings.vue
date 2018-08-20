@@ -83,6 +83,7 @@
         methods: {
             reset() {
                 this.page = this.$copyObject(this.original);
+                this.errors = {};
             },
 
             save() {
@@ -91,6 +92,7 @@
                 axios.put(`api/pages/${this.page.id}`, this.page)
                     .then(response => {
                         this.$store.commit('page/page', this.$copyObject(this.page));
+                        this.errors = {};
                     })
                     .catch(({response}) => {
                         this.errors = response.data.errors;

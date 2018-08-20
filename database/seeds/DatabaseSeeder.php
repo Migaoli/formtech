@@ -14,6 +14,7 @@ class DatabaseSeeder extends Seeder
     {
 
         $this->createPageTree();
+        $this->addContent();
     }
 
     private function createPageTree()
@@ -21,10 +22,10 @@ class DatabaseSeeder extends Seeder
         $roots = factory(Page::class, 5)->create();
 
         foreach ($roots as $root) {
-            $subs = $this->createChildren($root, random_int(0, 5));
+            $subs = $this->createChildren($root, random_int(0, 2));
 
             foreach ($subs as $sub) {
-                $this->createChildren($sub, random_int(0, 5));
+                $this->createChildren($sub, random_int(0, 2));
             }
         }
     }
@@ -32,5 +33,13 @@ class DatabaseSeeder extends Seeder
     private function createChildren($parent, $amount)
     {
         return factory(Page::class, $amount)->create(['parent_id' => $parent->id]);
+    }
+
+    private function addContent()
+    {
+        Page::all()
+            ->each(function ($page) {
+                factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id]);
+            });
     }
 }
