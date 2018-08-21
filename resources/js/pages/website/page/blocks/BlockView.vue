@@ -1,6 +1,7 @@
 <template>
     <div>
         <div class="card px-4 py-8" v-if="block">
+            {{ block.type }} - {{ block.name }}
             <div v-for="(field, i) in blocks.text_block.fields" class="mb-8">
                 <text-field v-if="field.type === 'text'"
                             :label="field.name"

@@ -20,7 +20,7 @@ class PagesController extends Controller
 
     public function get($id)
     {
-        $page = Page::findOrFail($id);
+        $page = Page::with('blocks')->findOrFail($id);
 
         return response()->json($page);
     }

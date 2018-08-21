@@ -81,6 +81,7 @@ class BlockService implements Blocks
         }
 
         $block = new $type($attributes);
+        $block->type = $type;
 
         return $block;
     }

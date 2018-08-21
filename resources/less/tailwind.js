@@ -60,7 +60,7 @@ let colors = {
 
     'primary-inverse': '#ffffff',
     'secondary-inverse': '#f1f5f8',
-    'tertiary-inverse': 'dae1e7',
+    'tertiary-inverse': '#dae1e7',
 
     'smoke-darkest': 'rgba(0, 0, 0, 0.9)',
     'smoke-darker': 'rgba(0, 0, 0, 0.75)',
@@ -494,6 +494,7 @@ module.exports = {
     width: {
         'auto': 'auto',
         'px': '1px',
+        '0': '0',
         '1': '0.25rem',
         '2': '0.5rem',
         '3': '0.75rem',
@@ -597,6 +598,7 @@ module.exports = {
 
     minHeight: {
         '0': '0',
+        '64': '16rem',
         'full': '100%',
         'screen': '100vh'
     },

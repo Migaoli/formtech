@@ -16,6 +16,11 @@
 
     export default {
         name: '',
-        components: {SideBar, TopBar}
+
+        components: {SideBar, TopBar},
+
+        created() {
+            this.$store.dispatch('themes/fetch');
+        }
     }
 </script>

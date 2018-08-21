@@ -8,6 +8,7 @@ use App\Fields\Field;
 use App\Validation\Validatable;
 use Illuminate\Container\Container;
 use Illuminate\Support\MessageBag;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Factory;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
@@ -22,7 +23,44 @@ class Block extends \Eloquent implements Validatable
         'data' => 'array',
     ];
 
+    protected $name;
+
     private $validator;
+
+    public function __construct(array $attributes = [])
+    {
+        parent::__construct($attributes);
+        $this->type = \get_class($this);
+    }
+
+    public function newInstance($attributes = [], $exists = false)
+    {
+        $model = null;
+
+        if (array_key_exists('type', $attributes)) {
+            $model = new $attributes['type']($attributes);
+        } else {
+            $model = new static((array) $attributes);
+        }
+
+        $model->exists = $exists;
+
+        $model->setConnection(
+            $this->getConnectionName()
+        );
+
+        return $model;
+    }
+
+
+    public function name(): string
+    {
+        if ($this->name === null) {
+            return Str::snake(class_basename($this));
+        }
+
+        return $this->name;
+    }
 
     public function fields(): array
     {
@@ -44,6 +82,12 @@ class Block extends \Eloquent implements Validatable
 
         return data_get($data, $key, $default);
     }
+
+    public function toArray()
+    {
+        return array_merge(['name' => $this->name()], parent::toArray());
+    }
+
 
     private function getValidator(): Validator
     {

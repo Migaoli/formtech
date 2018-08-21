@@ -41,3 +41,5 @@ Route::prefix('blocks')
         Route::post('', 'BlockController@create')->name('blocks.create');
         Route::get('{name}', 'BlockController@get')->name('blocks.get');
     });
+
+Route::get('theme', 'ThemeController@index')->name('theme.index');
