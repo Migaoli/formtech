@@ -21,6 +21,7 @@ class Block extends \Eloquent implements Validatable
 
     protected $casts = [
         'data' => 'array',
+        'position' => 'integer',
     ];
 
     protected $name;

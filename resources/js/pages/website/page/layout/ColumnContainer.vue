@@ -1,30 +1,30 @@
 <template>
-    <div class="flex-1 w-0" >
+    <div class="flex-1 w-0">
         <div class="min-h-64 bg-white border shadow-md rounded column-container py-8 px-4 overflow-x-hidden" :id="id">
-            <block-container v-for="block in blocks"
-                             :key="block.id"
-                             :block="block"
-            ></block-container>
+            <sortable-item v-for="block in blocksInContainer"
+                           :key="block.id">
+                <block-container :block="block"></block-container>
+            </sortable-item>
         </div>
     </div>
 </template>
 
 <script>
-    import {mapState} from 'vuex';
     import BlockContainer from "./BlockContainer";
+    import SortableItem from "../../../../components/sortable/SortableItem";
 
     export default {
         name: 'column-container',
-        components: {BlockContainer},
-        props: ['id'],
+
+        components: {SortableItem, BlockContainer},
+
+        props: ['id', 'blocks'],
 
         computed: {
-            ...mapState({
-                page: state => state.page.page,
-            }),
 
-            blocks() {
-                return this.page.blocks.filter(block => block.container === this.id);
+            blocksInContainer() {
+                return this.blocks.filter(block => block.container === this.id)
+                    .sort((a, b) => a.position - b.position);
             }
         }
     }

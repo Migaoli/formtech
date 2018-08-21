@@ -17,7 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->addContent();
 
         $page = factory(Page::class)->create(['layout' => 'single_page']);
-        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);
+        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 3]);
+        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 2]);
+        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 1]);
     }
 
     private function createPageTree()

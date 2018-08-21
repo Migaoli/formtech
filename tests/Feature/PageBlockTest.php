@@ -78,4 +78,33 @@ class PageBlockTest extends TestCase
 
         $this->assertEquals('new heading', $block->data('heading'));
     }
+
+    /** @test */
+    public function user_can_update_block_order()
+    {
+        $this->withoutExceptionHandling();
+
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        factory(TextBlock::class, 2)->create(['page_id' => $this->page->id]);
+
+        $payload = [
+            [
+                'id' => 1,
+                'container' => 'new_1',
+                'position' => 5,
+            ], [
+                'id' => 2,
+                'container' => 'new_2',
+                'position' => 10,
+            ]
+        ];
+
+        $response = $this->put("api/pages/{$this->page->id}/blocks", $payload);
+
+        $response->assertStatus(204);
+
+        $this->assertDatabaseHas('blocks', $payload[0]);
+        $this->assertDatabaseHas('blocks', $payload[1]);
+    }
 }

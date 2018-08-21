@@ -14,7 +14,7 @@ class Page extends ValidatableModel
     protected $fillable = ['title', 'slug', 'settings'];
 
     protected $casts = [
-        'settings' => 'json'
+        'settings' => 'json',
     ];
 
     public function __construct(array $attributes = [])

@@ -30,8 +30,10 @@
                 }
             }).on("sortable:stop", (event) => {
                 console.log(event);
+                this.$emit('stop', event);
             }).on("sortable:start", (event) => {
                 console.log(event);
+                this.$emit('start', event);
             })
         },
 

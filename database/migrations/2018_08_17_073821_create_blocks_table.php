@@ -18,6 +18,7 @@ class CreateBlocksTable extends Migration
             $table->integer('page_id');
             $table->string('type');
             $table->string('container');
+            $table->integer('position');
             $table->json('data');
             $table->timestamps();
         });

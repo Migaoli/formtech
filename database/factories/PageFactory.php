@@ -14,6 +14,7 @@ $factory->define(\App\Page::class, function (Faker $faker) {
 $factory->define(\App\Blocks\TextBlock::class, function (Faker $faker) {
     return [
         'container' => 'c1',
+        'position' => 1,
         'data' => [
             'heading' => $faker->sentence,
             'heading_alignment' => 'left',

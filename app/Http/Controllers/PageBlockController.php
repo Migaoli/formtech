@@ -6,6 +6,7 @@ use App\Blocks\Block;
 use App\Blocks\Blocks;
 use App\Page;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PageBlockController extends Controller
 {
@@ -16,7 +17,8 @@ class PageBlockController extends Controller
         $this->blocks = $blocks;
     }
 
-    public function index($pageId) {
+    public function index($pageId)
+    {
         $page = Page::with('blocks')->findOrFail($pageId);
 
         return response()->json($page->blocks);
@@ -53,6 +55,31 @@ class PageBlockController extends Controller
         $block->fill($request->only('data'));
 
         $block->save();
+
+        return response()->json([], 204);
+    }
+
+    public function updateOrder($pageId, Request $request)
+    {
+        $payload = $request->validate([
+            '*.id' => 'required|integer',
+            '*.container' => 'required|string',
+            '*.position' => 'required|integer'
+        ]);
+
+        DB::transaction(function () use ($payload, $pageId) {
+            foreach ($payload as $block) {
+                DB::table('blocks')
+                    ->where([
+                        ['page_id', $pageId],
+                        ['id', $block['id']]
+                    ])
+                    ->update([
+                        'position' => $block['position'],
+                        'container' => $block['container'],
+                    ]);
+            }
+        });
 
         return response()->json([], 204);
     }

@@ -1,5 +1,5 @@
 <template>
-    <div class="block-container relative mb-8 shadow border overflow-x-hidden bg-grey-lightest"
+    <div :id="block.id" class="block-container relative mb-8 shadow border overflow-x-hidden bg-grey-lightest"
          @mouseenter="showToolbar = true"
          @mouseleave="showToolbar = false">
         <div class="shadow flex justify-between w-full bg-grey-darkest">
@@ -18,12 +18,14 @@
                 </button>
             </div>
             <div class="flex items-center">
-                <svg class="w-6 h-6 fill-current text-tertiary-inverse hover:text-primary-inverse cursor-move"
-                     xmlns="http://www.w3.org/2000/svg"
-                     viewBox="0 0 24 24" fill="currentColor">
-                    <path fill-rule="evenodd"
-                          d="M14 4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM8 4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm6 6h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm-6 0h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm6 6h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm-6 0h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
-                </svg>
+                <sortable-handle>
+                    <svg class="w-6 h-6 fill-current text-tertiary-inverse hover:text-primary-inverse cursor-move"
+                         xmlns="http://www.w3.org/2000/svg"
+                         viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd"
+                              d="M14 4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM8 4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm6 6h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm-6 0h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm6 6h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm-6 0h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"/>
+                    </svg>
+                </sortable-handle>
             </div>
         </div>
         <div>
@@ -34,11 +36,12 @@
 
 <script>
     import Icon from "../../../../components/Icon";
+    import SortableHandle from "../../../../components/sortable/SortableHandle";
 
     export default {
         name: 'block-container',
 
-        components: {Icon},
+        components: {SortableHandle, Icon},
 
         props: ['block'],
 
