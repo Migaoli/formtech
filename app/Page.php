@@ -7,6 +7,29 @@ use App\Validation\ValidatableModel;
 use App\Validation\Validates;
 use Illuminate\Validation\Rule;
 
+/**
+ * App\Page
+ *
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Blocks\Block[] $blocks
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Page[] $subPages
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int|null $parent_id
+ * @property string $title
+ * @property string $slug
+ * @property string $layout
+ * @property array $settings
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereLayout($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereParentId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereSettings($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Page whereUpdatedAt($value)
+ */
 class Page extends ValidatableModel
 {
     use Validates;

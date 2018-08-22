@@ -17,9 +17,9 @@ $factory->define(\App\Blocks\TextBlock::class, function (Faker $faker) {
         'position' => 1,
         'data' => [
             'heading' => $faker->sentence,
-            'heading_alignment' => 'left',
-            'heading_type' => 'h1',
-            'content' => '# Hello world!',
+            'heading_type' => 'h3',
+            'alignment' => 'left',
+            'content' => $faker->realText(400),
         ],
     ];
 });

@@ -13,6 +13,27 @@ use Illuminate\Validation\Factory;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Validation\Validator;
 
+/**
+ * App\Blocks\Block
+ *
+ * @mixin \Eloquent
+ * @property int $id
+ * @property int $page_id
+ * @property string $type
+ * @property string $container
+ * @property int $position
+ * @property array $data
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereContainer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block wherePageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereUpdatedAt($value)
+ */
 class Block extends \Eloquent implements Validatable
 {
     protected $table = 'blocks';
@@ -34,21 +55,24 @@ class Block extends \Eloquent implements Validatable
         $this->type = \get_class($this);
     }
 
-    public function newInstance($attributes = [], $exists = false)
+    public function newFromBuilder($attributes = [], $connection = null)
     {
-        $model = null;
 
-        if (array_key_exists('type', $attributes)) {
-            $model = new $attributes['type']($attributes);
-        } else {
-            $model = new static((array) $attributes);
-        }
+        $type = $attributes->type;
 
-        $model->exists = $exists;
+        $model = $model = new $type();
+
+        $model->exists = true;
 
         $model->setConnection(
             $this->getConnectionName()
         );
+
+        $model->setRawAttributes((array) $attributes, true);
+
+        $model->setConnection($connection ?: $this->getConnectionName());
+
+        $model->fireModelEvent('retrieved', false);
 
         return $model;
     }

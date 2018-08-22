@@ -6,6 +6,11 @@ namespace App\Validation;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * App\Validation\ValidatableModel
+ *
+ * @mixin \Eloquent
+ */
 class ValidatableModel extends Model implements Validatable
 {
     use Validates;

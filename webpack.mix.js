@@ -20,7 +20,6 @@ mix.js('resources/js/main.js', 'public/js/app.js')
         ]
     });
 
-
 mix.browserSync('192.168.10.10');
 
 mix.disableNotifications();
