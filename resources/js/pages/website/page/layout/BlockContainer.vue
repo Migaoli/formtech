@@ -16,8 +16,16 @@
                 </button>
                 <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
                         type="button"
-                        @click="remove">
+                        @click="showConfirmDelete = true">
                     <icon icon="trash" class="w-4 h-4 fill-current"></icon>
+                    <confirm-dialog :show="showConfirmDelete"
+                                    :confirm-text="confirmDeleteText"
+                                    :lock="deleting"
+                                    action-type="danger"
+                                    @close="showConfirmDelete = false"
+                                    @confirm="remove">
+                        Are you sure you want the delete this block?
+                    </confirm-dialog>
                 </button>
             </div>
             <div class="flex items-center">
@@ -40,18 +48,27 @@
 <script>
     import Icon from "../../../../components/Icon";
     import SortableHandle from "../../../../components/sortable/SortableHandle";
+    import ConfirmDialog from "../../../../components/confirm/ConfirmDialog";
 
     export default {
         name: 'block-container',
 
-        components: {SortableHandle, Icon},
+        components: {ConfirmDialog, SortableHandle, Icon},
 
         props: ['block'],
 
         data() {
             return {
+                deleting: false,
                 showToolbar: false,
+                showConfirmDelete: false,
             }
+        },
+
+        computed: {
+            confirmDeleteText() {
+                return this.deleting ?  'Deleting...' : 'Delete';
+            },
         },
 
         methods: {
@@ -67,7 +84,19 @@
             },
 
             remove() {
+                this.deleting = true;
 
+                this.$store.dispatch('page/deleteBlock', {id: this.block.id})
+                    .then(() => {
+
+                    })
+                    .catch(() => {
+
+                    })
+                    .finally(() => {
+                        this.deleting = false;
+                        this.showConfirmDelete = false;
+                    })
             },
         }
     }

@@ -1,3 +1,4 @@
+import TestPage from '../pages/Test';
 import Index from '../pages/Index';
 import PageIndex from '../pages/website/page/Index';
 import PageOverview from '../pages/website/page/Overview';
@@ -47,7 +48,11 @@ const routes = [
                 ]
             }
         ]
-    }, /*{
+    }, {
+        path: '/test',
+        name: 'test',
+        component: TestPage,
+    } /*{
         path: '/login',
         name: 'login',
         component: Login

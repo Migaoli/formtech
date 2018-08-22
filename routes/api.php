@@ -35,6 +35,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
                 Route::put('', 'PageBlockController@updateOrder')->name('pages.blocks.order');
                 Route::get('{id}', 'PageBlockController@get')->name('pages.blocks.get');
                 Route::put('{id}', 'PageBlockController@update')->name('pages.blocks.update');
+                Route::delete('{id}', 'PageBlockController@delete')->name('pages.blocks.delete');
             });
     });
 

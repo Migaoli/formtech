@@ -52,7 +52,11 @@
         },
 
         watch: {
-            '$store.state.page.page.blocks': this.reset,
+            '$store.state.page.page.blocks': function () {
+                this.$nextTick(() => {
+                    this.reset();
+                });
+            },
         },
 
         computed: {

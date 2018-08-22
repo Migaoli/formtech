@@ -20,6 +20,15 @@ const actions = {
             .finally(() => {
                 commit('loading', false)
             })
+    },
+
+    deleteBlock({dispatch, commit, state}, {id}) {
+        return axios
+            .delete(`api/pages/${state.page.id}/blocks/${id}`)
+            .then(response => {
+                commit('blocks', state.page.blocks.filter(block => block.id !== id));
+                return response;
+            })
     }
 };
 
@@ -30,6 +39,10 @@ const mutations = {
 
     page(state, value) {
         state.page = value
+    },
+
+    blocks(state, blocks) {
+        state.page.blocks = blocks;
     },
 
     clear(state) {

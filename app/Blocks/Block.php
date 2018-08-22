@@ -42,6 +42,7 @@ class Block extends \Eloquent implements Validatable
     protected $casts = [
         'data' => 'array',
         'position' => 'integer',
+        'page_id' => 'integer',
     ];
 
     protected $name;

@@ -60,6 +60,15 @@ class PageBlockController extends Controller
         return response()->json([], 204);
     }
 
+    public function delete($pageId, $id)
+    {
+        $block = Block::where('page_id', $pageId)->findOrFail($id);
+
+        $block->delete();
+
+        return response()->json([], 204);
+    }
+
     public function updateOrder($pageId, Request $request)
     {
         $payload = $request->validate([
