@@ -53,6 +53,7 @@
             show: {
                 immediate: true,
                 handler(show) {
+                    console.log(show);
                     if (show) {
                         this.preventBackgroundScrolling &&
                         document.body.style.setProperty("overflow", "hidden")
@@ -83,9 +84,13 @@
             }
         },
 
-        destroyed() {
+        beforeDestroy() {
             if (this.closeOnEscape) {
                 document.removeEventListener("keydown", this.onEscapeDown);
+            }
+
+            if (this.preventBackgroundScrolling) {
+                document.body.style.removeProperty("overflow")
             }
         }
     }
