@@ -31,7 +31,7 @@ class PageBlockTest extends TestCase
             'container' => 'c1',
             'data' => [
                 'heading' => 'test',
-                'heading_alignment' => 'left',
+                'alignment' => 'left',
                 'heading_type' => 'h1'
             ],
         ];
@@ -45,7 +45,7 @@ class PageBlockTest extends TestCase
 
         $payload = $this->createValidBlock();
 
-        $response = $this->post("api/pages/{$this->page->id}/blocks", $payload);
+        $response = $this->json('post', "api/pages/{$this->page->id}/blocks", $payload);
 
         $response->assertStatus(201)
             ->assertJsonStructure([
@@ -54,7 +54,7 @@ class PageBlockTest extends TestCase
                 'container',
                 'data' => [
                     'heading',
-                    'heading_alignment',
+                    'alignment',
                     'heading_type'
                 ]
             ]);
@@ -82,9 +82,9 @@ class PageBlockTest extends TestCase
         $response->assertStatus(422)
             ->assertJsonStructure([
                 'errors' => [
-                        'data.heading',
-                        'data.heading_type',
-                        'data.alignment',
+                        'heading',
+                        'heading_type',
+                        'alignment',
                 ],
             ]);
     }

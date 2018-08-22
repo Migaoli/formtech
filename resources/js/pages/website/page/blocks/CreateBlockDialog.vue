@@ -6,18 +6,18 @@
                 <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
                     <text-field v-if="field.type === 'text'"
                                 :label="field.name"
-                                :errors="errors[`data.${field.key}`]"
+                                :errors="errors[field.key]"
                                 v-model="block.data[field.key]"
                     ></text-field>
                     <select-field v-if="field.type === 'select'"
                                   :label="field.name"
-                                  :errors="errors[`data.${field.key}`]"
+                                  :errors="errors[field.key]"
                                   v-model="block.data[field.key]"
                                   :options="field.options"
                     ></select-field>
                     <markdown-field v-if="field.type === 'markdown'"
                                     :label="field.name"
-                                    :errors="errors[`data.${field.key}`]"
+                                    :errors="errors[field.key]"
                                     v-model="block.data[field.key]"
                     ></markdown-field>
                 </div>
@@ -109,9 +109,11 @@
                     .then(response => {
                         this.creating = false;
                         this.$store.dispatch('page/fetch', {id: this.pageId});
+                        this.$flash.success('Created block!');
                         this.close();
                     })
                     .catch(({response}) => {
+                        this.$flash.error('Could not create block!');
                         this.errors = response.data.errors;
                     })
                     .finally(() => {

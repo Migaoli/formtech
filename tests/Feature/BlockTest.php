@@ -16,7 +16,7 @@ class BlockTest extends TestCase
 
         $response->assertStatus(200)
             ->assertJsonFragment([
-                'text_block' => 'App\\Blocks\\TextBlock'
+                'type' => 'App\\Blocks\\TextBlock'
             ]);
     }
 

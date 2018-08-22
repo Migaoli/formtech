@@ -53,13 +53,16 @@ class PagesTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create(), 'api');
 
+        $this->withoutExceptionHandling();
+
         $payload = [
             'title' => 'awesome title',
             'slug' => 'awesome-title',
+            'layout' => 'landing_page',
             'settings' => ['asd']
         ];
 
-        $response = $this->post('api/pages/', $payload);
+        $response = $this->json('post', 'api/pages/', $payload);
 
         $response->assertStatus(201)
             ->assertJson($payload);

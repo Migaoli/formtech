@@ -64601,10 +64601,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post("api/pages/" + this.pageId + "/blocks", payload).then(function (response) {
                 _this.creating = false;
                 _this.$store.dispatch('page/fetch', { id: _this.pageId });
+                _this.$flash.success('Created block!');
                 _this.close();
             }).catch(function (_ref) {
                 var response = _ref.response;
 
+                _this.$flash.error('Could not create block!');
                 _this.errors = response.data.errors;
             }).finally(function () {
                 _this.creating = false;
@@ -69314,7 +69316,7 @@ var render = function() {
                     ? _c("text-field", {
                         attrs: {
                           label: field.name,
-                          errors: _vm.errors["data." + field.key]
+                          errors: _vm.errors[field.key]
                         },
                         model: {
                           value: _vm.block.data[field.key],
@@ -69330,7 +69332,7 @@ var render = function() {
                     ? _c("select-field", {
                         attrs: {
                           label: field.name,
-                          errors: _vm.errors["data." + field.key],
+                          errors: _vm.errors[field.key],
                           options: field.options
                         },
                         model: {
@@ -69347,7 +69349,7 @@ var render = function() {
                     ? _c("markdown-field", {
                         attrs: {
                           label: field.name,
-                          errors: _vm.errors["data." + field.key]
+                          errors: _vm.errors[field.key]
                         },
                         model: {
                           value: _vm.block.data[field.key],
@@ -69611,6 +69613,9 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
 
 
 
@@ -69631,6 +69636,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             loading: false,
             block: null,
             original: null,
+            errors: {},
             text: 'test'
         };
     },
@@ -69663,6 +69669,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         },
         reset: function reset() {
             this.block = this.$copyObject(this.original);
+            this.errors = {};
         },
         save: function save() {
             var _this2 = this;
@@ -69670,9 +69677,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.saving = true;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('api/pages/' + this.$route.params.id + '/blocks/' + this.$route.params.blockId, this.block).then(function (response) {
+                _this2.$flash.success('Block saved!');
+                _this2.errors = {};
                 _this2.original = _this2.$copyObject(_this2.block);
             }).catch(function (_ref2) {
                 var response = _ref2.response;
+
+                _this2.$flash.error("Could not save block.");
+                _this2.errors = response.data.errors;
             }).finally(function () {
                 _this2.saving = false;
             });
@@ -69900,7 +69912,10 @@ var render = function() {
                     [
                       field.type === "text"
                         ? _c("text-field", {
-                            attrs: { label: field.name },
+                            attrs: {
+                              label: field.name,
+                              errors: _vm.errors[field.key]
+                            },
                             model: {
                               value: _vm.block.data[field.key],
                               callback: function($$v) {
@@ -69915,6 +69930,7 @@ var render = function() {
                         ? _c("select-field", {
                             attrs: {
                               label: field.name,
+                              errors: _vm.errors[field.key],
                               options: field.options
                             },
                             model: {
@@ -69929,7 +69945,10 @@ var render = function() {
                       _vm._v(" "),
                       field.type === "markdown"
                         ? _c("markdown-field", {
-                            attrs: { label: field.name },
+                            attrs: {
+                              label: field.name,
+                              errors: _vm.errors[field.key]
+                            },
                             model: {
                               value: _vm.block.data[field.key],
                               callback: function($$v) {

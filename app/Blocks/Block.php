@@ -142,7 +142,7 @@ class Block extends \Eloquent implements Validatable
         $fields = $this->fields();
         return collect($fields)
             ->mapWithKeys(function ($field) {
-                return ["data.{$field->key()}" => $field->rules()];
+                return [$field->key() => $field->rules()];
             })
             ->toArray();
     }

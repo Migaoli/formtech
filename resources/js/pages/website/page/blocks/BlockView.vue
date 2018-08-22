@@ -12,15 +12,18 @@
                 <div v-for="(field, i) in blocks.text_block.fields" class="mb-8">
                     <text-field v-if="field.type === 'text'"
                                 :label="field.name"
+                                :errors="errors[field.key]"
                                 v-model="block.data[field.key]"
                     ></text-field>
                     <select-field v-if="field.type === 'select'"
                                   :label="field.name"
+                                  :errors="errors[field.key]"
                                   v-model="block.data[field.key]"
                                   :options="field.options"
                     ></select-field>
                     <markdown-field v-if="field.type === 'markdown'"
                                     :label="field.name"
+                                    :errors="errors[field.key]"
                                     v-model="block.data[field.key]"
                     ></markdown-field>
                 </div>
@@ -65,6 +68,7 @@
                 loading: false,
                 block: null,
                 original: null,
+                errors: {},
                 text: 'test',
             }
         },
@@ -98,6 +102,7 @@
 
             reset() {
                 this.block = this.$copyObject(this.original);
+                this.errors = {};
             },
 
             save() {
@@ -105,10 +110,13 @@
 
                 axios.put(`api/pages/${this.$route.params.id}/blocks/${this.$route.params.blockId}`, this.block)
                     .then(response => {
+                        this.$flash.success('Block saved!');
+                        this.errors = {};
                         this.original = this.$copyObject(this.block);
                     })
                     .catch(({response}) => {
-
+                        this.$flash.error("Could not save block.");
+                        this.errors = response.data.errors;
                     })
                     .finally(() => {
                         this.saving = false;
