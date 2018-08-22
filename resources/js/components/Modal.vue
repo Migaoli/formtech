@@ -1,27 +1,30 @@
 <template>
     <portal to="modals" v-if="show">
         <div class="fixed pin bg-smoke-lighter z-100 overflow-y-auto"
-             v-show="show"
-             @click="close">
+             v-show="show">
             <div class="flex justify-center my-8">
-                <slot class="w-1/2 bg-white rounded relative p-2" @click.stop>
-                    <div class="absolute pin-t pin-r">
-                        <button class="p-2"
-                                @click="close"
-                                type="button">
-                            <icon icon="close"
-                                  class="w-4 h-4 text-secondary"></icon>
-                        </button>
-                    </div>
-                </slot>
+                <on-click-outside :do="close">
+                    <slot class="bg-white rounded relative p-2">
+                        <div class="absolute pin-t pin-r">
+                            <button class="p-2"
+                                    @click="close"
+                                    type="button">
+                                <icon icon="close" class="w-4 h-4 text-secondary"></icon>
+                            </button>
+                        </div>
+                    </slot>
+                </on-click-outside>
             </div>
         </div>
     </portal>
 </template>
 
 <script>
+    import OnClickOutside from "./OnClickOutside";
+
     export default {
         name: 'modal',
+        components: {OnClickOutside},
         model: {
             prop: 'show',
             event: 'update'
