@@ -1158,6 +1158,31 @@ table {
   margin-bottom: 0;
 }
 
+.flash-message {
+  background-color: #fff;
+  padding: 1rem;
+  border-left-width: 8px;
+  -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+          box-shadow: 0 4px 8px 0 rgba(0, 0, 0, .12), 0 2px 4px 0 rgba(0, 0, 0, .08);
+  margin-bottom: 1rem;
+}
+
+.flash-message.flash-message-info {
+  border-color: #3490dc;
+}
+
+.flash-message.flash-message-success {
+  border-color: #38c172;
+}
+
+.flash-message.flash-message-warning {
+  border-color: #f6993f;
+}
+
+.flash-message.flash-message-error {
+  border-color: #e3342f;
+}
+
 .sortable-list-item.draggable-source--is-dragging {
   background-color: #f1f5f8;
 }

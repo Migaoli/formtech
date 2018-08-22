@@ -19,7 +19,7 @@
 
         data() {
             return {
-                show: true,
+                show: false,
             }
         },
 
