@@ -1,30 +1,22 @@
 <template>
-    <div class="relative w-full">
-        <label class="form-label"
-               :for="id">
-            {{ label }}
-        </label>
-        <input :id="id"
-               class="form-input"
-               :class="{'form-error': hasErrors}"
-               type="text"
-               :disabled="disabled"
-               :placeholder="placeholder"
-               :value="value"
-               @input="onInput"/>
-        <ul v-if="hasErrors"
-            class="mt-2 text-red-dark">
-            <li v-for="(error, i) in errors">
-                {{ error }}
-            </li>
-        </ul>
-    </div>
+   <base-field :id="id" :label="label" :errors="errors">
+       <input :id="id"
+              class="form-input"
+              :class="{'form-error': hasErrors}"
+              type="text"
+              :disabled="disabled"
+              :placeholder="placeholder"
+              :value="value"
+              @input="onInput"/>
+   </base-field>
 </template>
 
 <script>
+    import BaseField from "./BaseField";
+
     export default {
         name: 'text-field',
-
+        components: {BaseField},
         props: {
             value: {
                 required: true,

@@ -1,11 +1,8 @@
 <template>
-    <div>
-        <label class="form-label"
-               :for="id">
-            {{ label }}
-        </label>
+    <base-field :id="id" :label="label" :errors="errors">
         <select :id="id"
                 class="form-select"
+                :class="{'form-error': hasErrors}"
                 :disabled="disabled"
                 :value="value"
                 @input="onInput">
@@ -15,13 +12,15 @@
                 {{ name }}
             </option>
         </select>
-    </div>
+    </base-field>
 </template>
 
 <script>
+    import BaseField from "./BaseField";
+
     export default {
         name: 'select-field',
-
+        components: {BaseField},
         props: {
             value: {
                 required: true,
@@ -39,12 +38,21 @@
             options: {
                 type: Object,
                 required: true,
+            },
+            errors: {
+                type: Array,
             }
         },
 
         methods: {
             onInput(event) {
                 this.$emit('input', event.target.value);
+            }
+        },
+
+        computed: {
+            hasErrors() {
+                return this.errors && this.errors.length > 0;
             }
         }
 

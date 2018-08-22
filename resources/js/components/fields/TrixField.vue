@@ -1,9 +1,5 @@
 <template>
-    <div class="relative w-full">
-        <label class="form-label"
-               :for="id">
-            {{ label }}
-        </label>
+    <base-field :id="id" :label="label" :errors="errors">
         <input ref="input"
                :id="id"
                class="hidden"
@@ -12,20 +8,16 @@
                :placeholder="placeholder"
         />
         <trix-editor ref="trix" :input="id" :placeholder="placeholder"></trix-editor>
-        <ul v-if="hasErrors"
-            class="mt-2 text-red-dark">
-            <li v-for="(error, i) in errors">
-                {{ error }}
-            </li>
-        </ul>
-    </div>
+    </base-field>
 </template>
 
 <script>
 
+    import BaseField from "./BaseField";
+
     export default {
         name: 'trix-field',
-
+        components: {BaseField},
         props: {
             value: {
                 required: true,
