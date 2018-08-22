@@ -4,13 +4,19 @@
 namespace App\Fields;
 
 
+use Illuminate\Validation\Rule;
+
 class Select extends Field
 {
     private $options;
 
+    protected $defaultRules = ['required'];
+
     public function options(array $options = []): Select
     {
         $this->options = $options;
+
+        $this->defaultRules[] = Rule::in(array_keys($this->options));
 
         return $this;
     }

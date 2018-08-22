@@ -35,7 +35,11 @@ class TextBlock extends Block
     public function fields(): array
     {
         return [
-            Text::make('Heading'),
+            Text::make('Heading')
+                ->setRules([
+                    'required',
+                    'string'
+                ]),
 
             Select::make('Heading type')
                 ->options([

@@ -22,6 +22,7 @@
 
         <create-block-dialog :block-definition="blockDefinition"
                              :container="container"
+                             :page-id="page.id"
                              :show="showCreateBlockDialog"
                              @close="showCreateBlockDialog = false"
         ></create-block-dialog>

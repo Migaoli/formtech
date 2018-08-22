@@ -38,9 +38,10 @@ class PageBlockController extends Controller
         $name = $request->input('name');
         abort_if(!$this->blocks->isRegistered($name), 400);
 
+        $attributes = $request->only('data', 'container');
         $block = $this->blocks->create(
             $name,
-            $request->only('data')
+            $attributes
         );
 
         $page->addBlock($block);

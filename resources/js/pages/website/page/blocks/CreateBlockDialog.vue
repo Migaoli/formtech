@@ -6,15 +6,18 @@
                 <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
                     <text-field v-if="field.type === 'text'"
                                 :label="field.name"
+                                :errors="errors[`data.${field.key}`]"
                                 v-model="block.data[field.key]"
                     ></text-field>
                     <select-field v-if="field.type === 'select'"
                                   :label="field.name"
+                                  :errors="errors[`data.${field.key}`]"
                                   v-model="block.data[field.key]"
                                   :options="field.options"
                     ></select-field>
                     <markdown-field v-if="field.type === 'markdown'"
                                     :label="field.name"
+                                    :errors="errors[`data.${field.key}`]"
                                     v-model="block.data[field.key]"
                     ></markdown-field>
                 </div>
@@ -40,6 +43,7 @@
 </template>
 
 <script>
+    import axios from 'axios';
     import Modal from "../../../../components/Modal";
     import TextField from "../../../../components/fields/TextField";
     import SelectField from "../../../../components/fields/SelectField";
@@ -56,17 +60,27 @@
                 required: true,
             },
 
+            container: {
+                type: String,
+                required: true,
+            },
+
             blockDefinition: {
                 type: Object,
                 required: true,
             },
+
+            pageId: {
+                type: Number,
+                required: true,
+            }
         },
 
         data() {
             return {
                 creating: false,
+                errors: {},
                 block: {
-                    name: this.blockDefinition.name,
                     data: {},
                 }
             }
@@ -74,21 +88,36 @@
 
         methods: {
             close() {
+                if (this.creating) {
+                    return;
+                }
+
+                this.errors = {};
                 this.$emit('close');
             },
 
             create() {
-                axios.post(`api/pages/${this.pageId}/blocks`, this.block)
+                this.creating = true;
+
+                const payload = {
+                    name: this.blockDefinition.name,
+                    container: this.container,
+                    data: this.block.data,
+                };
+
+                axios.post(`api/pages/${this.pageId}/blocks`, payload)
                     .then(response => {
-
+                        this.creating = false;
+                        this.$store.dispatch('page/fetch', {id: this.pageId});
+                        this.close();
                     })
-                    .catch(({error}) => {
-
+                    .catch(({response}) => {
+                        this.errors = response.data.errors;
                     })
                     .finally(() => {
                         this.creating = false;
                     })
-            }
-        }
+            },
+        },
     }
 </script>
