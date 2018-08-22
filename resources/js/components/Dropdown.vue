@@ -1,6 +1,9 @@
 <script>
+    import _ from 'lodash';
+    import Popper from 'popper.js';
+
     export default {
-        name: 'dropdown',
+        name: 'dropdown-menu',
 
         props: {
             openOnClick: {
@@ -16,41 +19,68 @@
 
         data() {
             return {
-                show: false,
+                show: true,
             }
         },
 
         render(h) {
-            const activator = this.createActivator();
-            const container = this.createContainer();
+            const activator = this.createActivator(h);
+            const container = this.createContainer(h);
+
+            this.$nextTick(() => {
+                this.setupPopper();
+            });
 
             return h('div', {}, [activator, container])
         },
 
+        beforeDestroy() {
+            if (this.popper) {
+                this.popper.destroy();
+            }
+        },
 
         methods: {
-            createActivator() {
-                if (!this.$slots.activator) {
+            setupPopper() {
+                if (!this.show) {
+                    return;
+                }
+                if (this.popper === undefined) {
+                    this.popper = new Popper(this.$refs.activator, this.$refs.dropdown, {
+                        placement: "bottom"
+                    })
+                } else {
+                    this.popper.scheduleUpdate()
+                }
+            },
+
+            createActivator(h) {
+                const activator = Object.assign({}, this.$slots.activator[0]);
+
+
+                if (!activator) {
                     return null;
                 }
-
-                const options = {
+                const data = {
                     ref: 'activator',
                     on: {}
                 };
 
                 if (this.openOnHover) {
-                    options.on['mouseenter'] = this.mouseEnterHandler;
-                    options.on['mouseleave'] = this.mouseLeaveHandler;
+                    data.on['mouseenter'] = this.mouseEnterHandler;
+                    data.on['mouseleave'] = this.mouseLeaveHandler;
                 } else {
-                    options.on['click'] = this.activatorClickHandler;
+                    data.on['click'] = this.activatorClickHandler;
                 }
 
-                return this.$createElement('div', options, this.$slots.activator);
+                return h(activator.tag, _.merge(data, activator.data), activator.children || activator.text);
             },
 
-            createContainer() {
-                const options = {
+            createContainer(h) {
+                const original = this.$slots.default.find(node => node.tag);
+
+                const data = {
+                    ref: 'dropdown',
                     style: {},
                     directives: [
                         {
@@ -67,21 +97,21 @@
                 };
 
                 if (!this.show) {
-                    options.style['display'] = 'none';
+                    data.style['display'] = 'none';
                 }
 
                 if (this.openOnHover) {
-                    options.on['mouseenter'] = this.mouseEnterHandler;
-                    options.on['mouseleave'] = this.mouseLeaveHandler;
+                    data.on['mouseenter'] = this.mouseEnterHandler;
+                    data.on['mouseleave'] = this.mouseLeaveHandler;
                 }
 
                 if (this.closeOnClick) {
-                    options.on['click'] = () => {
+                    data.on['click'] = () => {
                         this.show = false
                     };
                 }
 
-                return this.$createElement('div', options, this.$slots.default);
+                return h(original.tag, _.merge(data, original.data), original.children || original.text);
             },
 
 
