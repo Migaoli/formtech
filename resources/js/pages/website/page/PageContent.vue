@@ -15,7 +15,16 @@
                 <span v-else>Save</span>
             </button>
         </div>
-        <layout-container :layout-name="page.layout" v-model="blocks"></layout-container>
+        <layout-container :layout-name="page.layout"
+                          v-model="blocks"
+                          @create="createBlock"
+        ></layout-container>
+
+        <create-block-dialog :block-definition="blockDefinition"
+                             :container="container"
+                             :show="showCreateBlockDialog"
+                             @close="showCreateBlockDialog = false"
+        ></create-block-dialog>
     </div>
 </template>
 
@@ -24,16 +33,20 @@
     import axios from 'axios';
     import {mapState} from 'vuex';
     import LayoutContainer from "./layout/LayoutContainer";
+    import CreateBlockDialog from "./blocks/CreateBlockDialog";
 
     export default {
         name: '',
 
-        components: {LayoutContainer},
+        components: {CreateBlockDialog, LayoutContainer},
 
         data() {
             return {
                 saving: false,
                 blocks: [],
+                showCreateBlockDialog: false,
+                blockDefinition: {},
+                container: '',
             }
         },
 
@@ -44,6 +57,7 @@
         computed: {
             ...mapState({
                 page: state => state.page.page,
+                blockDefinitions: state => state.blocks.blocks,
             }),
 
             isDirty() {
@@ -75,6 +89,13 @@
                     .finally(() => {
 
                     })
+            },
+
+            createBlock({name, container}) {
+                console.log(container);
+                this.container = container;
+                this.blockDefinition = this.blockDefinitions[name];
+                this.showCreateBlockDialog = true;
             }
         },
 

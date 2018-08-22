@@ -1144,6 +1144,20 @@ table {
   }
 }
 
+.column-container .block-container {
+  position: relative;
+  margin-bottom: 2rem;
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+          box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+  border-width: 1px;
+  overflow-x: hidden;
+  background-color: #f8fafc;
+}
+
+.column-container .block-container:last-child {
+  margin-bottom: 0;
+}
+
 .sortable-list-item.draggable-source--is-dragging {
   background-color: #f1f5f8;
 }

@@ -38,7 +38,7 @@ const routes = [
                                 name: 'pages.view.content',
                                 component: PageContent,
                             }, {
-                                path: 'blocks/:blockId',
+                                path: 'content/:blockId',
                                 name: 'pages.blocks.view',
                                 component: BlockView,
                             }

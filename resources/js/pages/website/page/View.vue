@@ -14,13 +14,13 @@
             <div class="flex mb-8 border-b-2">
                 <router-link
                         class="block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline"
-                        :exact-active-class="'border-brand'"
+                        :active-class="'border-brand'"
                         :to="{name: 'pages.view.content', params: {id: $route.params.id}}">
                     Content
                 </router-link>
                 <router-link
                         class="block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline"
-                        :exact-active-class="'border-brand'"
+                        :active-class="'border-brand'"
                         :to="{name: 'pages.view.settings', params: {id: $route.params.id}}">
                     Settings
                 </router-link>

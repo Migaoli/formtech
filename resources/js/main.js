@@ -5,10 +5,15 @@ import store from './store';
 import App from './App';
 import Filters from './filters';
 import CopyHelper from './util/CopyHelper';
+import PortalVue from 'portal-vue';
+import clickOutside from './directives/click-outside';
 
 Vue.use(Router);
 Vue.use(Filters);
 Vue.use(CopyHelper);
+Vue.use(PortalVue);
+
+Vue.directive(clickOutside.name, clickOutside);
 
 Vue.config.ignoredElements = ['trix-editor'];
 

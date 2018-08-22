@@ -1,19 +1,22 @@
 <template>
-    <div :id="block.id" class="block-container relative mb-8 shadow border overflow-x-hidden bg-grey-lightest"
+    <div :id="block.id" class="block-container"
          @mouseenter="showToolbar = true"
          @mouseleave="showToolbar = false">
         <div class="shadow flex justify-between w-full bg-grey-darkest">
             <div class="flex items-center">
                 <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
-                        type="button">
+                        type="button"
+                        @click="edit">
                     <icon icon="edit-pencil" class="w-4 h-4 fill-current"></icon>
                 </button>
                 <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
-                        type="button">
+                        type="button"
+                        @click="preview">
                     <icon icon="view-show" class="w-4 h-4 fill-current"></icon>
                 </button>
                 <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
-                        type="button">
+                        type="button"
+                        @click="remove">
                     <icon icon="trash" class="w-4 h-4 fill-current"></icon>
                 </button>
             </div>
@@ -49,6 +52,23 @@
             return {
                 showToolbar: false,
             }
+        },
+
+        methods: {
+            edit() {
+                this.$router.push({
+                    name: 'pages.blocks.view',
+                    params: {id: this.$route.params.id, blockId: this.block.id}
+                });
+            },
+
+            preview() {
+
+            },
+
+            remove() {
+
+            },
         }
     }
 </script>

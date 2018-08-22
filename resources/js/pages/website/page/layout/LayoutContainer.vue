@@ -8,6 +8,7 @@
                     <column-container v-for="column in row"
                                       :id="column"
                                       :blocks="blocks"
+                                      @create="(e) => $emit('create', e)"
                     ></column-container>
                 </div>
             </div>
@@ -17,7 +18,6 @@
 
 <script>
     import {mapState} from 'vuex';
-    import RowContainer from "./RowContainer";
     import BlockContainer from "./BlockContainer";
     import ColumnContainer from "./ColumnContainer";
     import SortableList from "../../../../components/sortable/SortableList";
@@ -25,7 +25,7 @@
     export default {
         name: 'layout-container',
 
-        components: {SortableList, ColumnContainer, BlockContainer, RowContainer},
+        components: {SortableList, ColumnContainer, BlockContainer},
 
         model: {
             prop: 'blocks',
