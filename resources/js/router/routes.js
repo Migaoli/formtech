@@ -29,7 +29,7 @@ const routes = [
                             {
                                 path: '',
                                 name: 'pages.view',
-                                redirect: 'settings',
+                                redirect: 'content',
                             }, {
                                 path: 'settings',
                                 name: 'pages.view.settings',
