@@ -1,4 +1,4 @@
-{{ new \App\Blocks\Parser\TextBlockParser($block) }}
+{{ new \App\Blocks\Text\TextParser($block) }}
 
 
 {{--
