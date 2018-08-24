@@ -1,14 +1,15 @@
 <?php
 
 
-namespace App\Blocks\Parser;
+namespace App\Blocks\Text;
 
+use App\Blocks\Parser;
 use Illuminate\Support\Str;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\Div;
 use Spatie\Html\Elements\Span;
 
-class TextBlockParser extends BlockParser
+class TextParser extends Parser
 {
 
 

@@ -38,11 +38,13 @@ class PageBlockController extends Controller
         $name = $request->input('name');
         abort_if(!$this->blocks->isRegistered($name), 400);
 
-        $attributes = $request->only('data', 'container');
-        $block = $this->blocks->create(
-            $name,
-            $attributes
-        );
+        $type = $this->blocks->getBlockType($name);
+
+        $handler = app()->make($type::handler());
+
+        $block = $handler->create($request);
+
+        $block->container = $request->get('container');
 
         $page->addBlock($block);
 
@@ -53,18 +55,23 @@ class PageBlockController extends Controller
     {
         $block = Block::findOrFail($id);
 
-        $block->fill($request->only('data'));
+        $handler = app()->make($block::handler());
+
+        $handler->update($block, $request);
 
         $block->save();
 
         return response()->json([], 204);
     }
 
-    public function delete($pageId, $id)
+    public function delete($pageId, $id, Request $request)
     {
         $block = Block::where('page_id', $pageId)->findOrFail($id);
 
-        $block->delete();
+
+        $handler = app()->make($block::handler());
+
+        $handler->delete($block, $request);
 
         return response()->json([], 204);
     }

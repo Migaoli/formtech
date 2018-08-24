@@ -1,12 +1,12 @@
 <?php
 
 
-namespace App\Blocks\Parser;
+namespace App\Blocks;
 
 
 use Illuminate\Contracts\Support\Htmlable;
 
-abstract class BlockParser implements Htmlable
+abstract class Parser implements Htmlable
 {
     protected $block;
 

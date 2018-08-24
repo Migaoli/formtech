@@ -55,6 +55,10 @@ class Block extends \Eloquent implements Validatable
         $this->type = \get_class($this);
     }
 
+    public static function handler(): string {
+        return DefaultRequestHandler::class;
+    }
+
     public function newFromBuilder($attributes = [], $connection = null)
     {
 

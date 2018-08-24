@@ -1,15 +1,16 @@
 <?php
 
 
-namespace App\Blocks;
+namespace App\Blocks\Text;
 
 
+use App\Blocks\Block;
 use App\Fields\Markdown;
 use App\Fields\Select;
 use App\Fields\Text;
 
 /**
- * App\Blocks\TextBlock
+ * App\Blocks\Text\TextBlock
  *
  * @mixin \Eloquent
  * @property int $id

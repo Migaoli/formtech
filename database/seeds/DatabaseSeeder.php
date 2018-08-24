@@ -17,9 +17,9 @@ class DatabaseSeeder extends Seeder
         $this->addContent();
 
         $page = factory(Page::class)->create(['layout' => 'single_page']);
-        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 3]);
-        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 2]);
-        factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 1]);
+        factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 3]);
+        factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 2]);
+        factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'position' => 1]);
     }
 
     private function createPageTree()
@@ -40,11 +40,11 @@ class DatabaseSeeder extends Seeder
     {
         Page::all()
             ->each(function ($page) {
-                factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);
-                factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c2']);
-                factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c3']);
-                factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c4']);
-                factory(\App\Blocks\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c5']);
+                factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);
+                factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c2']);
+                factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c3']);
+                factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c4']);
+                factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c5']);
             });
     }
 }

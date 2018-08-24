@@ -70,6 +70,8 @@ interface Blocks
      */
     public function create(string $name, array $attributes = []): Block;
 
+
+
     /**
      * Get meta information of a block type.
      *

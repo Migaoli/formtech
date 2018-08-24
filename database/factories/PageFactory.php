@@ -11,7 +11,7 @@ $factory->define(\App\Page::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\Blocks\TextBlock::class, function (Faker $faker) {
+$factory->define(\App\Blocks\Text\TextBlock::class, function (Faker $faker) {
     return [
         'container' => 'c1',
         'position' => 1,
