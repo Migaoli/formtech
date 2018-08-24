@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 //Route::middleware('auth:api')
-    Route::prefix('pages')
+Route::prefix('pages')
     ->group(function () {
         Route::get('', 'PagesController@index')->name('pages.index');
         Route::post('', 'PagesController@create')->name('pages.create');
@@ -47,3 +47,9 @@ Route::prefix('blocks')
     });
 
 Route::get('theme', 'ThemeController@index')->name('theme.index');
+
+Route::prefix('images')
+    ->group(function () {
+        Route::get('', 'ImageController@get')->name('images.get');
+        Route::post('', 'ImageController@post')->name('images.upload');
+    });

@@ -9,7 +9,7 @@
         </div>
         <loading :loading="loading">
             <div class="card px-4 py-8" v-if="block">
-                <div v-for="(field, i) in blocks.text_block.fields" class="mb-8">
+                <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
                     <text-field v-if="field.type === 'text'"
                                 :label="field.name"
                                 :errors="errors[field.key]"
@@ -26,6 +26,11 @@
                                     :errors="errors[field.key]"
                                     v-model="block.data[field.key]"
                     ></markdown-field>
+                    <media-field v-if="field.type === 'media'"
+                                 :label="field.name"
+                                 :errors="errors[field.key]"
+                                 v-model="block.data[field.key]"
+                    ></media-field>
                 </div>
 
                 <div class="flex justify-end" v-if="isDirty">
@@ -58,10 +63,11 @@
     import MarkdownField from "../../../../components/fields/MarkdownField";
     import Icon from "../../../../components/Icon";
     import Loading from "../../../../components/Loading";
+    import MediaField from "../../../../components/fields/MediaField";
 
     export default {
         name: '',
-        components: {Loading, Icon, MarkdownField, TrixField, SelectField, TextField},
+        components: {MediaField, Loading, Icon, MarkdownField, TrixField, SelectField, TextField},
         data() {
             return {
                 saving: false,
@@ -80,6 +86,10 @@
 
             isDirty() {
                 return !_.isEqual(this.block, this.original);
+            },
+
+            blockDefinition() {
+                return this.blocks[this.block.name];
             }
         },
 

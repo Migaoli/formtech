@@ -10,7 +10,11 @@ class Select extends Field
 {
     private $options;
 
-    protected $defaultRules = ['required'];
+    protected function getDefaultRules()
+    {
+        return ['required'];
+    }
+
 
     public function options(array $options = []): Select
     {

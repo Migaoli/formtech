@@ -19,3 +19,4 @@ Route::get('cms', 'HomeController@index');
 Route::get('cms/{any}', 'HomeController@index')->where('any', '.*');
 
 Route::get('images', 'ImageController@get');
+Route::post('images', 'ImageController@post');

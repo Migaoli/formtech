@@ -21,3 +21,17 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+$factory->define(\App\Media\Media::class, function (Faker $faker) {
+    return [
+        'name' => $faker->md5,
+        'file_path' => 'images/'.$faker->md5,
+    ];
+});
+
+$factory->state(\App\Media\Media::class, 'image', function (Faker $faker) {
+    return [
+        'type' => 'image',
+        'mime_type' => $faker->randomElement(['png', 'jpg', 'jpeg']),
+    ];
+});

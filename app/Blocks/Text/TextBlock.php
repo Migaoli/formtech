@@ -37,7 +37,7 @@ class TextBlock extends Block
     {
         return [
             Text::make('Heading')
-                ->setRules([
+                ->rules([
                     'required',
                     'string'
                 ]),
@@ -71,12 +71,12 @@ class TextBlock extends Block
 
     public function heading()
     {
-        return $this->data('heading');
+        return $this->getData('heading');
     }
 
     public function headingType()
     {
-        return $this->data('heading_type');
+        return $this->getData('heading_type');
     }
 
 

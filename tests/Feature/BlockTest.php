@@ -12,6 +12,7 @@ class BlockTest extends TestCase
     /** @test */
     public function can_get_list_of_all_registered_blocks()
     {
+        $this->withoutExceptionHandling();
         $response = $this->get('api/blocks');
 
         $response->assertStatus(200)

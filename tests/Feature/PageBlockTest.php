@@ -97,14 +97,14 @@ class PageBlockTest extends TestCase
         $block = factory(TextBlock::class)->make();
         $this->page->addBlock($block);
 
-        $payload = ['data' => ['heading' => 'new heading'] + $block->data()];
+        $payload = ['data' => ['heading' => 'new heading'] + $block->getData()];
 
         $this->put("api/pages/{$this->page->id}/blocks/{$block->id}", $payload)
             ->assertStatus(204);
 
         $block->refresh();
 
-        $this->assertEquals('new heading', $block->data('heading'));
+        $this->assertEquals('new heading', $block->getData('heading'));
     }
 
     /** @test */

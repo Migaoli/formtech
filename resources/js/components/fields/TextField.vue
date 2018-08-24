@@ -16,7 +16,9 @@
 
     export default {
         name: 'text-field',
+
         components: {BaseField},
+
         props: {
             value: {
                 required: true,

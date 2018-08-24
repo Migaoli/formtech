@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
     {
         Page::all()
             ->each(function ($page) {
+                factory(\App\Blocks\Gallery\GalleryBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);
                 factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);
                 factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c2']);
                 factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c3']);

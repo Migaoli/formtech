@@ -25,7 +25,7 @@ class RequestHandler implements \App\Blocks\RequestHandler
 
     public function update(Block $block, Request $request): Block
     {
-        // TODO: Implement update() method.
+
     }
 
     public function delete(Block $block, Request $request): void

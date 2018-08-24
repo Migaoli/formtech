@@ -14,7 +14,6 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
     private $name;
     private $key;
     private $rules = [];
-    protected $defaultRules = [];
 
     private function __construct($name, $key = null)
     {
@@ -27,7 +26,7 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
         return new static($name, $key);
     }
 
-    public function type(): string
+    public function getType(): string
     {
         if ($this->type !== null) {
             return $this->type;
@@ -38,22 +37,27 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
         );
     }
 
-    public function name(): string
+    public function getName(): string
     {
         return $this->name;
     }
 
-    public function key(): string
+    public function getKey(): string
     {
         return $this->key;
     }
 
-    public function rules(): array
+    protected function getDefaultRules()
     {
-        return array_merge($this->rules, $this->defaultRules);
+        return [];
     }
 
-    public function setRules($rules): self
+    public function getRules(): array
+    {
+        return array_merge($this->rules, $this->getDefaultRules());
+    }
+
+    public function rules($rules): self
     {
         $this->rules = $rules;
         return $this;
@@ -61,7 +65,7 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
 
     public function createValidationRules(): array
     {
-        return [$this->key => $this->rules()];
+        return [$this->key => $this->getRules()];
     }
 
     protected function append(): array
@@ -72,10 +76,10 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
     public function toArray()
     {
         $data = [
-            'type' => $this->type(),
-            'name' => $this->name(),
-            'key' => $this->key(),
-            'rules' => $this->rules(),
+            'type' => $this->getType(),
+            'name' => $this->getName(),
+            'key' => $this->getKey(),
+            'rules' => $this->getRules(),
             'createRules' => [],
             'updateRules' => [],
         ];

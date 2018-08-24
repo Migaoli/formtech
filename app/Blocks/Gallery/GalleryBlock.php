@@ -5,33 +5,30 @@ namespace App\Blocks\Gallery;
 
 
 use App\Blocks\Block;
-use App\Fields\Collection;
-use App\Fields\Select;
+use App\Fields\Markdown;
+use App\Fields\Media as MediaField;
 use App\Fields\Text;
-use Spatie\MediaLibrary\HasMedia\HasMedia;
-use Spatie\MediaLibrary\HasMedia\HasMediaTrait;
+use App\Media\Media;
 
-class GalleryBlock extends Block implements HasMedia
+class GalleryBlock extends Block
 {
-
-    use HasMediaTrait;
-
-
-    public static function handler(): string
+    /*public static function handler(): string
     {
         return RequestHandler::class;
-    }
-
+    }*/
 
     public function fields(): array
     {
         return [
-            Collection::make('Images')
-                ->of([
-                    Text::make('name')->setRules(['required']),
-                    Select::make("test")->options(['one' => 'ONE', 'two' => 'TWO']),
-                ]),
+            Text::make('heading')->rules(['required']),
+            Markdown::make('description'),
+            MediaField::make('images')->allowMultiple()
         ];
+    }
+
+    public function images()
+    {
+        return $this->morphToMany(Media::class, 'model', 'media_references');
     }
 
 

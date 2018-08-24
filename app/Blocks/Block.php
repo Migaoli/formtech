@@ -51,6 +51,7 @@ class Block extends \Eloquent implements Validatable
 
     public function __construct(array $attributes = [])
     {
+        $this->data = [];
         parent::__construct($attributes);
         $this->type = \get_class($this);
     }
@@ -101,7 +102,7 @@ class Block extends \Eloquent implements Validatable
         return '';
     }
 
-    public function data(string $key = null, $default = null)
+    public function getData(string $key = null, $default = null)
     {
         $data = $this->getAttribute('data');
 
@@ -124,7 +125,7 @@ class Block extends \Eloquent implements Validatable
             $this->validator = Container::getInstance()
                 ->make(Factory::class)
                 ->make(
-                    $this->data(),
+                    $this->getData(),
                     $this->rules()
                 );
         }
@@ -146,7 +147,7 @@ class Block extends \Eloquent implements Validatable
         $fields = $this->fields();
         return collect($fields)
             ->mapWithKeys(function ($field) {
-                return [$field->key() => $field->rules()];
+                return [$field->getKey() => $field->getRules()];
             })
             ->toArray();
     }

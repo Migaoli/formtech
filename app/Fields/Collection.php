@@ -21,7 +21,7 @@ class Collection extends Field
 
         $fieldRules = collect($this->fields)
             ->mapWithKeys(function ($field) {
-                return ["{$this->key()}.*.{$field->key()}" => $field->rules()];
+                return ["{$this->getKey()}.*.{$field->key()}" => $field->rules()];
             })
             ->toArray();
 
