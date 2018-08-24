@@ -8,9 +8,9 @@
             </button>
         </div>
         <loading :loading="loading">
-            <sortable-list container-selector=".page-tree-container">
+            <sortable-container container-selector=".page-tree-container">
                 <page-tree :pages="pages"></page-tree>
-            </sortable-list>
+            </sortable-container>
         </loading>
     </div>
 </template>
@@ -20,12 +20,12 @@
     import Icon from "../../../components/Icon";
     import Loading from "../../../components/Loading";
     import PageTree from "./PageTree";
-    import SortableList from "../../../components/sortable/SortableList";
+    import SortableContainer from "../../../components/sortable/SortableContainer";
 
     export default {
         name: '',
 
-        components: {SortableList, PageTree, Loading, Icon},
+        components: {SortableContainer, PageTree, Loading, Icon},
 
         data() {
             return {

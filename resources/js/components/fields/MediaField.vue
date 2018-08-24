@@ -2,9 +2,10 @@
     <base-field :id="id" :label="label" :errors="errors">
         <div class="bg-grey-lighter border rounded p-3 mb-4">
 
-            <sortable-list>
+            <sortable-list :value="value"
+                           @input="(e) => $emit('input', e)">
                 <div class="grid">
-                    <sortable-item v-for="(media, i) in value">
+                    <sortable-item v-for="(media, i) in value" :key="media">
                         <div>
                             <sortable-handle>
                                 <media-item :id="media"></media-item>

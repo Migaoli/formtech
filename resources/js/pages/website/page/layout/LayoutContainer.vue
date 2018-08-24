@@ -1,6 +1,6 @@
 <template>
     <div>
-        <sortable-list container-selector=".column-container"
+        <sortable-container container-selector=".column-container"
                        @stop="moveBlock">
             <div>
                 <div v-for="(row, i) in layout.grid"
@@ -12,7 +12,7 @@
                     ></column-container>
                 </div>
             </div>
-        </sortable-list>
+        </sortable-container>
     </div>
 </template>
 
@@ -20,12 +20,12 @@
     import {mapState} from 'vuex';
     import BlockContainer from "./BlockContainer";
     import ColumnContainer from "./ColumnContainer";
-    import SortableList from "../../../../components/sortable/SortableList";
+    import SortableContainer from "../../../../components/sortable/SortableContainer";
 
     export default {
         name: 'layout-container',
 
-        components: {SortableList, ColumnContainer, BlockContainer},
+        components: {SortableContainer, ColumnContainer, BlockContainer},
 
         model: {
             prop: 'blocks',

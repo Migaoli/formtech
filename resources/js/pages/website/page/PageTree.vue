@@ -26,14 +26,13 @@
 
 <script>
     import Icon from "../../../components/Icon";
-    import SortableList from "../../../components/sortable/SortableList";
     import SortableItem from "../../../components/sortable/SortableItem";
     import SortableHandle from "../../../components/sortable/SortableHandle";
 
     export default {
         name: 'page-tree',
 
-        components: {SortableHandle, SortableItem, SortableList, Icon},
+        components: {SortableHandle, SortableItem, Icon},
 
         props: ['pages'],
     }

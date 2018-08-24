@@ -50834,8 +50834,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Loading__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PageTree__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PageTree___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__PageTree__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableList__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableContainer__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableContainer__);
 //
 //
 //
@@ -50863,7 +50863,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: '',
 
-    components: { SortableList: __WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableList___default.a, PageTree: __WEBPACK_IMPORTED_MODULE_3__PageTree___default.a, Loading: __WEBPACK_IMPORTED_MODULE_2__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_1__components_Icon___default.a },
+    components: { SortableContainer: __WEBPACK_IMPORTED_MODULE_4__components_sortable_SortableContainer___default.a, PageTree: __WEBPACK_IMPORTED_MODULE_3__PageTree___default.a, Loading: __WEBPACK_IMPORTED_MODULE_2__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_1__components_Icon___default.a },
 
     data: function data() {
         return {
@@ -51906,12 +51906,10 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Icon__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Icon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Icon__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableList__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableList__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableItem__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableItem__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableHandle__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableHandle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableHandle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle__);
 //
 //
 //
@@ -51938,7 +51936,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-
 
 
 
@@ -51947,7 +51944,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'page-tree',
 
-    components: { SortableHandle: __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableHandle___default.a, SortableItem: __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableItem___default.a, SortableList: __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableList___default.a, Icon: __WEBPACK_IMPORTED_MODULE_0__components_Icon___default.a },
+    components: { SortableHandle: __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle___default.a, SortableItem: __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem___default.a, Icon: __WEBPACK_IMPORTED_MODULE_0__components_Icon___default.a },
 
     props: ['pages']
 });
@@ -51960,15 +51957,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shopify_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__shopify_draggable__);
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 
+
+function move(items, oldIndex, newIndex) {
+    var itemRemovedArray = [].concat(_toConsumableArray(items.slice(0, oldIndex)), _toConsumableArray(items.slice(oldIndex + 1, items.length)));
+
+    return [].concat(_toConsumableArray(itemRemovedArray.slice(0, newIndex)), [items[oldIndex]], _toConsumableArray(itemRemovedArray.slice(newIndex, itemRemovedArray.length)));
+}
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'sortable-list',
-
     props: {
-        containerSelector: {
-            default: null
+        value: {
+            required: true
         },
         itemClass: {
             default: "sortable-list-item"
@@ -51977,33 +51979,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             default: "sortable-list-handle"
         }
     },
-
-    mounted: function mounted() {
-        var _this = this;
-
-        var blocked = false;
-
-        var container = this.containerSelector ? document.querySelectorAll(this.containerSelector) : this.$el;
-
-        new __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__["Sortable"](container, {
-            draggable: '.' + this.itemClass,
-            handle: '.' + this.handleClass,
-            mirror: {
-                constrainDimensions: true
-            }
-        }).on("sortable:stop", function (event) {
-            console.log(event);
-            _this.$emit('stop', event);
-        }).on("sortable:start", function (event) {
-            console.log(event);
-            _this.$emit('start', event);
-        });
-    },
     provide: function provide() {
         return {
             sortableListItemClass: this.itemClass,
             sortableListHandleClass: this.handleClass
         };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        new __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__["Sortable"](this.$el, {
+            draggable: "." + this.itemClass,
+            handle: "." + this.handleClass,
+            mirror: {
+                constrainDimensions: true
+            }
+        }).on("sortable:stop", function (_ref) {
+            var oldIndex = _ref.oldIndex,
+                newIndex = _ref.newIndex;
+
+            var args = move(_this.value, oldIndex, newIndex);
+            _this.$emit("input", args);
+        });
     },
     render: function render() {
         return this.$slots.default[0];
@@ -59099,7 +59096,7 @@ var render = function() {
         { attrs: { loading: _vm.loading } },
         [
           _c(
-            "sortable-list",
+            "sortable-container",
             { attrs: { "container-selector": ".page-tree-container" } },
             [_c("page-tree", { attrs: { pages: _vm.pages } })],
             1
@@ -60661,8 +60658,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BlockContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BlockContainer__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ColumnContainer__ = __webpack_require__(234);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ColumnContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__ColumnContainer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableList__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableContainer__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableContainer__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
@@ -60694,7 +60691,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'layout-container',
 
-    components: { SortableList: __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableList___default.a, ColumnContainer: __WEBPACK_IMPORTED_MODULE_2__ColumnContainer___default.a, BlockContainer: __WEBPACK_IMPORTED_MODULE_1__BlockContainer___default.a },
+    components: { SortableContainer: __WEBPACK_IMPORTED_MODULE_3__components_sortable_SortableContainer___default.a, ColumnContainer: __WEBPACK_IMPORTED_MODULE_2__ColumnContainer___default.a, BlockContainer: __WEBPACK_IMPORTED_MODULE_1__BlockContainer___default.a },
 
     model: {
         prop: 'blocks',
@@ -64387,7 +64384,7 @@ var render = function() {
     "div",
     [
       _c(
-        "sortable-list",
+        "sortable-container",
         {
           attrs: { "container-selector": ".column-container" },
           on: { stop: _vm.moveBlock }
@@ -69977,6 +69974,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 
 
 
@@ -70668,27 +70666,38 @@ var render = function() {
         "div",
         { staticClass: "bg-grey-lighter border rounded p-3 mb-4" },
         [
-          _c("sortable-list", [
-            _c(
-              "div",
-              { staticClass: "grid" },
-              _vm._l(_vm.value, function(media, i) {
-                return _c("sortable-item", [
-                  _c(
-                    "div",
-                    [
-                      _c(
-                        "sortable-handle",
-                        [_c("media-item", { attrs: { id: media } })],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ])
-              })
-            )
-          ])
+          _c(
+            "sortable-list",
+            {
+              attrs: { value: _vm.value },
+              on: {
+                input: function(e) {
+                  return _vm.$emit("input", e)
+                }
+              }
+            },
+            [
+              _c(
+                "div",
+                { staticClass: "grid" },
+                _vm._l(_vm.value, function(media, i) {
+                  return _c("sortable-item", { key: media }, [
+                    _c(
+                      "div",
+                      [
+                        _c(
+                          "sortable-handle",
+                          [_c("media-item", { attrs: { id: media } })],
+                          1
+                        )
+                      ],
+                      1
+                    )
+                  ])
+                })
+              )
+            ]
+          )
         ],
         1
       ),
@@ -72556,6 +72565,111 @@ function clickedInsideElement(el, x, y) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(294)
+/* template */
+var __vue_template__ = null
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\components\\sortable\\SortableContainer.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6e9a72fd", Component.options)
+  } else {
+    hotAPI.reload("data-v-6e9a72fd", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 294 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__shopify_draggable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__shopify_draggable__);
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'sortable-container',
+
+    props: {
+        containerSelector: {
+            default: null
+        },
+        itemClass: {
+            default: "sortable-list-item"
+        },
+        handleClass: {
+            default: "sortable-list-handle"
+        }
+    },
+
+    mounted: function mounted() {
+        var _this = this;
+
+        var container = this.containerSelector ? document.querySelectorAll(this.containerSelector) : this.$el;
+
+        new __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__["Sortable"](container, {
+            draggable: '.' + this.itemClass,
+            handle: '.' + this.handleClass,
+            mirror: {
+                constrainDimensions: true
+            }
+        }).on("sortable:stop", function (event) {
+            _this.$emit('stop', event);
+        }).on("sortable:start", function (event) {
+            _this.$emit('start', event);
+        });
+    },
+    provide: function provide() {
+        return {
+            sortableListItemClass: this.itemClass,
+            sortableListHandleClass: this.handleClass
+        };
+    },
+    render: function render() {
+        return this.$slots.default[0];
+    }
+});
 
 /***/ })
 /******/ ]);

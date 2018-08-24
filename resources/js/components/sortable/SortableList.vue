@@ -1,13 +1,23 @@
 <script>
-    import {Sortable} from '@shopify/draggable';
+    import {Sortable} from "@shopify/draggable"
 
+    function move(items, oldIndex, newIndex) {
+        const itemRemovedArray = [
+            ...items.slice(0, oldIndex),
+            ...items.slice(oldIndex + 1, items.length)
+        ];
+
+        return [
+            ...itemRemovedArray.slice(0, newIndex),
+            items[oldIndex],
+            ...itemRemovedArray.slice(newIndex, itemRemovedArray.length)
+        ];
+    }
 
     export default {
-        name: 'sortable-list',
-
         props: {
-            containerSelector: {
-                default: null,
+            value: {
+                required: true
             },
             itemClass: {
                 default: "sortable-list-item"
@@ -16,34 +26,24 @@
                 default: "sortable-list-handle"
             }
         },
-
-        mounted() {
-            let blocked = false;
-
-            const container = this.containerSelector ? document.querySelectorAll(this.containerSelector) : this.$el;
-
-            new Sortable(container, {
-                draggable: `.${this.itemClass}`,
-                handle: `.${this.handleClass}`,
-                mirror: {
-                    constrainDimensions: true
-                }
-            }).on("sortable:stop", (event) => {
-                console.log(event);
-                this.$emit('stop', event);
-            }).on("sortable:start", (event) => {
-                console.log(event);
-                this.$emit('start', event);
-            })
-        },
-
         provide() {
             return {
                 sortableListItemClass: this.itemClass,
                 sortableListHandleClass: this.handleClass
             }
         },
-
+        mounted() {
+            new Sortable(this.$el, {
+                draggable: `.${this.itemClass}`,
+                handle: `.${this.handleClass}`,
+                mirror: {
+                    constrainDimensions: true
+                }
+            }).on("sortable:stop", ({ oldIndex, newIndex }) => {
+                let args = move(this.value, oldIndex, newIndex);
+                this.$emit("input", args)
+            })
+        },
         render() {
             return this.$slots.default[0];
         }
