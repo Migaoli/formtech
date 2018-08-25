@@ -60678,6 +60678,7 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 //
 //
 //
+//
 
 
 
@@ -64394,6 +64395,7 @@ var render = function() {
                 { staticClass: "grid mb-8" },
                 _vm._l(row, function(column) {
                   return _c("column-container", {
+                    key: column,
                     attrs: { id: column, blocks: _vm.blocks },
                     on: {
                       create: function(e) {
@@ -69561,6 +69563,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_Loading__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField__ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_fields_BlockField__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_fields_BlockField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_fields_BlockField__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -69602,22 +69606,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
@@ -69632,7 +69621,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: '',
-    components: { MediaField: __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default.a, Loading: __WEBPACK_IMPORTED_MODULE_8__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_7__components_Icon___default.a, MarkdownField: __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField___default.a, TrixField: __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField___default.a },
+    components: { BlockField: __WEBPACK_IMPORTED_MODULE_10__components_fields_BlockField___default.a, MediaField: __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default.a, Loading: __WEBPACK_IMPORTED_MODULE_8__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_7__components_Icon___default.a, MarkdownField: __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField___default.a, TrixField: __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField___default.a },
     data: function data() {
         return {
             saving: false,
@@ -69651,6 +69640,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         }
     }), {
         isDirty: function isDirty() {
+            console.log('check dirty');
             return !__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isEqual(this.block, this.original);
         },
         blockDefinition: function blockDefinition() {
@@ -69694,6 +69684,18 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }).finally(function () {
                 _this2.saving = false;
             });
+        },
+        update: function update(_ref3) {
+            var key = _ref3.key,
+                value = _ref3.value;
+
+            if (__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.has(this.block, key)) {
+                console.log('update');
+                __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.set(this.block, key, value);
+            } else {
+                console.log('create');
+                this.$set(this.block, key, value);
+            }
         }
     },
 
@@ -70897,70 +70899,14 @@ var render = function() {
                     "div",
                     { staticClass: "mb-8" },
                     [
-                      field.type === "text"
-                        ? _c("text-field", {
-                            attrs: {
-                              label: field.name,
-                              errors: _vm.errors[field.key]
-                            },
-                            model: {
-                              value: _vm.block.data[field.key],
-                              callback: function($$v) {
-                                _vm.$set(_vm.block.data, field.key, $$v)
-                              },
-                              expression: "block.data[field.key]"
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      field.type === "select"
-                        ? _c("select-field", {
-                            attrs: {
-                              label: field.name,
-                              errors: _vm.errors[field.key],
-                              options: field.options
-                            },
-                            model: {
-                              value: _vm.block.data[field.key],
-                              callback: function($$v) {
-                                _vm.$set(_vm.block.data, field.key, $$v)
-                              },
-                              expression: "block.data[field.key]"
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      field.type === "markdown"
-                        ? _c("markdown-field", {
-                            attrs: {
-                              label: field.name,
-                              errors: _vm.errors[field.key]
-                            },
-                            model: {
-                              value: _vm.block.data[field.key],
-                              callback: function($$v) {
-                                _vm.$set(_vm.block.data, field.key, $$v)
-                              },
-                              expression: "block.data[field.key]"
-                            }
-                          })
-                        : _vm._e(),
-                      _vm._v(" "),
-                      field.type === "media"
-                        ? _c("media-field", {
-                            attrs: {
-                              label: field.name,
-                              errors: _vm.errors[field.key]
-                            },
-                            model: {
-                              value: _vm.block.data[field.key],
-                              callback: function($$v) {
-                                _vm.$set(_vm.block.data, field.key, $$v)
-                              },
-                              expression: "block.data[field.key]"
-                            }
-                          })
-                        : _vm._e()
+                      _c("block-field", {
+                        attrs: {
+                          field: field,
+                          block: _vm.block,
+                          errors: _vm.errors
+                        },
+                        on: { update: _vm.update }
+                      })
                     ],
                     1
                   )
@@ -72666,6 +72612,217 @@ function clickedInsideElement(el, x, y) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(296)
+/* template */
+var __vue_template__ = __webpack_require__(297)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\components\\fields\\BlockField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-f309dcb0", Component.options)
+  } else {
+    hotAPI.reload("data-v-f309dcb0", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 296 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextField__ = __webpack_require__(15);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__TextField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SelectField__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__SelectField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MarkdownField__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__MarkdownField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__MarkdownField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MediaField__ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__MediaField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__MediaField__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'block-field',
+
+    components: { MediaField: __WEBPACK_IMPORTED_MODULE_4__MediaField___default.a, MarkdownField: __WEBPACK_IMPORTED_MODULE_3__MarkdownField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_2__SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_1__TextField___default.a },
+
+    props: {
+        field: {
+            type: Object,
+            required: true
+        },
+
+        block: {
+            type: Object,
+            required: true
+        },
+
+        errors: {
+            type: Object,
+            required: true
+        }
+    },
+
+    computed: {
+        data: function data() {
+            return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.get(this.block, this.field.key, null);
+        }
+    },
+
+    methods: {
+        input: function input(e) {
+            this.$emit('update', {
+                key: this.field.key,
+                value: e
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 297 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm.field.type === "text"
+        ? _c("text-field", {
+            attrs: {
+              label: _vm.field.name,
+              errors: _vm.errors[_vm.field.key],
+              value: _vm.data
+            },
+            on: { input: _vm.input }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.field.type === "select"
+        ? _c("select-field", {
+            attrs: {
+              label: _vm.field.name,
+              errors: _vm.errors[_vm.field.key],
+              value: _vm.data,
+              options: _vm.field.options
+            },
+            on: { input: _vm.input }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.field.type === "markdown"
+        ? _c("markdown-field", {
+            attrs: {
+              label: _vm.field.name,
+              errors: _vm.errors[_vm.field.key],
+              value: _vm.data
+            },
+            on: { input: _vm.input }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.field.type === "media"
+        ? _c("media-field", {
+            attrs: {
+              label: _vm.field.name,
+              errors: _vm.errors[_vm.field.key],
+              value: _vm.data
+            },
+            on: { input: _vm.input }
+          })
+        : _vm._e()
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-f309dcb0", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

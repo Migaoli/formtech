@@ -10,27 +10,11 @@
         <loading :loading="loading">
             <div class="card px-4 py-8" v-if="block">
                 <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
-                    <text-field v-if="field.type === 'text'"
-                                :label="field.name"
-                                :errors="errors[field.key]"
-                                v-model="block.data[field.key]"
-                    ></text-field>
-                    <select-field v-if="field.type === 'select'"
-                                  :label="field.name"
-                                  :errors="errors[field.key]"
-                                  v-model="block.data[field.key]"
-                                  :options="field.options"
-                    ></select-field>
-                    <markdown-field v-if="field.type === 'markdown'"
-                                    :label="field.name"
-                                    :errors="errors[field.key]"
-                                    v-model="block.data[field.key]"
-                    ></markdown-field>
-                    <media-field v-if="field.type === 'media'"
-                                 :label="field.name"
-                                 :errors="errors[field.key]"
-                                 v-model="block.data[field.key]"
-                    ></media-field>
+                    <block-field :field="field"
+                                 :block="block"
+                                 @update="update"
+                                 :errors="errors"
+                    ></block-field>
                 </div>
 
                 <div class="flex justify-end" v-if="isDirty">
@@ -64,10 +48,11 @@
     import Icon from "../../../../components/Icon";
     import Loading from "../../../../components/Loading";
     import MediaField from "../../../../components/fields/MediaField";
+    import BlockField from "../../../../components/fields/BlockField";
 
     export default {
         name: '',
-        components: {MediaField, Loading, Icon, MarkdownField, TrixField, SelectField, TextField},
+        components: {BlockField, MediaField, Loading, Icon, MarkdownField, TrixField, SelectField, TextField},
         data() {
             return {
                 saving: false,
@@ -85,6 +70,7 @@
             }),
 
             isDirty() {
+                console.log('check dirty');
                 return !_.isEqual(this.block, this.original);
             },
 
@@ -132,6 +118,16 @@
                         this.saving = false;
                     });
             },
+
+            update({key, value}) {
+                if (_.has(this.block, key)) {
+                    console.log('update');
+                    _.set(this.block, key, value);
+                } else {
+                    console.log('create');
+                    this.$set(this.block, key, value);
+                }
+            }
         },
 
         created() {

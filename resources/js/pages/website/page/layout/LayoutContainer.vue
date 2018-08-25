@@ -6,6 +6,7 @@
                 <div v-for="(row, i) in layout.grid"
                      class="grid mb-8">
                     <column-container v-for="column in row"
+                                      :key="column"
                                       :id="column"
                                       :blocks="blocks"
                                       @create="(e) => $emit('create', e)"
