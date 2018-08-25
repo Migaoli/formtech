@@ -9,7 +9,6 @@
                                       :key="column"
                                       :id="column"
                                       :blocks="blocks"
-                                      @create="(e) => $emit('create', e)"
                     ></column-container>
                 </div>
             </div>

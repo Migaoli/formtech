@@ -57,10 +57,16 @@
 
         methods: {
             create(blockName) {
-                this.$emit('create', {
-                    name: blockName,
-                    container: this.id,
-                });
+                this.$router.push({
+                    name: 'pages.blocks.create',
+                    params: {
+                        id: this.$route.params.id
+                    },
+                    query: {
+                        type: blockName,
+                        container: this.id
+                    }
+                })
             }
         }
     }

@@ -24,7 +24,9 @@
 
     export default {
         name: 'modal',
+
         components: {OnClickOutside},
+
         model: {
             prop: 'show',
             event: 'update'
@@ -53,7 +55,6 @@
             show: {
                 immediate: true,
                 handler(show) {
-                    console.log(show);
                     if (show) {
                         this.preventBackgroundScrolling &&
                         document.body.style.setProperty("overflow", "hidden")

@@ -17,15 +17,7 @@
         </div>
         <layout-container :layout-name="page.layout"
                           v-model="blocks"
-                          @create="createBlock"
         ></layout-container>
-
-        <create-block-dialog :block-definition="blockDefinition"
-                             :container="container"
-                             :page-id="page.id"
-                             :show="showCreateBlockDialog"
-                             @close="showCreateBlockDialog = false"
-        ></create-block-dialog>
     </div>
 </template>
 
@@ -34,12 +26,11 @@
     import axios from 'axios';
     import {mapState} from 'vuex';
     import LayoutContainer from "./layout/LayoutContainer";
-    import CreateBlockDialog from "./blocks/CreateBlockDialog";
 
     export default {
         name: '',
 
-        components: {CreateBlockDialog, LayoutContainer},
+        components: {LayoutContainer},
 
         data() {
             return {
@@ -95,13 +86,6 @@
 
                     })
             },
-
-            createBlock({name, container}) {
-                console.log(container);
-                this.container = container;
-                this.blockDefinition = this.blockDefinitions[name];
-                this.showCreateBlockDialog = true;
-            }
         },
 
         created() {

@@ -20,6 +20,9 @@ class RequestHandler implements \App\Blocks\RequestHandler
 
         $gallery->save();
 
+        $gallery->updateImages($request->get('images', []));
+
+
         return $gallery;
     }
 

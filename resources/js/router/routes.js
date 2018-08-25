@@ -6,6 +6,7 @@ import PageView from '../pages/website/page/View';
 import PageSettings from '../pages/website/page/PageSettings';
 import PageContent from '../pages/website/page/PageContent';
 import BlockView from '../pages/website/page/blocks/BlockView';
+import BlockCreate from '../pages/website/page/blocks/BlockCreate';
 
 const routes = [
     {
@@ -38,6 +39,10 @@ const routes = [
                                 path: 'content',
                                 name: 'pages.view.content',
                                 component: PageContent,
+                            }, {
+                                path: 'content/new',
+                                name: 'pages.blocks.create',
+                                component: BlockCreate,
                             }, {
                                 path: 'content/:blockId',
                                 name: 'pages.blocks.view',
