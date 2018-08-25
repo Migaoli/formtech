@@ -39,7 +39,8 @@ class TextBlock extends Block
             Text::make('Heading', 'data.heading')
                 ->rules([
                     'required',
-                    'string'
+                    'string',
+                    'max:100',
                 ]),
 
             Select::make('Heading type', 'data.heading_type')

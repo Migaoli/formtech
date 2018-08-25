@@ -62,12 +62,12 @@
                 const part1 = this.blocks.filter(block => block.container !== newContainer);
                 const part2 = this.blocks.filter(block => block.container === newContainer);
 
-                part2.filter(block => block.position >= newIndex)
-                    .forEach(block => block.position++);
+                part2.filter(block => block.order >= newIndex)
+                    .forEach(block => block.order++);
 
                 const block = this.blocks.find(block => block.id === blockId);
                 block.container = newContainer;
-                block.position = newIndex;
+                block.order = newIndex;
 
                 this.$emit('update', [...part1, ...part2]);
             }

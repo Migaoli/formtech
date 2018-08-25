@@ -60807,16 +60807,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
             });
 
             part2.filter(function (block) {
-                return block.position >= newIndex;
+                return block.order >= newIndex;
             }).forEach(function (block) {
-                return block.position++;
+                return block.order++;
             });
 
             var block = this.blocks.find(function (block) {
                 return block.id === blockId;
             });
             block.container = newContainer;
-            block.position = newIndex;
+            block.order = newIndex;
 
             this.$emit('update', [].concat(_toConsumableArray(part1), _toConsumableArray(part2)));
         }
@@ -61607,7 +61607,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return this.blocks.filter(function (block) {
                 return block.container === _this.id;
             }).sort(function (a, b) {
-                return a.position - b.position;
+                return a.order - b.order;
             });
         }
     }),

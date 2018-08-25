@@ -12,15 +12,13 @@ class Select extends Field
 
     protected function getDefaultRules()
     {
-        return ['required'];
+        return ['required', Rule::in(array_keys($this->options))];
     }
 
 
     public function options(array $options = []): Select
     {
         $this->options = $options;
-
-        $this->defaultRules[] = Rule::in(array_keys($this->options));
 
         return $this;
     }

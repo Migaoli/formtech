@@ -45,6 +45,7 @@ class PageBlockController extends Controller
         $block = $handler->create($request);
 
         $block->container = $request->get('container');
+        $block->order = $request->get('order', 0);
 
         $page->addBlock($block);
 
@@ -81,7 +82,7 @@ class PageBlockController extends Controller
         $payload = $request->validate([
             '*.id' => 'required|integer',
             '*.container' => 'required|string',
-            '*.position' => 'required|integer'
+            '*.order' => 'required|integer'
         ]);
 
         DB::transaction(function () use ($payload, $pageId) {
@@ -92,7 +93,7 @@ class PageBlockController extends Controller
                         ['id', $block['id']]
                     ])
                     ->update([
-                        'position' => $block['position'],
+                        'order' => $block['order'],
                         'container' => $block['container'],
                     ]);
             }

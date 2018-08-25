@@ -51,7 +51,7 @@
 
             blocksInContainer() {
                 return this.blocks.filter(block => block.container === this.id)
-                    .sort((a, b) => a.position - b.position);
+                    .sort((a, b) => a.order - b.order);
             }
         },
 
