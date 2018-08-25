@@ -6,6 +6,7 @@ namespace App\Blocks;
 
 use App\Validation\Validatable;
 use Illuminate\Container\Container;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\MessageBag;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Factory;
@@ -65,6 +66,7 @@ class Block extends \Eloquent implements Validatable
 
         $type = $attributes->type;
 
+        /** @var Model $model */
         $model = $model = new $type();
 
         $model->exists = true;
@@ -78,6 +80,8 @@ class Block extends \Eloquent implements Validatable
         $model->setConnection($connection ?: $this->getConnectionName());
 
         $model->fireModelEvent('retrieved', false);
+
+        $model->load($model->with);
 
         return $model;
     }

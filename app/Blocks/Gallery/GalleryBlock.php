@@ -17,6 +17,8 @@ class GalleryBlock extends Block
         return RequestHandler::class;
     }*/
 
+    protected $with = ['images'];
+
     public function fields(): array
     {
         return [

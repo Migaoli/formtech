@@ -14,7 +14,11 @@ class GalleryTest extends TestCase
     /** @test */
     public function add_image()
     {
-        $gallery = new GalleryBlock();
+        $gallery = new GalleryBlock([
+            'data' => [
+                'heading' => 'asd'
+            ]
+        ]);
         $gallery->save();
         $image = factory(Media::class)->state('image')->create();
 
