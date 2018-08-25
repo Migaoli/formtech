@@ -12,8 +12,8 @@
         name: 'media-item',
         components: {Icon},
         props: {
-            id: {
-                type: Number,
+            mediaReference: {
+                type: Object,
                 required: true,
             }
         },
@@ -26,7 +26,7 @@
 
         computed: {
             url() {
-                return `/api/images?id=${this.id}&thumb`;
+                return `/api/images?id=${this.mediaReference.media.id}&thumb`;
             }
         },
 

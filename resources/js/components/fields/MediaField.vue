@@ -5,10 +5,10 @@
             <sortable-list :value="value"
                            @input="(e) => $emit('input', e)">
                 <div class="grid">
-                    <sortable-item v-for="(media, i) in value" :key="media">
+                    <sortable-item v-for="(mediaReference, i) in value" :key="mediaReference.id">
                         <div>
                             <sortable-handle>
-                                <media-item :id="media"></media-item>
+                                <media-item :media-reference="mediaReference"></media-item>
                             </sortable-handle>
                         </div>
                     </sortable-item>
@@ -36,6 +36,7 @@
 </template>
 
 <script>
+    import _ from 'lodash'
     import BaseField from "./BaseField";
     import MediaItem from "./MediaItem";
     import Modal from "../Modal";
@@ -81,7 +82,13 @@
         methods: {
             addImages(images) {
                 console.log(images);
-                this.$emit('input', [...this.value, ...images.map(img => img.id)]);
+                this.$emit('input', [
+                    ...this.value,
+                    ...images.map(media => {
+                        return {
+                            id: _.uniqueId(),
+                            media}
+                    })]);
             }
         },
 

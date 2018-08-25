@@ -68,8 +68,8 @@
         methods: {
             onInput(event) {
                 this.$emit('input', event.target.value);
-                const text = this.$refs.editor.value;
-                this.$refs.editor.innerHTML = this.converter.makeHtml(text);
+                //const text = this.$refs.editor.value;
+                //this.$refs.editor.innerHTML = this.converter.makeHtml(text);
             },
 
             onTab(e) {

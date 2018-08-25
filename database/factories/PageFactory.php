@@ -23,3 +23,14 @@ $factory->define(\App\Blocks\Text\TextBlock::class, function (Faker $faker) {
         ],
     ];
 });
+
+$factory->define(\App\Blocks\Gallery\GalleryBlock::class, function (Faker $faker) {
+    return [
+        'container' => 'c1',
+        'position' => 1,
+        'data' => [
+            'heading' => 'test',
+            'description' => '',
+        ],
+    ];
+});

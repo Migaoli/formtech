@@ -64690,8 +64690,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         onInput: function onInput(event) {
             this.$emit('input', event.target.value);
-            var text = this.$refs.editor.value;
-            this.$refs.editor.innerHTML = this.converter.makeHtml(text);
+            //const text = this.$refs.editor.value;
+            //this.$refs.editor.innerHTML = this.converter.makeHtml(text);
         },
         onTab: function onTab(e) {
             this.$emit('input', event.target.value + '    ');
@@ -69920,20 +69920,22 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseField__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__BaseField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MediaItem__ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MediaItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__MediaItem__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Modal__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__file_upload_ImageUpload__ = __webpack_require__(258);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__file_upload_ImageUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__file_upload_ImageUpload__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sortable_SortableItem__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__sortable_SortableItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__sortable_SortableItem__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sortable_SortableHandle__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sortable_SortableHandle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__sortable_SortableHandle__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sortable_SortableList__ = __webpack_require__(264);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sortable_SortableList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__sortable_SortableList__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_lodash__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseField__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__BaseField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__BaseField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MediaItem__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__MediaItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__MediaItem__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Modal__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__Modal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__file_upload_ImageUpload__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__file_upload_ImageUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__file_upload_ImageUpload__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sortable_SortableItem__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__sortable_SortableItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__sortable_SortableItem__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sortable_SortableHandle__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__sortable_SortableHandle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__sortable_SortableHandle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sortable_SortableList__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__sortable_SortableList___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__sortable_SortableList__);
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 //
@@ -69982,10 +69984,11 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'media-field',
 
-    components: { SortableList: __WEBPACK_IMPORTED_MODULE_6__sortable_SortableList___default.a, SortableHandle: __WEBPACK_IMPORTED_MODULE_5__sortable_SortableHandle___default.a, SortableItem: __WEBPACK_IMPORTED_MODULE_4__sortable_SortableItem___default.a, ImageUpload: __WEBPACK_IMPORTED_MODULE_3__file_upload_ImageUpload___default.a, Modal: __WEBPACK_IMPORTED_MODULE_2__Modal___default.a, MediaItem: __WEBPACK_IMPORTED_MODULE_1__MediaItem___default.a, BaseField: __WEBPACK_IMPORTED_MODULE_0__BaseField___default.a },
+    components: { SortableList: __WEBPACK_IMPORTED_MODULE_7__sortable_SortableList___default.a, SortableHandle: __WEBPACK_IMPORTED_MODULE_6__sortable_SortableHandle___default.a, SortableItem: __WEBPACK_IMPORTED_MODULE_5__sortable_SortableItem___default.a, ImageUpload: __WEBPACK_IMPORTED_MODULE_4__file_upload_ImageUpload___default.a, Modal: __WEBPACK_IMPORTED_MODULE_3__Modal___default.a, MediaItem: __WEBPACK_IMPORTED_MODULE_2__MediaItem___default.a, BaseField: __WEBPACK_IMPORTED_MODULE_1__BaseField___default.a },
 
     props: {
         value: {
@@ -70020,8 +70023,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     methods: {
         addImages: function addImages(images) {
             console.log(images);
-            this.$emit('input', [].concat(_toConsumableArray(this.value), _toConsumableArray(images.map(function (img) {
-                return img.id;
+            this.$emit('input', [].concat(_toConsumableArray(this.value), _toConsumableArray(images.map(function (media) {
+                return {
+                    id: __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.uniqueId(),
+                    media: media };
             }))));
         }
     },
@@ -70102,8 +70107,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     name: 'media-item',
     components: { Icon: __WEBPACK_IMPORTED_MODULE_0__Icon___default.a },
     props: {
-        id: {
-            type: Number,
+        mediaReference: {
+            type: Object,
             required: true
         }
     },
@@ -70117,7 +70122,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     computed: {
         url: function url() {
-            return "/api/images?id=" + this.id + "&thumb";
+            return "/api/images?id=" + this.mediaReference.media.id + "&thumb";
         }
     },
 
@@ -70783,14 +70788,18 @@ var render = function() {
               _c(
                 "div",
                 { staticClass: "grid" },
-                _vm._l(_vm.value, function(media, i) {
-                  return _c("sortable-item", { key: media }, [
+                _vm._l(_vm.value, function(mediaReference, i) {
+                  return _c("sortable-item", { key: mediaReference.id }, [
                     _c(
                       "div",
                       [
                         _c(
                           "sortable-handle",
-                          [_c("media-item", { attrs: { id: media } })],
+                          [
+                            _c("media-item", {
+                              attrs: { "media-reference": mediaReference }
+                            })
+                          ],
                           1
                         )
                       ],

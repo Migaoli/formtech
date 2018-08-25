@@ -17,6 +17,7 @@ class CreateMediaReferencesTable extends Migration
             $table->increments('id');
             $table->integer('media_id');
             $table->morphs('model');
+            $table->integer('order')->default(0);
             $table->timestamps();
         });
     }
