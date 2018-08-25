@@ -22,9 +22,17 @@ class GalleryBlock extends Block
     public function fields(): array
     {
         return [
-            Text::make('heading', 'data.heading')->rules(['required']),
+            Text::make('heading', 'data.heading')
+                ->rules([
+                    'required',
+                    'max:100'
+                ]),
+
             Markdown::make('description', 'data.description'),
-            MediaField::make('images', 'images')->allowMultiple()->defaultTo([])
+
+            MediaField::make('images', 'images')
+                ->allowMultiple()
+                ->defaultTo([])
         ];
     }
 
