@@ -69741,6 +69741,10 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
                     id: __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.uniqueId(),
                     media: media };
             }))));
+        },
+        remove: function remove(index) {
+            console.log(index);
+            this.$emit('input', [].concat(_toConsumableArray(this.value.slice(0, index)), _toConsumableArray(this.value.slice(index + 1, this.value.length))));
         }
     },
 
@@ -69806,6 +69810,8 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Icon__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Icon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__Icon__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sortable_SortableHandle__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__sortable_SortableHandle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__sortable_SortableHandle__);
 //
 //
 //
@@ -69813,12 +69819,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'media-item',
-    components: { Icon: __WEBPACK_IMPORTED_MODULE_0__Icon___default.a },
+    components: { SortableHandle: __WEBPACK_IMPORTED_MODULE_1__sortable_SortableHandle___default.a, Icon: __WEBPACK_IMPORTED_MODULE_0__Icon___default.a },
     props: {
         mediaReference: {
             type: Object,
@@ -69828,7 +69857,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            loading: true
+            loading: true,
+            showToolbar: false
         };
     },
 
@@ -69842,6 +69872,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         loaded: function loaded() {
             this.loading = false;
+        },
+        remove: function remove() {
+            this.$emit('remove');
         }
     }
 });
@@ -69857,10 +69890,78 @@ var render = function() {
   return _c(
     "div",
     {
-      staticClass: "border shadow-md bg-white flex justify-center items-center",
-      staticStyle: { width: "200px", height: "200px" }
+      staticClass:
+        "border shadow-md bg-white flex justify-center items-center relative",
+      staticStyle: { width: "200px", height: "200px" },
+      on: {
+        mouseenter: function($event) {
+          _vm.showToolbar = true
+        },
+        mouseleave: function($event) {
+          _vm.showToolbar = false
+        }
+      }
     },
     [
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.showToolbar,
+              expression: "showToolbar"
+            }
+          ],
+          staticClass:
+            "absolute pin-t pin-x shadow flex justify-between items-center w-full bg-smoke"
+        },
+        [
+          _c(
+            "button",
+            {
+              staticClass:
+                "appearance-none py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse",
+              attrs: { type: "button" },
+              on: { click: _vm.remove }
+            },
+            [
+              _c("icon", {
+                staticClass: "w-4 h-4 fill-current",
+                attrs: { icon: "trash" }
+              })
+            ],
+            1
+          ),
+          _vm._v(" "),
+          _c("sortable-handle", [
+            _c(
+              "svg",
+              {
+                staticClass:
+                  "w-6 h-6 fill-current text-tertiary-inverse hover:text-primary-inverse cursor-move",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 24 24",
+                  fill: "currentColor"
+                }
+              },
+              [
+                _c("path", {
+                  attrs: {
+                    "fill-rule": "evenodd",
+                    d:
+                      "M14 4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zM8 4h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1zm6 6h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm-6 0h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm6 6h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1zm-6 0h2a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-2a1 1 0 0 1 1-1z"
+                  }
+                })
+              ]
+            )
+          ])
+        ],
+        1
+      ),
+      _vm._v(" "),
       _c("img", {
         directives: [
           {
@@ -70506,15 +70607,14 @@ var render = function() {
                     _c(
                       "div",
                       [
-                        _c(
-                          "sortable-handle",
-                          [
-                            _c("media-item", {
-                              attrs: { "media-reference": mediaReference }
-                            })
-                          ],
-                          1
-                        )
+                        _c("media-item", {
+                          attrs: { "media-reference": mediaReference },
+                          on: {
+                            remove: function($event) {
+                              _vm.remove(i)
+                            }
+                          }
+                        })
                       ],
                       1
                     )

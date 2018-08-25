@@ -7,9 +7,9 @@
                 <div class="grid">
                     <sortable-item v-for="(mediaReference, i) in value" :key="mediaReference.id">
                         <div>
-                            <sortable-handle>
-                                <media-item :media-reference="mediaReference"></media-item>
-                            </sortable-handle>
+                                <media-item :media-reference="mediaReference"
+                                            @remove="remove(i)"
+                                ></media-item>
                         </div>
                     </sortable-item>
                 </div>
@@ -89,6 +89,14 @@
                             id: _.uniqueId(),
                             media}
                     })]);
+            },
+
+            remove(index) {
+                console.log(index);
+                this.$emit('input', [
+                    ...this.value.slice(0, index),
+                    ...this.value.slice(index + 1, this.value.length)
+                ]);
             }
         },
 
