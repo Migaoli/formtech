@@ -14,6 +14,7 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
     private $name;
     private $key;
     private $rules = [];
+    private $default;
 
     private function __construct($name, $key = null)
     {
@@ -45,6 +46,18 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
     public function getKey(): string
     {
         return $this->key;
+    }
+
+    public function getDefault()
+    {
+        return $this->default;
+    }
+
+    public function defaultTo($value): self
+    {
+        $this->default = $value;
+
+        return $this;
     }
 
     protected function getDefaultRules()
@@ -79,6 +92,7 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
             'type' => $this->getType(),
             'name' => $this->getName(),
             'key' => $this->getKey(),
+            'default' => $this->getDefault(),
             'rules' => $this->getRules(),
             'createRules' => [],
             'updateRules' => [],

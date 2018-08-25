@@ -46,7 +46,7 @@
                 saving: false,
                 blocks: [],
                 showCreateBlockDialog: false,
-                blockDefinition: {},
+                blockDefinition: null,
                 container: '',
             }
         },

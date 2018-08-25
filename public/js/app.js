@@ -60530,7 +60530,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             saving: false,
             blocks: [],
             showCreateBlockDialog: false,
-            blockDefinition: {},
+            blockDefinition: null,
             container: ''
         };
     },
@@ -61090,8 +61090,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.$emit('close');
         },
         onEscapeDown: function onEscapeDown(e) {
-
             if (this.show && e.keyCode === 27) {
+                e.stopPropagation();
                 this.close();
             }
         }
@@ -64480,12 +64480,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Modal__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Modal__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_fields_TextField__ = __webpack_require__(15);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_fields_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_fields_TextField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_fields_SelectField__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_fields_SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_fields_SelectField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_fields_MarkdownField__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_fields_MarkdownField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_fields_MarkdownField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_fields_BlockField__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_fields_BlockField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_fields_BlockField__);
 //
 //
 //
@@ -64519,19 +64515,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
 
 
 
@@ -64540,7 +64523,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'create-block-dialog',
 
-    components: { MarkdownField: __WEBPACK_IMPORTED_MODULE_4__components_fields_MarkdownField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_3__components_fields_SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_2__components_fields_TextField___default.a, Modal: __WEBPACK_IMPORTED_MODULE_1__components_Modal___default.a },
+    components: { Modal: __WEBPACK_IMPORTED_MODULE_1__components_Modal___default.a, BlockField: __WEBPACK_IMPORTED_MODULE_2__components_fields_BlockField___default.a },
 
     props: {
         show: {
@@ -64554,8 +64537,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
 
         blockDefinition: {
-            type: Object,
-            required: true
+            type: Object
         },
 
         pageId: {
@@ -64568,14 +64550,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             creating: false,
             errors: {},
-            block: {
-                data: {}
-            }
+            block: this.init()
         };
     },
 
 
+    watch: {
+        blockDefinition: function blockDefinition() {
+            this.block = this.init();
+        }
+    },
+
     methods: {
+        init: function init() {
+            if (!this.blockDefinition) {
+                return {};
+            }
+
+            var block = {};
+
+            this.blockDefinition.fields.forEach(function (field) {
+                _.set(block, field.key, field.default);
+            });
+
+            return block;
+        },
         close: function close() {
             if (this.creating) {
                 return;
@@ -64608,6 +64607,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).finally(function () {
                 _this.creating = false;
             });
+        },
+        update: function update(_ref2) {
+            var key = _ref2.key,
+                value = _ref2.value;
+
+            if (_.has(this.block, key)) {
+                console.log('update');
+                _.set(this.block, key, value);
+            } else {
+                console.log('create');
+                this.$set(this.block, key, value);
+            }
         }
     }
 });
@@ -69309,54 +69320,14 @@ var render = function() {
                 "div",
                 { staticClass: "mb-8" },
                 [
-                  field.type === "text"
-                    ? _c("text-field", {
-                        attrs: {
-                          label: field.name,
-                          errors: _vm.errors[field.key]
-                        },
-                        model: {
-                          value: _vm.block.data[field.key],
-                          callback: function($$v) {
-                            _vm.$set(_vm.block.data, field.key, $$v)
-                          },
-                          expression: "block.data[field.key]"
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  field.type === "select"
-                    ? _c("select-field", {
-                        attrs: {
-                          label: field.name,
-                          errors: _vm.errors[field.key],
-                          options: field.options
-                        },
-                        model: {
-                          value: _vm.block.data[field.key],
-                          callback: function($$v) {
-                            _vm.$set(_vm.block.data, field.key, $$v)
-                          },
-                          expression: "block.data[field.key]"
-                        }
-                      })
-                    : _vm._e(),
-                  _vm._v(" "),
-                  field.type === "markdown"
-                    ? _c("markdown-field", {
-                        attrs: {
-                          label: field.name,
-                          errors: _vm.errors[field.key]
-                        },
-                        model: {
-                          value: _vm.block.data[field.key],
-                          callback: function($$v) {
-                            _vm.$set(_vm.block.data, field.key, $$v)
-                          },
-                          expression: "block.data[field.key]"
-                        }
-                      })
-                    : _vm._e()
+                  _c("block-field", {
+                    attrs: {
+                      field: field,
+                      block: _vm.block,
+                      errors: _vm.errors
+                    },
+                    on: { update: _vm.update }
+                  })
                 ],
                 1
               )

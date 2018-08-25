@@ -71,8 +71,8 @@
             },
 
             onEscapeDown(e) {
-
                 if (this.show && e.keyCode === 27) {
+                    e.stopPropagation();
                     this.close();
                 }
             }

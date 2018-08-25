@@ -24,7 +24,7 @@ class GalleryBlock extends Block
         return [
             Text::make('heading', 'data.heading')->rules(['required']),
             Markdown::make('description', 'data.description'),
-            MediaField::make('images', 'images')->allowMultiple()
+            MediaField::make('images', 'images')->allowMultiple()->defaultTo([])
         ];
     }
 

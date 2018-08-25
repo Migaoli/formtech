@@ -69,7 +69,7 @@
                     key: this.field.key,
                     value: e,
                 });
-            }
+            },
         }
     }
 </script>

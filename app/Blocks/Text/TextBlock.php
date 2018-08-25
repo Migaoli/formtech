@@ -51,14 +51,16 @@ class TextBlock extends Block
                     'h5' => 'Heading 5',
                     'normal' => 'Normal',
                     'hidden' => 'Hidden',
-                ]),
+                ])
+                ->defaultTo('h1'),
 
             Select::make('Alignment', 'data.alignment')
                 ->options([
                     'left' => 'Left',
                     'center' => 'Center',
                     'right' => 'Right'
-                ]),
+                ])
+                ->defaultTo('left'),
 
             Markdown::make('Content', 'data.content'),
         ];

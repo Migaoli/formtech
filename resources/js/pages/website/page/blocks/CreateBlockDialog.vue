@@ -4,22 +4,11 @@
         <div class="card px-4 py-8 w-1/2">
             <template v-if="show">
                 <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
-                    <text-field v-if="field.type === 'text'"
-                                :label="field.name"
-                                :errors="errors[field.key]"
-                                v-model="block.data[field.key]"
-                    ></text-field>
-                    <select-field v-if="field.type === 'select'"
-                                  :label="field.name"
-                                  :errors="errors[field.key]"
-                                  v-model="block.data[field.key]"
-                                  :options="field.options"
-                    ></select-field>
-                    <markdown-field v-if="field.type === 'markdown'"
-                                    :label="field.name"
-                                    :errors="errors[field.key]"
-                                    v-model="block.data[field.key]"
-                    ></markdown-field>
+                    <block-field :field="field"
+                                 :block="block"
+                                 @update="update"
+                                 :errors="errors"
+                    ></block-field>
                 </div>
             </template>
 
@@ -45,14 +34,12 @@
 <script>
     import axios from 'axios';
     import Modal from "../../../../components/Modal";
-    import TextField from "../../../../components/fields/TextField";
-    import SelectField from "../../../../components/fields/SelectField";
-    import MarkdownField from "../../../../components/fields/MarkdownField";
+    import BlockField from "../../../../components/fields/BlockField";
 
     export default {
         name: 'create-block-dialog',
 
-        components: {MarkdownField, SelectField, TextField, Modal},
+        components: {Modal, BlockField},
 
         props: {
             show: {
@@ -67,7 +54,6 @@
 
             blockDefinition: {
                 type: Object,
-                required: true,
             },
 
             pageId: {
@@ -80,13 +66,32 @@
             return {
                 creating: false,
                 errors: {},
-                block: {
-                    data: {},
-                }
+                block: this.init(),
             }
         },
 
+        watch: {
+            blockDefinition() {
+                this.block = this.init();
+            },
+        },
+
         methods: {
+            init() {
+                if (!this.blockDefinition) {
+                    return {};
+                }
+
+                const block = {};
+
+                this.blockDefinition.fields
+                    .forEach(field => {
+                        _.set(block, field.key, field.default);
+                    });
+
+                return block;
+            },
+
             close() {
                 if (this.creating) {
                     return;
@@ -120,6 +125,16 @@
                         this.creating = false;
                     })
             },
+
+            update({key, value}) {
+                if (_.has(this.block, key)) {
+                    console.log('update');
+                    _.set(this.block, key, value);
+                } else {
+                    console.log('create');
+                    this.$set(this.block, key, value);
+                }
+            }
         },
     }
 </script>
