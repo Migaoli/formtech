@@ -60660,7 +60660,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 return {
                     'id': block.id,
                     'container': block.container,
-                    'position': block.position
+                    'order': block.order
                 };
             });
 
