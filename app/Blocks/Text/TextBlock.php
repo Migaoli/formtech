@@ -36,13 +36,13 @@ class TextBlock extends Block
     public function fields(): array
     {
         return [
-            Text::make('Heading')
+            Text::make('Heading', 'data.heading')
                 ->rules([
                     'required',
                     'string'
                 ]),
 
-            Select::make('Heading type')
+            Select::make('Heading type', 'data.heading_type')
                 ->options([
                     'h1' => 'Heading 1',
                     'h2' => 'Heading 2',
@@ -53,14 +53,14 @@ class TextBlock extends Block
                     'hidden' => 'Hidden',
                 ]),
 
-            Select::make('Alignment')
+            Select::make('Alignment', 'data.alignment')
                 ->options([
                     'left' => 'Left',
                     'center' => 'Center',
                     'right' => 'Right'
                 ]),
 
-            Markdown::make('Content'),
+            Markdown::make('Content', 'data.content'),
         ];
     }
 
