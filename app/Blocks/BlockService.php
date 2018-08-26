@@ -74,11 +74,7 @@ class BlockService implements Blocks
 
     public function create(string $name, array $attributes = []): Block
     {
-        $type = $this->getBlockType($name);
-
-        if ($type === null) {
-            throw BlockException::of("Unknown block type {$name}");
-        }
+        $type = $this->getBlockTypeOrFail($name);
 
         $block = new $type($attributes);
         $block->type = $type;
@@ -88,20 +84,34 @@ class BlockService implements Blocks
 
     public function getMetaData($name): array
     {
-        $type = $this->getBlockType($name);
-
-        if ($type === null) {
-            throw BlockException::of('');
-        }
-
-        $block = new $type();
+        $block = $this->create($name);
 
         return [
             'name' => $name,
-            'type' => $type,
+            'type' => $block->type,
             'template' => $block->template(),
             'fields' => $block->fields(),
         ];
+    }
+
+    public function getRules($name): array
+    {
+        return $this->create($name)->rules();
+    }
+
+    public function createHandler($name): RequestHandler
+    {
+        return app()->make($this->getBlockTypeOrFail($name)::handler());
+    }
+
+    private function getBlockTypeOrFail($name) {
+        $type = $this->getBlockType($name);
+
+        if ($type === null) {
+            throw BlockException::of("Unknown block type {$name}");
+        }
+
+        return $type;
     }
 
 

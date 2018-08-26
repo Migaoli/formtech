@@ -70,8 +70,6 @@ interface Blocks
      */
     public function create(string $name, array $attributes = []): Block;
 
-
-
     /**
      * Get meta information of a block type.
      *
@@ -79,4 +77,20 @@ interface Blocks
      * @return array
      */
     public function getMetaData($name): array;
+
+    /**
+     * Get rules for a block.
+     *
+     * @param $name
+     * @return array
+     */
+    public function getRules($name): array;
+
+    /**
+     * Create a new request handler for a given block type.
+     *
+     * @param $name
+     * @return RequestHandler
+     */
+    public function createHandler($name): RequestHandler;
 }

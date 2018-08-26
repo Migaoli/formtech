@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Blocks\Block;
 use App\Blocks\Blocks;
+use App\Blocks\Rules\ValidBlockType;
 use App\Page;
+use Illuminate\Database\Connection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -12,9 +14,22 @@ class PageBlockController extends Controller
 {
     private $blocks;
 
-    public function __construct(Blocks $blocks)
+    private $rules;
+    /**
+     * @var Connection
+     */
+    private $connection;
+
+    public function __construct(Blocks $blocks, Connection $connection)
     {
         $this->blocks = $blocks;
+        $this->connection = $connection;
+
+        $this->rules = [
+            'name' => ['required', new ValidBlockType($this->blocks)],
+            'container' => ['required', 'string'],
+            'order' => ['integer'],
+        ];
     }
 
     public function index($pageId)
@@ -31,36 +46,73 @@ class PageBlockController extends Controller
         return response()->json($block);
     }
 
+    /**
+     * @param $pageId
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
     public function create($pageId, Request $request)
     {
         $page = Page::findOrFail($pageId);
 
-        $name = $request->input('name');
-        abort_if(!$this->blocks->isRegistered($name), 400);
+        $request->validate($this->rules);
 
-        $type = $this->blocks->getBlockType($name);
+        $blockName = $request->get('name');
 
-        $handler = app()->make($type::handler());
+        $blockRules = $this->blocks->getRules($blockName);
 
-        $block = $handler->create($request);
+        $request->validate($blockRules);
 
-        $block->container = $request->get('container');
-        $block->order = $request->get('order', 0);
+        $handler = $this->blocks->createHandler($blockName);
 
-        $page->addBlock($block);
+        $this->connection->beginTransaction();
+
+        try {
+            $block = $handler->create($request);
+
+            $block->container = $request->get('container');
+            $block->order = $request->get('order', 0);
+
+            $page->addBlock($block);
+
+            $this->connection->commit();
+        } catch (\Throwable $e) {
+            $this->connection->rollBack();
+
+            throw $e;
+        }
 
         return response()->json($block, 201);
     }
 
+    /**
+     * @param $pageId
+     * @param $id
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     * @throws \Throwable
+     */
     public function update($pageId, $id, Request $request)
     {
         $block = Block::findOrFail($id);
 
+        $request->validate($block->rules());
+
         $handler = app()->make($block::handler());
 
-        $handler->update($block, $request);
+        $this->connection->beginTransaction();
 
-        $block->save();
+        try {
+            $handler->update($block, $request);
+
+            $block->save();
+
+            $this->connection->commit();
+        } catch (\Throwable $e) {
+            $this->connection->rollBack();
+            throw $e;
+        }
 
         return response()->json([], 204);
     }
@@ -68,7 +120,6 @@ class PageBlockController extends Controller
     public function delete($pageId, $id, Request $request)
     {
         $block = Block::where('page_id', $pageId)->findOrFail($id);
-
 
         $handler = app()->make($block::handler());
 
