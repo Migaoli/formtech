@@ -17,7 +17,6 @@ class PagesController extends Controller
         return Page::all();
     }
 
-
     public function get($id)
     {
         $page = Page::with('blocks')->findOrFail($id);
@@ -27,7 +26,7 @@ class PagesController extends Controller
 
     public function create(Request $request)
     {
-        $payload = $request->only(['title', 'slug', 'settings']);
+        $payload = $request->only(['title', 'slug', 'settings', 'layout']);
 
         $page = Page::create($payload);
 
@@ -36,12 +35,9 @@ class PagesController extends Controller
 
     public function update($id, Request $request)
     {
-
         $page = Page::findOrFail($id);
 
-
         $payload = $request->validate($page->rules());
-
 
         $page->fill($payload);
 

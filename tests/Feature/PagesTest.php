@@ -19,7 +19,7 @@ class PagesTest extends TestCase
 
         $page = factory(Page::class)->create();
 
-        $response = $this->get('api/pages/' . $page->id);
+        $response = $this->json('get', 'api/pages/' . $page->id);
 
         $response->assertStatus(200)
             ->assertJson([
@@ -37,11 +37,11 @@ class PagesTest extends TestCase
 
         factory(Page::class, 10)->create();
 
-        $response = $this->get('api/pages');
+        $response = $this->json('get', 'api/pages');
 
         $response->assertStatus(200)
             ->assertJsonCount(10)
-            ->assertJsonFragment([
+            ->assertJsonStructure([
                 '*' => [
                     'id', 'title', 'slug', 'settings', 'created_at', 'updated_at'
                 ]

@@ -34,7 +34,7 @@ class Page extends ValidatableModel
 {
     use Validates;
 
-    protected $fillable = ['title', 'slug', 'settings'];
+    protected $fillable = ['title', 'slug', 'settings', 'layout'];
 
     protected $casts = [
         'settings' => 'json',
