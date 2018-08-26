@@ -3,7 +3,8 @@
         <div class="border-b mb-4 flex justify-between items-center">
             <div class="uppercase tracking-wide px-2 py-4">Pages</div>
             <button class="text-tertiary hover:text-blue"
-                    type="button">
+                    type="button"
+                    @click="create">
                 <icon icon="document-add" class="w-4 h-4"></icon>
             </button>
         </div>
@@ -34,9 +35,7 @@
             }
         },
 
-        computed: {
-
-        },
+        computed: {},
 
         methods: {
             fetchPages() {
@@ -49,6 +48,10 @@
                     .finally(() => {
                         this.loading = false;
                     })
+            },
+
+            create() {
+
             }
         },
 

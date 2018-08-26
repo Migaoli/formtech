@@ -15,11 +15,11 @@ class CreatePagesTable extends Migration
     {
         Schema::create('pages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type');
             $table->integer('parent_id')->nullable();
             $table->string('title', 200);
             $table->string('slug', 200);
-            $table->string('layout');
-            $table->json('settings');
+            $table->json('data')->nullable();
             $table->timestamps();
 
             $table->foreign('parent_id')

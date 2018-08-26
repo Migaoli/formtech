@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Blocks\Block;
 use App\Blocks\Blocks;
 use App\Blocks\Rules\ValidBlockType;
-use App\Page;
+use App\Pages\StandardPage;
 use Illuminate\Database\Connection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -34,7 +34,7 @@ class PageBlockController extends Controller
 
     public function index($pageId)
     {
-        $page = Page::with('blocks')->findOrFail($pageId);
+        $page = StandardPage::with('blocks')->findOrFail($pageId);
 
         return response()->json($page->blocks);
     }
@@ -54,7 +54,7 @@ class PageBlockController extends Controller
      */
     public function create($pageId, Request $request)
     {
-        $page = Page::findOrFail($pageId);
+        $page = StandardPage::findOrFail($pageId);
 
         $request->validate($this->rules);
 

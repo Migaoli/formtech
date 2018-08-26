@@ -3,7 +3,7 @@
 namespace Tests\Feature\Blocks;
 
 use App\Blocks\Text\TextBlock;
-use App\Page;
+use App\Pages\StandardPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -30,7 +30,7 @@ class TextBlockTest extends TestCase
     /** @test */
     public function can_get_text_block_by_id()
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
 
         /** @var TextBlock $block */
         $block = factory(TextBlock::class)->create(['page_id' => $page->id]);
@@ -57,7 +57,7 @@ class TextBlockTest extends TestCase
     /** @test */
     public function user_can_create_a_new_text_block()
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
 
         $payload = $this->createValidPayload();
 
@@ -95,7 +95,7 @@ class TextBlockTest extends TestCase
      */
     public function create_fails_if_data_is_invalid($key, $value)
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
 
         $payload = $this->createValidPayload();
         array_set($payload, $key, $value);
@@ -110,7 +110,7 @@ class TextBlockTest extends TestCase
     /** @test */
     public function user_can_update_text_block()
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
 
         /** @var TextBlock $block */
         $block = factory(TextBlock::class)->create(['page_id' => $page->id]);
@@ -141,7 +141,7 @@ class TextBlockTest extends TestCase
      */
     public function update_fails_if_data_is_invalid($key, $value)
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
         $block = factory(TextBlock::class)->create(['page_id' => $page->id]);
 
         $payload = $block->toArray();

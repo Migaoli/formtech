@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Page;
+use App\Pages\StandardPage;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -17,7 +17,7 @@ class PagesTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create(), 'api');
 
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
 
         $response = $this->json('get', 'api/pages/' . $page->id);
 
@@ -26,7 +26,6 @@ class PagesTest extends TestCase
                 'id' => $page->id,
                 'title' => $page->title,
                 'slug' => $page->slug,
-                'settings' => $page->settings
             ]);
     }
 
@@ -35,7 +34,7 @@ class PagesTest extends TestCase
     {
         $this->actingAs(factory(User::class)->create(), 'api');
 
-        factory(Page::class, 10)->create();
+        factory(StandardPage::class, 10)->create();
 
         $response = $this->json('get', 'api/pages');
 
@@ -43,7 +42,7 @@ class PagesTest extends TestCase
             ->assertJsonCount(10)
             ->assertJsonStructure([
                 '*' => [
-                    'id', 'title', 'slug', 'settings', 'created_at', 'updated_at'
+                    'id', 'title', 'slug', 'created_at', 'updated_at'
                 ]
             ]);
     }
@@ -56,19 +55,17 @@ class PagesTest extends TestCase
         $this->withoutExceptionHandling();
 
         $payload = [
+            'type' => 'standard',
             'title' => 'awesome title',
             'slug' => 'awesome-title',
-            'layout' => 'landing_page',
-            'settings' => ['asd']
         ];
 
         $response = $this->json('post', 'api/pages/', $payload);
 
-        $response->assertStatus(201)
-            ->assertJson($payload);
+        $response->assertStatus(201);
 
         $id = $response->json('id');
 
-        $this->assertNotNull(Page::find($id));
+        $this->assertNotNull(StandardPage::find($id));
     }
 }

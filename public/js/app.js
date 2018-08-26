@@ -57868,6 +57868,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -57901,7 +57902,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).finally(function () {
                 _this.loading = false;
             });
-        }
+        },
+        create: function create() {}
     },
 
     created: function created() {
@@ -59175,7 +59177,8 @@ var render = function() {
             "button",
             {
               staticClass: "text-tertiary hover:text-blue",
-              attrs: { type: "button" }
+              attrs: { type: "button" },
+              on: { click: _vm.create }
             },
             [
               _c("icon", {

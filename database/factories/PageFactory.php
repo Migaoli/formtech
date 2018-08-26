@@ -2,12 +2,14 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(\App\Page::class, function (Faker $faker) {
+$factory->define(\App\Pages\StandardPage::class, function (Faker $faker) {
     return [
+        'type' => \App\Pages\StandardPage::class,
         'title' => $faker->domainWord,
         'slug' => $faker->slug(2),
-        'layout' => 'landing_page',
-        'settings' => ['css' => ''],
+        'data' => [
+            'layout' => 'landing_page'
+        ]
     ];
 });
 

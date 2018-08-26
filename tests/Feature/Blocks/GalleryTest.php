@@ -4,7 +4,7 @@ namespace Tests\Feature\Blocks;
 
 use App\Blocks\Gallery\GalleryBlock;
 use App\Media\Media;
-use App\Page;
+use App\Pages\StandardPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
@@ -31,7 +31,7 @@ class GalleryTest extends TestCase
     /** @test */
     public function user_can_create_gallery_block()
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
         $image = factory(Media::class)->state('image')->create();
 
         $payload = $this->createValidPayload([
@@ -83,7 +83,7 @@ class GalleryTest extends TestCase
      */
     public function create_fails_if_data_is_invalid($key, $value)
     {
-        $page = factory(Page::class)->create();
+        $page = factory(StandardPage::class)->create();
 
         $payload = $this->createValidPayload();
         array_set($payload, $key, $value);
