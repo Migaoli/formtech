@@ -40,7 +40,7 @@
     import axios from 'axios';
     import {mapState} from 'vuex';
     import Modal from "../../../../components/Modal";
-    import BlockField from "../../../../components/fields/BlockField";
+    import BlockField from "./BlockField";
     import Icon from "../../../../components/Icon";
 
     export default {

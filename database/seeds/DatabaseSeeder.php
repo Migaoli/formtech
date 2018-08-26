@@ -1,6 +1,6 @@
 <?php
 
-use App\Page;
+use App\Pages\StandardPage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->createPageTree();
         $this->addContent();
 
-        $page = factory(Page::class)->create(['layout' => 'single_page']);
+        $page = factory(StandardPage::class)->create();
         factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'order' => 3]);
         factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'order' => 2]);
         factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1', 'order' => 1]);
@@ -24,7 +24,7 @@ class DatabaseSeeder extends Seeder
 
     private function createPageTree()
     {
-        $roots = factory(Page::class, 1)->create();
+        $roots = factory(StandardPage::class, 1)->create();
 
         foreach ($roots as $root) {
             $subs = $this->createChildren($root, random_int(0, 2));
@@ -33,12 +33,12 @@ class DatabaseSeeder extends Seeder
 
     private function createChildren($parent, $amount)
     {
-        return factory(Page::class, $amount)->create(['parent_id' => $parent->id]);
+        return factory(StandardPage::class, $amount)->create(['parent_id' => $parent->id]);
     }
 
     private function addContent()
     {
-        Page::all()
+        StandardPage::all()
             ->each(function ($page) {
                 factory(\App\Blocks\Gallery\GalleryBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);
                 factory(\App\Blocks\Text\TextBlock::class)->create(['page_id' => $page->id, 'container' => 'c1']);

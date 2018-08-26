@@ -48,7 +48,7 @@
     import Icon from "../../../../components/Icon";
     import Loading from "../../../../components/Loading";
     import MediaField from "../../../../components/fields/MediaField";
-    import BlockField from "../../../../components/fields/BlockField";
+    import BlockField from "./BlockField";
 
     export default {
         name: '',

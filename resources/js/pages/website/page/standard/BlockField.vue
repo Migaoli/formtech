@@ -30,10 +30,10 @@
 
 <script>
     import _ from 'lodash';
-    import TextField from "./TextField";
-    import SelectField from "./SelectField";
-    import MarkdownField from "./MarkdownField";
-    import MediaField from "./MediaField";
+    import TextField from "../../../../components/fields/TextField";
+    import SelectField from "../../../../components/fields/SelectField";
+    import MarkdownField from "../../../../components/fields/MarkdownField";
+    import MediaField from "../../../../components/fields/MediaField";
 
     export default {
         name: 'block-field',

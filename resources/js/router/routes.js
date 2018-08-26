@@ -5,8 +5,8 @@ import PageOverview from '../pages/website/page/Overview';
 import PageView from '../pages/website/page/View';
 import PageSettings from '../pages/website/page/PageSettings';
 import PageContent from '../pages/website/page/PageContent';
-import BlockView from '../pages/website/page/blocks/BlockView';
-import BlockCreate from '../pages/website/page/blocks/BlockCreate';
+import BlockView from '../pages/website/page/standard/BlockView';
+import BlockCreate from '../pages/website/page/standard/BlockCreate';
 
 const routes = [
     {
@@ -25,6 +25,7 @@ const routes = [
                         component: PageOverview,
                     }, {
                         path: ':id',
+                        name: 'pages.view',
                         component: PageView,
                         children: [
                             {
