@@ -66172,26 +66172,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_lodash__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField__ = __webpack_require__(260);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_fields_TextField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField__ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField__ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField__ = __webpack_require__(270);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Icon__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__components_Icon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__components_Icon__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Loading__ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__components_Loading__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField__ = __webpack_require__(314);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer__ = __webpack_require__(322);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Icon__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Icon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Icon__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Loading__ = __webpack_require__(17);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_Loading__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_fields_FormContainer__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_fields_FormContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_fields_FormContainer__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -66230,13 +66216,19 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-
-
-
-
-
-
-
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -66247,17 +66239,14 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: '',
     components: {
-        FormContainer: __WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer___default.a,
-        BlockField: __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField___default.a, MediaField: __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default.a, Loading: __WEBPACK_IMPORTED_MODULE_8__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_7__components_Icon___default.a, MarkdownField: __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField___default.a, TrixField: __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField___default.a
+        FormContainer: __WEBPACK_IMPORTED_MODULE_4__components_fields_FormContainer___default.a, Loading: __WEBPACK_IMPORTED_MODULE_3__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_2__components_Icon___default.a
     },
     data: function data() {
         return {
             saving: false,
             loading: false,
             block: null,
-            original: null,
-            errors: {},
-            text: 'test'
+            errors: {}
         };
     },
 
@@ -66267,10 +66256,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return state.blocks.blocks;
         }
     }), {
-        isDirty: function isDirty() {
-            console.log('check dirty');
-            return !__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.isEqual(this.block, this.original);
-        },
         blockDefinition: function blockDefinition() {
             return this.blocks[this.block.name];
         }
@@ -66283,8 +66268,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             this.loading = true;
 
             __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/pages/' + this.$route.params.id + '/blocks/' + this.$route.params.blockId).then(function (response) {
-                _this.original = response.data;
-                _this.block = _this.$copyObject(_this.original);
+                _this.block = response.data;
             }).catch(function (_ref) {
                 var response = _ref.response;
             }).finally(function () {
@@ -66292,18 +66276,17 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             });
         },
         reset: function reset() {
-            this.block = this.$copyObject(this.original);
             this.errors = {};
         },
-        save: function save() {
+        save: function save(formData) {
             var _this2 = this;
 
             this.saving = true;
 
-            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('api/pages/' + this.$route.params.id + '/blocks/' + this.$route.params.blockId, this.block).then(function (response) {
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.put('api/pages/' + this.$route.params.id + '/blocks/' + this.$route.params.blockId, formData).then(function (response) {
                 _this2.$flash.success('Block saved!');
+                _this2.block = formData;
                 _this2.errors = {};
-                _this2.original = _this2.$copyObject(_this2.block);
             }).catch(function (_ref2) {
                 var response = _ref2.response;
 
@@ -66312,18 +66295,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             }).finally(function () {
                 _this2.saving = false;
             });
-        },
-        update: function update(_ref3) {
-            var key = _ref3.key,
-                value = _ref3.value;
-
-            if (__WEBPACK_IMPORTED_MODULE_2_lodash___default.a.has(this.block, key)) {
-                console.log('update');
-                __WEBPACK_IMPORTED_MODULE_2_lodash___default.a.set(this.block, key, value);
-            } else {
-                console.log('create');
-                this.$set(this.block, key, value);
-            }
         }
     },
 
@@ -72196,45 +72167,78 @@ var render = function() {
                     fields: _vm.blockDefinition.fields,
                     data: _vm.block,
                     errors: _vm.errors
-                  }
-                }),
-                _vm._v(" "),
-                _vm.isDirty
-                  ? _c("div", { staticClass: "flex justify-end" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-tertiary btn-default mr-4",
-                          attrs: { type: "button", disabled: _vm.saving },
-                          on: { click: _vm.reset }
-                        },
-                        [
-                          _vm._v(
-                            "\n                    Cancel\n                "
-                          )
-                        ]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-primary btn-blue",
-                          attrs: { type: "submit", disabled: _vm.saving },
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              return _vm.save($event)
-                            }
-                          }
-                        },
-                        [
-                          _vm.saving
-                            ? _c("span", [_vm._v("Saving...")])
-                            : _c("span", [_vm._v("Save")])
-                        ]
-                      )
-                    ])
-                  : _vm._e()
+                  },
+                  on: { reset: _vm.reset, submit: _vm.save },
+                  scopedSlots: _vm._u([
+                    {
+                      key: "default",
+                      fn: function(ref) {
+                        var formData = ref.formData
+                        var fields = ref.fields
+                        var errors = ref.errors
+                        var isDirty = ref.isDirty
+                        var submitActions = ref.submitActions
+                        var resetActions = ref.resetActions
+                        return _c(
+                          "div",
+                          {},
+                          [
+                            isDirty
+                              ? _c("div", { staticClass: "flex justify-end" }, [
+                                  _c(
+                                    "button",
+                                    _vm._g(
+                                      {
+                                        staticClass:
+                                          "btn btn-tertiary btn-default mr-4",
+                                        attrs: {
+                                          type: "button",
+                                          disabled: _vm.saving
+                                        }
+                                      },
+                                      resetActions
+                                    ),
+                                    [
+                                      _vm._v(
+                                        "\n                            Cancel\n                        "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    _vm._g(
+                                      {
+                                        staticClass: "btn btn-primary btn-blue",
+                                        attrs: {
+                                          type: "submit",
+                                          disabled: _vm.saving
+                                        }
+                                      },
+                                      submitActions
+                                    ),
+                                    [
+                                      _vm.saving
+                                        ? _c("span", [_vm._v("Saving...")])
+                                        : _c("span", [_vm._v("Save")])
+                                    ]
+                                  )
+                                ])
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm._l(fields, function(field) {
+                              return _c("generic-field", {
+                                key: field.key,
+                                attrs: { field: field }
+                              })
+                            })
+                          ],
+                          2
+                        )
+                      }
+                    }
+                  ])
+                })
               ],
               1
             )
@@ -72893,7 +72897,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'panel-field',
 
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]],
+
+    methods: {
+        fill: function fill(formData) {
+            this.field.children.forEach(function (field) {
+                return field.fill(formData);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -72949,26 +72961,52 @@ if (false) {
         }
     },
 
-    inject: ['formData', 'formErrors'],
+    inject: ['formEvents'],
+
+    mounted: function mounted() {
+        var _this = this;
+
+        this.field.fill = this.fill;
+        this.formEvents.$on('value:' + this.field.key, function (value) {
+            return _this.value = value;
+        });
+
+        this.formEvents.$on('errors', this._onErrors);
+    },
+    beforeDestroy: function beforeDestroy() {
+        this.formEvents.$off('value:' + this.field.key);
+        this.formEvents.$off('errors', this._onErrors);
+    },
+    data: function data() {
+        return {
+            internalValue: null,
+            errors: []
+        };
+    },
+
 
     computed: {
         value: {
             get: function get() {
-                return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.get(this.formData, this.field.key, null);
+                return this.internalValue;
             },
             set: function set(value) {
-                console.log('update');
-                __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.set(this.formData, this.field.key, value);
-                //this.$set(this.formData, this.field.key, value);
+                this.internalValue = value;
+                this.formEvents.$emit('input', { key: this.field.key, value: value });
             }
         },
 
         hasErrors: function hasErrors() {
-            var errors = this.errors;
-            return errors && errors.length > 0;
+            return this.errors && this.errors.length > 0;
+        }
+    },
+
+    methods: {
+        fill: function fill(formData) {
+            this.internalValue = __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.get(formData, this.field.key, this.field.default);
         },
-        errors: function errors() {
-            return this.formErrors[this.field.key];
+        _onErrors: function _onErrors(errors) {
+            this.errors = errors[this.field.key];
         }
     }
 });
@@ -72982,7 +73020,7 @@ var normalizeComponent = __webpack_require__(1)
 /* script */
 var __vue_script__ = __webpack_require__(323)
 /* template */
-var __vue_template__ = __webpack_require__(324)
+var __vue_template__ = null
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -73026,20 +73064,13 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_lodash__);
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'form-container',
@@ -73058,59 +73089,92 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
 
+    created: function created() {
+        this.formEvents.$on('input', this.onInput);
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        this.fields.forEach(function (field) {
+            return field.fill(_this.formData);
+        });
+    },
     data: function data() {
         return {
             formData: this.$copyObject(this.data)
         };
     },
     provide: function provide() {
+        this.formEvents = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a();
         return {
             formData: this.formData,
-            formErrors: this.errors
+            formErrors: this.errors,
+            formEvents: this.formEvents
         };
     },
 
 
-    methods: {
-        print: function print() {
-            console.log(this.formData);
+    watch: {
+        data: function data() {
+            var _this2 = this;
+
+            this.formData = this.$copyObject(this.data);
+            this.fields.forEach(function (field) {
+                return field.fill(_this2.formData);
+            });
+        },
+        errors: function errors() {
+            this.formEvents.$emit('errors', this.errors);
         }
+    },
+
+    computed: {
+        isDirty: function isDirty() {
+            return !__WEBPACK_IMPORTED_MODULE_1_lodash___default.a.isEqual(this.data, this.formData);
+        }
+    },
+
+    methods: {
+        onInput: function onInput(event) {
+            __WEBPACK_IMPORTED_MODULE_1_lodash___default.a.set(this.formData, event.key, event.value);
+        },
+        reset: function reset() {
+            var _this3 = this;
+
+            this.formData = this.$copyObject(this.data);
+            this.fields.forEach(function (field) {
+                return field.fill(_this3.formData);
+            });
+            this.$emit('reset');
+        },
+        submit: function submit() {
+            this.$emit('submit', this.formData);
+        }
+    },
+
+    render: function render() {
+        var _this4 = this;
+
+        return this.$scopedSlots.default({
+            formData: this.formData,
+            fields: this.fields,
+            errors: this.errors,
+            isDirty: this.isDirty,
+            submitActions: {
+                click: function click(e) {
+                    e.preventDefault();
+                    _this4.submit();
+                }
+            },
+            resetActions: {
+                click: function click(e) {
+                    e.preventDefault();
+                    _this4.reset();
+                }
+            }
+        });
     }
 });
-
-/***/ }),
-/* 324 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _vm._l(_vm.fields, function(field) {
-        return _c("generic-field", { key: field.key, attrs: { field: field } })
-      }),
-      _vm._v(" "),
-      _c(
-        "button",
-        { staticClass: "btn btn-primary btn-red", on: { click: _vm.print } },
-        [_vm._v("\n        print\n    ")]
-      )
-    ],
-    2
-  )
-}
-var staticRenderFns = []
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-67c48032", module.exports)
-  }
-}
 
 /***/ })
 /******/ ]);

@@ -19,5 +19,11 @@
         name: 'panel-field',
 
         mixins: [FormField],
+
+        methods: {
+            fill(formData) {
+                this.field.children.forEach(field => field.fill(formData));
+            }
+        }
     }
 </script>
