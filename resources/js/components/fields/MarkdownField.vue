@@ -11,8 +11,7 @@
                           class="form-input h-64"
                           :class="{'form-error': hasErrors}"
                           :placeholder="field.name"
-                          :value="value"
-                          @input="onInput"
+                          v-model="value"
                           @keydown.tab.prevent="onTab"
                 ></textarea>
             </div>

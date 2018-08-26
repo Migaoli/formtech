@@ -5,8 +5,7 @@
               :class="{'form-error': hasErrors}"
               type="text"
               :placeholder="field.name"
-              :value="value"
-              @input="onInput"/>
+              v-model="value"/>
    </base-field>
 </template>
 

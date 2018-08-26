@@ -9,13 +9,10 @@
         </div>
         <loading :loading="loading">
             <div v-if="block">
-                <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
-                    <block-field :field="field"
-                                 :data="block"
-                                 @update="update"
-                                 :errors="errors"
-                    ></block-field>
-                </div>
+                <form-container :fields="blockDefinition.fields"
+                                :data="block"
+                                :errors="errors"
+                ></form-container>
 
                 <div class="flex justify-end" v-if="isDirty">
                     <button class="btn btn-tertiary btn-default mr-4"
@@ -49,10 +46,14 @@
     import Loading from "../../../../components/Loading";
     import MediaField from "../../../../components/fields/MediaField";
     import BlockField from "../../../../components/fields/GenericField";
+    import FormContainer from "../../../../components/fields/FormContainer";
 
     export default {
         name: '',
-        components: {BlockField, MediaField, Loading, Icon, MarkdownField, TrixField, SelectField, TextField},
+        components: {
+            FormContainer,
+            BlockField, MediaField, Loading, Icon, MarkdownField, TrixField, SelectField, TextField
+        },
         data() {
             return {
                 saving: false,

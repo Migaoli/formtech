@@ -6,10 +6,7 @@
         <div class="">
             <generic-field v-for="f in field.children"
                            :field="f"
-                           :data="data"
-                           :errors="allErrors"
                            class="mb-8"
-                           @update="update"
             ></generic-field>
         </div>
     </div>
@@ -22,15 +19,5 @@
         name: 'panel-field',
 
         mixins: [FormField],
-
-        methods: {
-            update(event) {
-                console.log(event);
-                this.$emit('update', event);
-            }
-        },
-
-        computed: {
-        }
     }
 </script>

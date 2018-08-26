@@ -64679,7 +64679,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 
 
@@ -64792,11 +64791,26 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("base-field", { attrs: { field: _vm.field, errors: _vm.errors } }, [
     _c("input", {
+      directives: [
+        {
+          name: "model",
+          rawName: "v-model",
+          value: _vm.value,
+          expression: "value"
+        }
+      ],
       staticClass: "form-input",
       class: { "form-error": _vm.hasErrors },
       attrs: { id: _vm.field.key, type: "text", placeholder: _vm.field.name },
       domProps: { value: _vm.value },
-      on: { input: _vm.onInput }
+      on: {
+        input: function($event) {
+          if ($event.target.composing) {
+            return
+          }
+          _vm.value = $event.target.value
+        }
+      }
     })
   ])
 }
@@ -64907,11 +64921,32 @@ var render = function() {
     _c(
       "select",
       {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.value,
+            expression: "value"
+          }
+        ],
         staticClass: "form-select",
         class: { "form-error": _vm.hasErrors },
         attrs: { id: _vm.field.key },
-        domProps: { value: _vm.value },
-        on: { input: _vm.onInput }
+        on: {
+          change: function($event) {
+            var $$selectedVal = Array.prototype.filter
+              .call($event.target.options, function(o) {
+                return o.selected
+              })
+              .map(function(o) {
+                var val = "_value" in o ? o._value : o.value
+                return val
+              })
+            _vm.value = $event.target.multiple
+              ? $$selectedVal
+              : $$selectedVal[0]
+          }
+        }
       },
       _vm._l(_vm.field.options, function(name, option) {
         return _c("option", { key: option, domProps: { value: option } }, [
@@ -66155,6 +66190,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField__ = __webpack_require__(314);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer__ = __webpack_require__(322);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -66193,9 +66230,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
+
 
 
 
@@ -66211,7 +66246,10 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: '',
-    components: { BlockField: __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField___default.a, MediaField: __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default.a, Loading: __WEBPACK_IMPORTED_MODULE_8__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_7__components_Icon___default.a, MarkdownField: __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField___default.a, TrixField: __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField___default.a },
+    components: {
+        FormContainer: __WEBPACK_IMPORTED_MODULE_11__components_fields_FormContainer___default.a,
+        BlockField: __WEBPACK_IMPORTED_MODULE_10__components_fields_GenericField___default.a, MediaField: __WEBPACK_IMPORTED_MODULE_9__components_fields_MediaField___default.a, Loading: __WEBPACK_IMPORTED_MODULE_8__components_Loading___default.a, Icon: __WEBPACK_IMPORTED_MODULE_7__components_Icon___default.a, MarkdownField: __WEBPACK_IMPORTED_MODULE_6__components_fields_MarkdownField___default.a, TrixField: __WEBPACK_IMPORTED_MODULE_5__components_fields_TrixField___default.a, SelectField: __WEBPACK_IMPORTED_MODULE_4__components_fields_SelectField___default.a, TextField: __WEBPACK_IMPORTED_MODULE_3__components_fields_TextField___default.a
+    },
     data: function data() {
         return {
             saving: false,
@@ -66439,7 +66477,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_showdown__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_showdown___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_showdown__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FormField__ = __webpack_require__(321);
-//
 //
 //
 //
@@ -71028,13 +71065,20 @@ var render = function() {
     _c("div", { staticClass: "grid" }, [
       _c("div", { staticClass: "w-1/2" }, [
         _c("textarea", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.value,
+              expression: "value"
+            }
+          ],
           ref: "editor",
           staticClass: "form-input h-64",
           class: { "form-error": _vm.hasErrors },
           attrs: { id: _vm.field.key, placeholder: _vm.field.name },
           domProps: { value: _vm.value },
           on: {
-            input: _vm.onInput,
             keydown: function($event) {
               if (
                 !("button" in $event) &&
@@ -71044,6 +71088,12 @@ var render = function() {
               }
               $event.preventDefault()
               return _vm.onTab($event)
+            },
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.value = $event.target.value
             }
           }
         })
@@ -71169,15 +71219,16 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     methods: {
         addImages: function addImages(images) {
             console.log(images);
-            this.$emit('input', [].concat(_toConsumableArray(this.value), _toConsumableArray(images.map(function (media) {
+            this.value = [].concat(_toConsumableArray(this.value), _toConsumableArray(images.map(function (media) {
                 return {
                     id: __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.uniqueId(),
-                    media: media };
-            }))));
+                    media: media
+                };
+            })));
         },
         remove: function remove(index) {
             console.log(index);
-            this.$emit('input', [].concat(_toConsumableArray(this.value.slice(0, index)), _toConsumableArray(this.value.slice(index + 1, this.value.length))));
+            this.value = [].concat(_toConsumableArray(this.value.slice(0, index)), _toConsumableArray(this.value.slice(index + 1, this.value.length)));
         }
     }
 });
@@ -72018,7 +72069,7 @@ var render = function() {
             attrs: { value: _vm.value },
             on: {
               input: function(e) {
-                return _vm.$emit("input", e)
+                return (_vm.value = e)
               }
             }
           },
@@ -72140,22 +72191,12 @@ var render = function() {
           ? _c(
               "div",
               [
-                _vm._l(_vm.blockDefinition.fields, function(field, i) {
-                  return _c(
-                    "div",
-                    { staticClass: "mb-8" },
-                    [
-                      _c("block-field", {
-                        attrs: {
-                          field: field,
-                          data: _vm.block,
-                          errors: _vm.errors
-                        },
-                        on: { update: _vm.update }
-                      })
-                    ],
-                    1
-                  )
+                _c("form-container", {
+                  attrs: {
+                    fields: _vm.blockDefinition.fields,
+                    data: _vm.block,
+                    errors: _vm.errors
+                  }
                 }),
                 _vm._v(" "),
                 _vm.isDirty
@@ -72195,7 +72236,7 @@ var render = function() {
                     ])
                   : _vm._e()
               ],
-              2
+              1
             )
           : _vm._e()
       ])
@@ -72688,9 +72729,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
@@ -72706,31 +72744,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         field: {
             type: Object,
             required: true
-        },
-
-        data: {
-            type: Object,
-            required: true
-        },
-
-        errors: {
-            type: Object,
-            required: true
         }
     },
 
     computed: {
         component: function component() {
             return this.field.type + '-field';
-        }
-    },
-
-    methods: {
-        input: function input(e) {
-            this.$emit('update', {
-                key: this.field.key,
-                value: e
-            });
         }
     }
 });
@@ -72743,11 +72762,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(_vm.component, {
-    tag: "component",
-    attrs: { field: _vm.field, "all-errors": _vm.errors, data: _vm.data },
-    on: { input: _vm.input }
-  })
+  return _c(_vm.component, { tag: "component", attrs: { field: _vm.field } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -72872,25 +72887,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'panel-field',
 
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]],
-
-    methods: {
-        update: function update(event) {
-            console.log(event);
-            this.$emit('update', event);
-        }
-    },
-
-    computed: {}
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
 });
 
 /***/ }),
@@ -72914,11 +72917,7 @@ var render = function() {
       "div",
       {},
       _vm._l(_vm.field.children, function(f) {
-        return _c("generic-field", {
-          staticClass: "mb-8",
-          attrs: { field: f, data: _vm.data, errors: _vm.allErrors },
-          on: { update: _vm.update }
-        })
+        return _c("generic-field", { staticClass: "mb-8", attrs: { field: f } })
       })
     )
   ])
@@ -72947,38 +72946,171 @@ if (false) {
         field: {
             type: Object,
             required: true
-        },
-
-        data: {
-            type: Object,
-            required: true
-        },
-
-        allErrors: {
-            type: Object,
-            required: true
         }
     },
 
+    inject: ['formData', 'formErrors'],
+
     computed: {
-        value: function value() {
-            return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.get(this.data, this.field.key, null);
+        value: {
+            get: function get() {
+                return __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.get(this.formData, this.field.key, null);
+            },
+            set: function set(value) {
+                console.log('update');
+                __WEBPACK_IMPORTED_MODULE_0_lodash___default.a.set(this.formData, this.field.key, value);
+                //this.$set(this.formData, this.field.key, value);
+            }
         },
+
         hasErrors: function hasErrors() {
             var errors = this.errors;
             return errors && errors.length > 0;
         },
         errors: function errors() {
-            return this.allErrors[this.field.key];
-        }
-    },
-
-    methods: {
-        onInput: function onInput(e) {
-            this.$emit('input', e.target.value);
+            return this.formErrors[this.field.key];
         }
     }
 });
+
+/***/ }),
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(323)
+/* template */
+var __vue_template__ = __webpack_require__(324)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\components\\fields\\FormContainer.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-67c48032", Component.options)
+  } else {
+    hotAPI.reload("data-v-67c48032", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 323 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'form-container',
+
+    props: {
+        fields: {
+            required: true
+        },
+
+        data: {
+            required: true
+        },
+
+        errors: {
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            formData: this.$copyObject(this.data)
+        };
+    },
+    provide: function provide() {
+        return {
+            formData: this.formData,
+            formErrors: this.errors
+        };
+    },
+
+
+    methods: {
+        print: function print() {
+            console.log(this.formData);
+        }
+    }
+});
+
+/***/ }),
+/* 324 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _vm._l(_vm.fields, function(field) {
+        return _c("generic-field", { key: field.key, attrs: { field: field } })
+      }),
+      _vm._v(" "),
+      _c(
+        "button",
+        { staticClass: "btn btn-primary btn-red", on: { click: _vm.print } },
+        [_vm._v("\n        print\n    ")]
+      )
+    ],
+    2
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-67c48032", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

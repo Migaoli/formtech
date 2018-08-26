@@ -3,8 +3,8 @@
         <select :id="field.key"
                 class="form-select"
                 :class="{'form-error': hasErrors}"
-                :value="value"
-                @input="onInput">
+                v-model="value"
+        >
             <option v-for="(name, option) in field.options"
                     :key="option"
                     :value="option">

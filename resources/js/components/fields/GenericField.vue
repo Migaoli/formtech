@@ -1,9 +1,6 @@
 <template>
     <component :is="component"
                :field="field"
-               :all-errors="errors"
-               :data="data"
-               @input="input"
     ></component>
 </template>
 
@@ -23,16 +20,6 @@
                 type: Object,
                 required: true,
             },
-
-            data: {
-                type: Object,
-                required: true,
-            },
-
-            errors: {
-                type: Object,
-                required: true,
-            },
         },
 
         computed: {
@@ -40,14 +27,5 @@
                 return this.field.type + '-field';
             }
         },
-
-        methods: {
-            input(e) {
-                this.$emit('update', {
-                    key: this.field.key,
-                    value: e,
-                });
-            },
-        }
     }
 </script>

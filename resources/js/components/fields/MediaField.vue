@@ -3,13 +3,13 @@
         <div class="bg-grey-lighter border rounded p-3 mb-4">
 
             <sortable-list :value="value"
-                           @input="(e) => $emit('input', e)">
+                           @input="(e) => value = e">
                 <div class="grid">
                     <sortable-item v-for="(mediaReference, i) in value" :key="mediaReference.id">
                         <div>
-                                <media-item :media-reference="mediaReference"
-                                            @remove="remove(i)"
-                                ></media-item>
+                            <media-item :media-reference="mediaReference"
+                                        @remove="remove(i)"
+                            ></media-item>
                         </div>
                     </sortable-item>
                 </div>
@@ -62,21 +62,22 @@
         methods: {
             addImages(images) {
                 console.log(images);
-                this.$emit('input', [
+                this.value = [
                     ...this.value,
                     ...images.map(media => {
                         return {
                             id: _.uniqueId(),
-                            media}
-                    })]);
+                            media
+                        }
+                    })];
             },
 
             remove(index) {
                 console.log(index);
-                this.$emit('input', [
+                this.value = [
                     ...this.value.slice(0, index),
                     ...this.value.slice(index + 1, this.value.length)
-                ]);
+                ];
             }
         },
     }

@@ -6,21 +6,21 @@ export default {
             type: Object,
             required: true,
         },
-
-        data: {
-            type: Object,
-            required: true,
-        },
-
-        allErrors: {
-            type: Object,
-            required: true,
-        },
     },
 
+    inject: ['formData', 'formErrors'],
+
     computed: {
-        value() {
-            return _.get(this.data, this.field.key, null);
+        value: {
+            get() {
+                return _.get(this.formData, this.field.key, null);
+            },
+
+            set(value) {
+                console.log('update');
+                _.set(this.formData, this.field.key, value);
+                //this.$set(this.formData, this.field.key, value);
+            }
         },
 
         hasErrors() {
@@ -29,13 +29,7 @@ export default {
         },
 
         errors() {
-            return this.allErrors[this.field.key];
+            return this.formErrors[this.field.key];
         },
     },
-
-    methods: {
-        onInput(e) {
-            this.$emit('input', e.target.value);
-        }
-    }
 }
