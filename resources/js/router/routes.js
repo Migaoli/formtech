@@ -2,6 +2,7 @@ import TestPage from '../pages/Test';
 import Index from '../pages/Index';
 import PageIndex from '../pages/website/page/Index';
 import PageOverview from '../pages/website/page/Overview';
+import PageCreate from '../pages/website/page/PageCreate';
 import PageView from '../pages/website/page/View';
 import PageSettings from '../pages/website/page/PageSettings';
 import PageContent from '../pages/website/page/PageContent';
@@ -23,6 +24,10 @@ const routes = [
                         path: '',
                         name: 'pages',
                         component: PageOverview,
+                    }, {
+                        path: 'new',
+                        name: 'pages.create',
+                        component: PageCreate,
                     }, {
                         path: ':id',
                         name: 'pages.view',

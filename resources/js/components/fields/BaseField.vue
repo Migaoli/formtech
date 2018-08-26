@@ -1,8 +1,8 @@
 <template>
     <div class="relative w-full">
         <label class="form-label"
-               :for="id">
-            {{ label }}
+               :for="field.key">
+            {{ field.name }}
         </label>
         <slot></slot>
         <ul v-if="hasErrors"
@@ -19,12 +19,11 @@
         name: 'base-field',
 
         props: {
-            id: {
-                type: String,
+            field: {
+                type: Object,
+                required: true,
             },
-            label: {
-                type: String,
-            },
+
             errors: {
                 type: Array,
             }

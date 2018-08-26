@@ -3,11 +3,16 @@ import axios from 'axios';
 const state = {
     loading: false,
     page: null,
+    types: [],
 };
 
 const getters = {};
 
 const actions = {
+    fetchTypes({dispatch, commit}) {
+
+    },
+
     fetch({dispatch, commit}, {id}) {
         commit('loading', true);
 

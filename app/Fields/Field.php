@@ -16,7 +16,7 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
     private $rules = [];
     private $default;
 
-    private function __construct($name, $key = null)
+    protected function __construct($name, $key = null)
     {
         $this->name = $name;
         $this->key = $key ?? Str::slug($name, '_');

@@ -4,6 +4,7 @@
 namespace App\Pages;
 
 
+use App\Fields\Text;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
@@ -19,6 +20,8 @@ class Page extends Model
 
     protected $fillable = ['title', 'slug', 'parent_id', 'data'];
 
+    protected $appends = ['fields'];
+
     public function __construct(array $attributes = [])
     {
         $this->data = [];
@@ -26,22 +29,38 @@ class Page extends Model
         $this->type = \get_class($this);
     }
 
-    public function rules(): array
+    public function fields(): array
     {
         return [
-            'type' => 'required|in:standard,menu_separator',
-            'title' => 'required|string|max:200',
-            'slug' => [
-                'required',
-                'alpha_dash',
-                'max:200',
-                Rule::unique('pages')
-                    ->where(function ($query) {
-                        $query->where('parent_id', $this->parent_id);
-                    })
-                    ->ignore($this->id)
-            ],
+            Text::make('Title')
+                ->rules(['required', 'max:200']),
+
+            Text::make('Slug')
+                ->rules([
+                    'required',
+                    'alpha_dash',
+                    'max:200',
+                    Rule::unique('pages')
+                        ->where(function ($query) {
+                            $query->where('parent_id', $this->parent_id);
+                        })
+                        ->ignore($this->id)
+                ]),
         ];
+    }
+
+    public function getFieldsAttribute()
+    {
+        return $this->fields();
+    }
+
+    public function rules(): array
+    {
+        return collect($this->fields())
+            ->mapWithKeys(function ($field) {
+                return [$field->getKey() => $field->getRules()];
+            })
+            ->toArray();
     }
 
     public function addSubPage(Page $page)
@@ -51,7 +70,7 @@ class Page extends Model
 
     public function subPages(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
-        return $this->hasMany(Pages::class, 'parent_id');
+        return $this->hasMany(__CLASS__, 'parent_id');
     }
 
     public static function tree()

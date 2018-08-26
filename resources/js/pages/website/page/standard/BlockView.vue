@@ -8,10 +8,10 @@
             </router-link>
         </div>
         <loading :loading="loading">
-            <div class="card px-4 py-8" v-if="block">
+            <div v-if="block">
                 <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
                     <block-field :field="field"
-                                 :block="block"
+                                 :data="block"
                                  @update="update"
                                  :errors="errors"
                     ></block-field>
@@ -48,7 +48,7 @@
     import Icon from "../../../../components/Icon";
     import Loading from "../../../../components/Loading";
     import MediaField from "../../../../components/fields/MediaField";
-    import BlockField from "./BlockField";
+    import BlockField from "../../../../components/fields/GenericField";
 
     export default {
         name: '',

@@ -1,5 +1,5 @@
 <template>
-    <base-field :id="id" :label="label" :errors="errors">
+    <base-field :field="field" :errors="errors">
         <div class="bg-grey-lighter border rounded p-3 mb-4">
 
             <sortable-list :value="value"
@@ -38,6 +38,7 @@
 <script>
     import _ from 'lodash'
     import BaseField from "./BaseField";
+    import FormField from './FormField';
     import MediaItem from "./MediaItem";
     import Modal from "../Modal";
     import ImageUpload from "../file-upload/ImageUpload";
@@ -48,30 +49,9 @@
     export default {
         name: 'media-field',
 
-        components: {SortableList, SortableHandle, SortableItem, ImageUpload, Modal, MediaItem, BaseField},
+        mixins: [FormField],
 
-        props: {
-            value: {
-                type: Array,
-                required: true,
-            },
-            id: {
-                type: String,
-            },
-            label: {
-                type: String,
-            },
-            disabled: {
-                type: Boolean,
-                default: false,
-            },
-            placeholder: {
-                type: String
-            },
-            errors: {
-                type: Array,
-            }
-        },
+        components: {SortableList, SortableHandle, SortableItem, ImageUpload, Modal, MediaItem, BaseField},
 
         data() {
             return {
@@ -99,11 +79,5 @@
                 ]);
             }
         },
-
-        computed: {
-            hasErrors() {
-                return this.errors && this.errors.length > 0;
-            }
-        }
     }
 </script>

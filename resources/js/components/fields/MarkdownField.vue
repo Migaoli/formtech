@@ -1,17 +1,16 @@
 <template>
     <div class="relative w-full">
         <label class="form-label"
-               :for="id">
-            {{ label }}
+               :for="field.key">
+            {{ field.name }}
         </label>
         <div class="grid">
             <div class="w-1/2">
                 <textarea ref="editor"
-                          :id="id"
+                          :id="field.key"
                           class="form-input h-64"
                           :class="{'form-error': hasErrors}"
-                          :disabled="disabled"
-                          :placeholder="placeholder"
+                          :placeholder="field.name"
                           :value="value"
                           @input="onInput"
                           @keydown.tab.prevent="onTab"
@@ -31,35 +30,12 @@
 
 <script>
     import Showdown from 'showdown';
+    import FormField from './FormField';
 
     export default {
         name: 'markdown-field',
 
-        props: {
-            value: {
-                required: true,
-            },
-            id: {
-                type: String,
-            },
-            label: {
-                type: String,
-            },
-            disabled: {
-                type: Boolean,
-                default: false,
-            },
-            placeholder: {
-                type: String
-            },
-            errors: {
-                type: Array,
-            }
-        },
-
-        data() {
-            return {}
-        },
+        mixins: [FormField],
 
         created() {
             this.converter = new Showdown.Converter();
@@ -78,10 +54,6 @@
         },
 
         computed: {
-            hasErrors() {
-                return this.errors && this.errors.length > 0;
-            },
-
             preview() {
                 return this.converter.makeHtml(this.value);
             }

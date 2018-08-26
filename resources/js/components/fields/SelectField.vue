@@ -1,12 +1,11 @@
 <template>
-    <base-field :id="id" :label="label" :errors="errors">
-        <select :id="id"
+    <base-field :field="field" :errors="errors">
+        <select :id="field.key"
                 class="form-select"
                 :class="{'form-error': hasErrors}"
-                :disabled="disabled"
                 :value="value"
                 @input="onInput">
-            <option v-for="(name, option) in options"
+            <option v-for="(name, option) in field.options"
                     :key="option"
                     :value="option">
                 {{ name }}
@@ -17,44 +16,14 @@
 
 <script>
     import BaseField from "./BaseField";
+    import FormField from './FormField'
 
     export default {
         name: 'select-field',
+
+        mixins: [FormField],
+
         components: {BaseField},
-        props: {
-            value: {
-                required: true,
-            },
-            id: {
-                type: String,
-            },
-            label: {
-                type: String,
-            },
-            disabled: {
-                type: Boolean,
-                default: false,
-            },
-            options: {
-                type: Object,
-                required: true,
-            },
-            errors: {
-                type: Array,
-            }
-        },
-
-        methods: {
-            onInput(event) {
-                this.$emit('input', event.target.value);
-            }
-        },
-
-        computed: {
-            hasErrors() {
-                return this.errors && this.errors.length > 0;
-            }
-        }
 
     }
 </script>

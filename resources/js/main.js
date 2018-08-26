@@ -11,6 +11,8 @@ import clickOutside from './directives/click-outside';
 import Events from './plugins/events';
 import Flash from './plugins/flash';
 
+import Fields from './components/fields';
+
 Vue.use(Router);
 Vue.use(Filters);
 Vue.use(CopyHelper);
@@ -18,6 +20,7 @@ Vue.use(PortalVue);
 
 Vue.use(Events);
 Vue.use(Flash);
+Vue.use(Fields);
 
 Vue.directive(clickOutside.name, clickOutside);
 

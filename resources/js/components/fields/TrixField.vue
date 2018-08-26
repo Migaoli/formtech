@@ -1,44 +1,27 @@
 <template>
-    <base-field :id="id" :label="label" :errors="errors">
+    <base-field :field="field" :errors="errors">
         <input ref="input"
-               :id="id"
+               :id="field.key"
                class="hidden"
                :class="{'form-error': hasErrors}"
-               :disabled="disabled"
-               :placeholder="placeholder"
+               :placeholder="field.name"
         />
-        <trix-editor ref="trix" :input="id" :placeholder="placeholder"></trix-editor>
+        <trix-editor ref="trix" :input="field.key" :placeholder="field.name"></trix-editor>
     </base-field>
 </template>
 
 <script>
 
     import BaseField from "./BaseField";
+    import FormField from './FormField';
 
     export default {
         name: 'trix-field',
+
+        mixins: [FormField],
+
         components: {BaseField},
-        props: {
-            value: {
-                required: true,
-            },
-            id: {
-                type: String,
-            },
-            label: {
-                type: String,
-            },
-            disabled: {
-                type: Boolean,
-                default: false,
-            },
-            placeholder: {
-                type: String
-            },
-            errors: {
-                type: Array,
-            }
-        },
+
 
         mounted() {
             this.$refs.trix.addEventListener('trix-change', e => {
@@ -54,11 +37,5 @@
                 this.$emit('input', event.target.value);
             }
         },
-
-        computed: {
-            hasErrors() {
-                return this.errors && this.errors.length > 0;
-            }
-        }
     }
 </script>

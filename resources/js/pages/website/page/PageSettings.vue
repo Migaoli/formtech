@@ -1,31 +1,15 @@
 <template>
     <div>
         <div class="card py-8 px-4">
-            <div class="grid mb-8">
-                <div class="w-1/2">
-                    <text-field label="Title"
-                                id="page.title"
-                                v-model="page.title"
-                                :errors="errors.title"
-                    ></text-field>
-                </div>
-                <div class="w-1/2">
-                    <text-field label="Slug"
-                                id="page.slug"
-                                v-model="page.slug"
-                                :errors="errors.slug"
-                    ></text-field>
-                </div>
-            </div>
-            <div class="grid mb-8">
-                <div class="w-1/2">
-                    <select-field label="Layout"
-                                  id="page.layout"
-                                  :options="options"
-                                  v-model="page.layout"
-                    ></select-field>
-                </div>
-            </div>
+
+            <generic-field v-for="(field, i) in page.fields"
+                           :field="field"
+                           :errors="errors"
+                           :data="page"
+                           class="mb-8"
+            ></generic-field>
+
+
             <div class="flex justify-end" v-if="isDirty">
                 <button class="btn btn-tertiary btn-default mr-4"
                         type="button"
@@ -52,11 +36,12 @@
     import SearchInput from "../../../components/input/SearchInput";
     import TextField from "../../../components/fields/TextField";
     import SelectField from "../../../components/fields/SelectField";
+    import GenericField from "../../../components/fields/GenericField";
 
     export default {
         name: 'page-settings',
 
-        components: {SelectField, TextField, SearchInput},
+        components: {GenericField, SelectField, TextField, SearchInput},
 
         data() {
             return {

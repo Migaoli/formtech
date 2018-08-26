@@ -11,7 +11,7 @@
         <div class="card px-4 py-8">
             <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
                 <block-field :field="field"
-                             :block="block"
+                             :data="block"
                              @update="update"
                              :errors="errors"
                 ></block-field>
@@ -40,7 +40,7 @@
     import axios from 'axios';
     import {mapState} from 'vuex';
     import Modal from "../../../../components/Modal";
-    import BlockField from "./BlockField";
+    import BlockField from "../../../../components/fields/GenericField";
     import Icon from "../../../../components/Icon";
 
     export default {
