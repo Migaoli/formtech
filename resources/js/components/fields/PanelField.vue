@@ -6,7 +6,6 @@
         <div class="">
             <generic-field v-for="f in field.children"
                            :field="f"
-                           class="mb-8"
             ></generic-field>
         </div>
     </div>

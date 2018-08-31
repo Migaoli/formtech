@@ -6,6 +6,7 @@ namespace App\Blocks\Text;
 
 use App\Blocks\Block;
 use App\Fields\Markdown;
+use App\Fields\Row;
 use App\Fields\Select;
 use App\Fields\Text;
 
@@ -36,32 +37,34 @@ class TextBlock extends Block
     public function fields(): array
     {
         return [
-            Text::make('Heading', 'data.heading')
-                ->rules([
-                    'required',
-                    'string',
-                    'max:100',
-                ]),
+            new Row([
+                Text::make('Heading', 'data.heading')
+                    ->rules([
+                        'required',
+                        'string',
+                        'max:100',
+                    ]),
 
-            Select::make('Heading type', 'data.heading_type')
-                ->options([
-                    'h1' => 'Heading 1',
-                    'h2' => 'Heading 2',
-                    'h3' => 'Heading 3',
-                    'h4' => 'Heading 4',
-                    'h5' => 'Heading 5',
-                    'normal' => 'Normal',
-                    'hidden' => 'Hidden',
-                ])
-                ->defaultTo('h1'),
+                Select::make('Heading type', 'data.heading_type')
+                    ->options([
+                        'h1' => 'Heading 1',
+                        'h2' => 'Heading 2',
+                        'h3' => 'Heading 3',
+                        'h4' => 'Heading 4',
+                        'h5' => 'Heading 5',
+                        'normal' => 'Normal',
+                        'hidden' => 'Hidden',
+                    ])
+                    ->defaultTo('h1'),
 
-            Select::make('Alignment', 'data.alignment')
-                ->options([
-                    'left' => 'Left',
-                    'center' => 'Center',
-                    'right' => 'Right'
-                ])
-                ->defaultTo('left'),
+                Select::make('Alignment', 'data.alignment')
+                    ->options([
+                        'left' => 'Left',
+                        'center' => 'Center',
+                        'right' => 'Right'
+                    ])
+                    ->defaultTo('left'),
+            ]),
 
             Markdown::make('Content', 'data.content'),
         ];

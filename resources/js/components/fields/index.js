@@ -10,6 +10,7 @@ import SelectField from './SelectField';
 import TrixField from './TrixField';
 import ColorField from './ColorField';
 import IconField from './IconField';
+import RowField from './RowField';
 
 export default {
     install(Vue, options = {}) {
@@ -25,5 +26,6 @@ export default {
         Vue.component(TrixField.name, TrixField);
         Vue.component(ColorField.name, ColorField);
         Vue.component(IconField.name, IconField);
+        Vue.component(RowField.name, RowField);
     }
 }

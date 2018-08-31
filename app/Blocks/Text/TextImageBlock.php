@@ -8,6 +8,7 @@ use App\Blocks\Block;
 use App\Fields\Markdown;
 use App\Fields\Media;
 use App\Fields\Panel;
+use App\Fields\Row;
 use App\Fields\Select;
 use App\Fields\Text;
 use App\Media\MediaReference;
@@ -25,58 +26,62 @@ class TextImageBlock extends Block
     {
         return [
             new Panel('Text', [
-                Text::make('Heading', 'data.heading')
-                    ->rules([
-                        'required',
-                        'string',
-                        'max:100',
-                    ]),
+                new Row([
+                    Text::make('Heading', 'data.heading')
+                        ->rules([
+                            'required',
+                            'string',
+                            'max:100',
+                        ]),
 
-                Select::make('Heading type', 'data.heading_type')
-                    ->options([
-                        'h1' => 'Heading 1',
-                        'h2' => 'Heading 2',
-                        'h3' => 'Heading 3',
-                        'h4' => 'Heading 4',
-                        'h5' => 'Heading 5',
-                        'normal' => 'Normal',
-                        'hidden' => 'Hidden',
-                    ])
-                    ->defaultTo('h1'),
+                    Select::make('Heading type', 'data.heading_type')
+                        ->options([
+                            'h1' => 'Heading 1',
+                            'h2' => 'Heading 2',
+                            'h3' => 'Heading 3',
+                            'h4' => 'Heading 4',
+                            'h5' => 'Heading 5',
+                            'normal' => 'Normal',
+                            'hidden' => 'Hidden',
+                        ])
+                        ->defaultTo('h1'),
 
-                Select::make('Alignment', 'data.alignment')
-                    ->options([
-                        'left' => 'Left',
-                        'center' => 'Center',
-                        'right' => 'Right'
-                    ])
-                    ->defaultTo('left'),
+                    Select::make('Alignment', 'data.alignment')
+                        ->options([
+                            'left' => 'Left',
+                            'center' => 'Center',
+                            'right' => 'Right'
+                        ])
+                        ->defaultTo('left'),
+                ]),
 
                 Markdown::make('Content', 'data.content'),
             ]),
 
             new Panel('Images', [
-                Select::make('Image position', 'data.image_position')
-                    ->options([
-                        'above_center' => 'Above, centered',
-                        'below_center' => 'Below, centered',
-                        'beside_left' => 'Beside, left',
-                        'beside_right' => 'Beside, right',
-                        'inline_left' => 'inline, left',
-                        'inline_right' => 'inline, right',
-                    ])
-                    ->defaultTo('above_center'),
+                new Row([
+                    Select::make('Image position', 'data.image_position')
+                        ->options([
+                            'above_center' => 'Above, centered',
+                            'below_center' => 'Below, centered',
+                            'beside_left' => 'Beside, left',
+                            'beside_right' => 'Beside, right',
+                            'inline_left' => 'inline, left',
+                            'inline_right' => 'inline, right',
+                        ])
+                        ->defaultTo('above_center'),
 
-                Select::make('Image columns', 'data.image_columns')
-                    ->options([
-                        '1' => 'One column',
-                        '2' => 'Two columns',
-                        '3' => 'Three columns',
-                        '4' => 'Four columns',
-                        '5' => 'Five columns',
-                        '6' => 'Six columns',
-                    ])
-                    ->defaultTo('1'),
+                    Select::make('Image columns', 'data.image_columns')
+                        ->options([
+                            '1' => 'One column',
+                            '2' => 'Two columns',
+                            '3' => 'Three columns',
+                            '4' => 'Four columns',
+                            '5' => 'Five columns',
+                            '6' => 'Six columns',
+                        ])
+                        ->defaultTo('1'),
+                ]),
 
                 Media::make('Images', 'images')
                     ->allowMultiple()
