@@ -1183,6 +1183,10 @@ table {
   border-color: #e3342f;
 }
 
+.vc-material {
+  height: auto !important;
+}
+
 .sortable-list-item.draggable-source--is-dragging {
   background-color: #f1f5f8;
 }

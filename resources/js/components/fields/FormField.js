@@ -25,7 +25,7 @@ export default {
 
     data() {
         return {
-            internalValue: null,
+            internalValue: '',
             errors: [],
         }
     },
