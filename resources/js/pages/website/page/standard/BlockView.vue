@@ -17,31 +17,25 @@
 
                     <div slot-scope="{formData, fields, errors, isDirty, submitActions, resetActions}">
 
-                        <div class="flex justify-end" v-if="isDirty">
-                            <button class="btn btn-tertiary btn-default mr-4"
-                                    type="button"
-                                    :disabled="saving"
-                                    v-on="resetActions">
-                                Cancel
-                            </button>
-                            <button class="btn btn-primary btn-blue"
-                                    type="submit"
-                                    :disabled="saving"
-                                    v-on="submitActions">
-                                <span v-if="saving">Saving...</span>
-                                <span v-else>Save</span>
-                            </button>
-                        </div>
+                        <form-toolbar :is-dirty="isDirty"
+                                      :saving="saving"
+                                      :submit-actions="submitActions"
+                                      :reset-actions="resetActions"
+                        ></form-toolbar>
 
                         <generic-field v-for="field in fields"
                                        :key="field.key"
                                        :field="field"
                         ></generic-field>
 
+                        <form-toolbar :is-dirty="isDirty"
+                                      :saving="saving"
+                                      :submit-actions="submitActions"
+                                      :reset-actions="resetActions"
+                        ></form-toolbar>
+
                     </div>
                 </form-container>
-
-
             </div>
         </loading>
     </div>
@@ -53,10 +47,12 @@
     import Icon from "../../../../components/Icon";
     import Loading from "../../../../components/Loading";
     import FormContainer from "../../../../components/fields/FormContainer";
+    import FormToolbar from "../../../../components/fields/FormToolbar";
 
     export default {
         name: '',
         components: {
+            FormToolbar,
             FormContainer, Loading, Icon
         },
         data() {

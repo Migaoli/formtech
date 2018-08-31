@@ -49,7 +49,7 @@ export default {
 
     methods: {
         fill(formData) {
-            this.internalValue = _.get(formData, this.field.key, this.field.default);
+            this.value = _.get(formData, this.field.key, this.field.default);
         },
 
         _onErrors(errors) {

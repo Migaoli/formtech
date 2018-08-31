@@ -8,31 +8,55 @@
             </router-link>
         </div>
 
-        <div class="card px-4 py-8">
-            <div v-for="(field, i) in blockDefinition.fields" class="mb-8">
-                <block-field :field="field"
-                             :data="block"
-                             @update="update"
-                             :errors="errors"
-                ></block-field>
-            </div>
+        <form-container :fields="blockDefinition.fields"
+                        :data="block"
+                        :errors="errors"
+                        @reset="cancel"
+                        @submit="create">
 
-            <div class="flex justify-end">
-                <button class="btn btn-tertiary btn-default mr-4"
-                        type="button"
-                        :disabled="creating"
-                        @click="cancel">
-                    Cancel
-                </button>
-                <button class="btn btn-primary btn-blue"
-                        type="submit"
-                        :disabled="creating"
-                        @click.prevent="create">
-                    <span v-if="creating">Creating...</span>
-                    <span v-else>Create</span>
-                </button>
+            <div slot-scope="{formData, fields, errors, isDirty, submitActions, resetActions}">
+
+                <div class="flex justify-end mb-8">
+                    <button class="btn btn-tertiary btn-default mr-4"
+                            type="button"
+                            :disabled="creating"
+                            v-on="resetActions">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary btn-blue"
+                            type="submit"
+                            :disabled="creating"
+                            v-on="submitActions">
+                        <span v-if="creating">Creating...</span>
+                        <span v-else>Create</span>
+                    </button>
+                </div>
+
+                <generic-field v-for="field in fields"
+                               :key="field.key"
+                               :field="field"
+                ></generic-field>
+
+
+                <div class="flex justify-end mb-8">
+                    <button class="btn btn-tertiary btn-default mr-4"
+                            type="button"
+                            :disabled="creating"
+                            v-on="resetActions">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary btn-blue"
+                            type="submit"
+                            :disabled="creating"
+                            v-on="submitActions">
+                        <span v-if="creating">Creating...</span>
+                        <span v-else>Create</span>
+                    </button>
+                </div>
+
             </div>
-        </div>
+        </form-container>
+
     </div>
 </template>
 
@@ -78,7 +102,7 @@
         },
 
         watch: {
-            blockDefinition: function() {
+            blockDefinition: function () {
                 console.log('asd');
                 this.block = this.init();
             },
@@ -94,26 +118,17 @@
                     return {};
                 }
 
-                console.log('init');
-
-                const block = {
+                return {
                     name: this.type,
                     container: this.container,
                     page_id: this.pageId,
                 };
-
-                this.blockDefinition.fields
-                    .forEach(field => {
-                        _.set(block, field.key, field.default);
-                    });
-
-                return block;
             },
 
-            create() {
+            create(formData) {
                 this.creating = true;
-                console.log(this.block);
-                axios.post(`api/pages/${this.pageId}/blocks`, this.block)
+
+                axios.post(`api/pages/${this.pageId}/blocks`, formData)
                     .then(response => {
                         this.creating = false;
                         this.$store.dispatch('page/fetch', {id: this.pageId});

@@ -56,6 +56,26 @@
             isDirty() {
                 return !_.isEqual(this.data, this.formData);
             },
+
+            wrappedFields() {
+                if (!this.fields && this.fields.length === 0) {
+                    return [];
+                }
+
+                const children = this.fields.filter(field => field.type !== 'panel');
+
+                if (children.length === 0) {
+                    return this.fields;
+                }
+
+                return [
+                    {
+                        type: 'panel',
+                        children,
+                    },
+                    ...this.fields.filter(field => field.type === 'panel')
+                ];
+            },
         },
 
         methods: {
@@ -77,7 +97,7 @@
         render() {
             return this.$scopedSlots.default({
                 formData: this.formData,
-                fields: this.fields,
+                fields: this.wrappedFields,
                 errors: this.errors,
                 isDirty: this.isDirty,
                 submitActions: {

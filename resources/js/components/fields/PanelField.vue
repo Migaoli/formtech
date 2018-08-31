@@ -1,6 +1,6 @@
 <template>
-    <div class="card px-4 py-8 mb-8">
-        <div class="text-secondary uppercase tracking-wide font-semibold mb-8">
+    <div class="px-4 py-8 mb-8 border rounded shadow-md bg-white">
+        <div class="text-secondary uppercase tracking-wide font-semibold mb-8" v-if="field.name">
             {{ field.name }}
         </div>
         <div class="">
