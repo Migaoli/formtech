@@ -68379,7 +68379,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "relative w-full" }, [
+  return _c("div", { staticClass: "relative w-full mb-8" }, [
     _c("label", { staticClass: "form-label", attrs: { for: _vm.field.key } }, [
       _vm._v("\n        " + _vm._s(_vm.field.name) + "\n    ")
     ]),
@@ -71075,6 +71075,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
 
 
 
@@ -71402,35 +71404,6 @@ var render = function() {
   return _c(
     "div",
     [
-      _c(
-        "div",
-        { staticClass: "mb-4 " },
-        [
-          _c(
-            "router-link",
-            {
-              staticClass:
-                "no-underline py-2 flex items-center text-tertiary hover:text-primary",
-              attrs: {
-                to: {
-                  name: "pages.view.content",
-                  params: { id: this.$route.params.id }
-                }
-              }
-            },
-            [
-              _c("icon", {
-                staticClass: "w-4 h-4 mr-2",
-                attrs: { icon: "arrow-thin-left" }
-              }),
-              _vm._v("\n            Back to content\n        ")
-            ],
-            1
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
       _c("loading", { attrs: { loading: _vm.loading } }, [
         _vm.block
           ? _c(
@@ -71457,14 +71430,47 @@ var render = function() {
                           "div",
                           {},
                           [
-                            _c("form-toolbar", {
-                              attrs: {
-                                "is-dirty": isDirty,
-                                saving: _vm.saving,
-                                "submit-actions": submitActions,
-                                "reset-actions": resetActions
-                              }
-                            }),
+                            _c(
+                              "div",
+                              {
+                                staticClass: "flex justify-between items-center"
+                              },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    staticClass:
+                                      "no-underline flex items-center text-tertiary hover:text-primary mb-8",
+                                    attrs: {
+                                      to: {
+                                        name: "pages.view.content",
+                                        params: { id: _vm.$route.params.id }
+                                      }
+                                    }
+                                  },
+                                  [
+                                    _c("icon", {
+                                      staticClass: "w-4 h-4 mr-2",
+                                      attrs: { icon: "arrow-thin-left" }
+                                    }),
+                                    _vm._v(
+                                      "\n                            Back to content\n                        "
+                                    )
+                                  ],
+                                  1
+                                ),
+                                _vm._v(" "),
+                                _c("form-toolbar", {
+                                  attrs: {
+                                    "is-dirty": isDirty,
+                                    saving: _vm.saving,
+                                    "submit-actions": submitActions,
+                                    "reset-actions": resetActions
+                                  }
+                                })
+                              ],
+                              1
+                            ),
                             _vm._v(" "),
                             _vm._l(fields, function(field) {
                               return _c("generic-field", {

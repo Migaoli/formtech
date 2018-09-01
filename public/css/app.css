@@ -1195,6 +1195,10 @@ table {
   opacity: 0;
 }
 
+.draggable-mirror {
+  z-index: 100;
+}
+
 .list-reset {
   list-style: none;
   padding: 0;

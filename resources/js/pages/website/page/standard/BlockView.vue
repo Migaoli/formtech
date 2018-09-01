@@ -1,12 +1,5 @@
 <template>
     <div>
-        <div class="mb-4 ">
-            <router-link class="no-underline py-2 flex items-center text-tertiary hover:text-primary"
-                         :to="{name: 'pages.view.content', params: {id: this.$route.params.id}}">
-                <icon icon="arrow-thin-left" class="w-4 h-4 mr-2"></icon>
-                Back to content
-            </router-link>
-        </div>
         <loading :loading="loading">
             <div v-if="block">
                 <form-container :fields="blockDefinition.fields"
@@ -17,11 +10,20 @@
 
                     <div slot-scope="{formData, fields, errors, isDirty, submitActions, resetActions}">
 
-                        <form-toolbar :is-dirty="isDirty"
-                                      :saving="saving"
-                                      :submit-actions="submitActions"
-                                      :reset-actions="resetActions"
-                        ></form-toolbar>
+                        <div class="flex justify-between items-center">
+                            <router-link class="no-underline flex items-center text-tertiary hover:text-primary mb-8"
+                                         :to="{name: 'pages.view.content', params: {id: $route.params.id}}">
+                                <icon icon="arrow-thin-left" class="w-4 h-4 mr-2"></icon>
+                                Back to content
+                            </router-link>
+
+                            <form-toolbar :is-dirty="isDirty"
+                                          :saving="saving"
+                                          :submit-actions="submitActions"
+                                          :reset-actions="resetActions"
+                            ></form-toolbar>
+                        </div>
+
 
                         <generic-field v-for="field in fields"
                                        :key="field.key"
