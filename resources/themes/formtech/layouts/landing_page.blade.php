@@ -3,9 +3,9 @@
 @section('content')
 
     <div class="page:landing-page overflow-x-hidden">
-        <div class="bg-brand-dark">
+        <div class="">
             <div class="container mx-auto grid py-16">
-                <div class="w-full text-white">
+                <div class="w-full">
                     @foreach($blocks['c1'] as $block)
                         {!! $block !!}
                     @endforeach

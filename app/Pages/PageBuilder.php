@@ -1,11 +1,10 @@
 <?php
 
 
-namespace App\Builder;
+namespace App\Pages;
 
 
 use App\Blocks\Block;
-use App\Page;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 
@@ -28,14 +27,14 @@ class PageBuilder
         $this->factory = $factory;
     }
 
-
     public function build(Page $page): string
     {
-        $layout = $this->getLayout($page->layout);
+        $layout = $this->getLayout($page->getData('layout'));
 
         $view = $this->createView($layout['template']);
 
-        $blocks = $page->blocks
+        $blocks = $page
+            ->blocks
             ->sortBy('position')
             ->mapToGroups(function (Block $block) {
                 return [$block->container => $this->buildBlock($block)];
@@ -54,7 +53,7 @@ class PageBuilder
 
         $view->with('block', $block);
 
-        return $view->render();
+        return $view;
     }
 
     private function getLayout($name)
@@ -66,4 +65,5 @@ class PageBuilder
     {
         return $this->factory->make("{$this->theme['name']}::{$name}");
     }
+
 }

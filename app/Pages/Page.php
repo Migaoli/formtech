@@ -81,6 +81,17 @@ class Page extends Model
             ->toArray();
     }
 
+    public function getData(string $key = null, $default = null)
+    {
+        $data = $this->data;
+
+        if ($key === null) {
+            return $data;
+        }
+
+        return data_get($data, $key, $default);
+    }
+
     public function addSubPage(Page $page)
     {
         $this->subPages()->save($page);

@@ -25,7 +25,7 @@ class ImageController extends Controller
 
         $path = \Storage::disk('media')->get($media->file_path);
 
-        $image =  $this->manager->make($path);
+        $image = $this->manager->make($path);
 
         if ($request->query->has('thumb')) {
             $image = $image->fit(200);
@@ -46,7 +46,7 @@ class ImageController extends Controller
         /** @var UploadedFile $image */
         $images = $request->file('images');
         foreach ($images as $image) {
-            $path = $image->store('images', 'media');
+            $path = $image->store('', 'media');
 
             $media = new Media([
                 'type' => 'image',

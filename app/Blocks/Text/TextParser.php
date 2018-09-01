@@ -28,7 +28,7 @@ class TextParser extends Parser
 
     private function getAlignmentClass()
     {
-        $alignment = $this->block->data('alignment');
+        $alignment = $this->block->getData('alignment');
 
         if ($alignment === 'right') {
             return 'text-right';
@@ -43,8 +43,8 @@ class TextParser extends Parser
 
     private function createHeader(): BaseElement
     {
-        $heading = $this->block->data('heading');
-        $type = $this->block->data('heading_type');
+        $heading = $this->block->getData('heading');
+        $type = $this->block->getData('heading_type');
 
         $div = Div::create()
             ->class([
@@ -70,7 +70,7 @@ class TextParser extends Parser
                 'content',
                 $this->getAlignmentClass(),
             ])
-            ->text($this->block->data('content'));
+            ->text($this->block->getData('content'));
     }
 
 }

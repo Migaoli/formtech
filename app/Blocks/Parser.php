@@ -8,6 +8,9 @@ use Illuminate\Contracts\Support\Htmlable;
 
 abstract class Parser implements Htmlable
 {
+    /**
+     * @var Block
+     */
     protected $block;
 
     /**

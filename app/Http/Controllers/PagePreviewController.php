@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Builder\PageBuilder;
-use App\Page;
+use App\Pages\Page;
+use App\Pages\PageBuilder;
 
 class PagePreviewController extends Controller
 {
