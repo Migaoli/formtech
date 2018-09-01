@@ -1,7 +1,7 @@
 <template>
     <div>
         <form-container v-if="page"
-                        :fields="page.fields"
+                        :fields="pageDefinition.fields"
                         :data="page"
                         :errors="errors"
                         @reset="reset"
@@ -13,13 +13,13 @@
                     <button class="btn btn-tertiary btn-default mr-4"
                             type="button"
                             :disabled="saving"
-                            @click="reset">
+                           v-on="resetActions">
                         Cancel
                     </button>
                     <button class="btn btn-primary btn-blue"
                             type="submit"
                             :disabled="saving"
-                            @click.prevent="save">
+                            v-on="submitActions">
                         <span v-if="saving">Saving...</span>
                         <span v-else>Save</span>
                     </button>
@@ -35,13 +35,13 @@
                     <button class="btn btn-tertiary btn-default mr-4"
                             type="button"
                             :disabled="saving"
-                            @click="reset">
+                            v-on="resetActions">
                         Cancel
                     </button>
                     <button class="btn btn-primary btn-blue"
                             type="submit"
                             :disabled="saving"
-                            @click.prevent="save">
+                            v-on="submitActions">
                         <span v-if="saving">Saving...</span>
                         <span v-else>Save</span>
                     </button>
@@ -86,7 +86,7 @@
             }),
 
             pageDefinition() {
-                return this.definitions[this.page.type];
+                return _.find(this.definitions, d => d.type === this.page.type);
             },
 
             isDirty() {
@@ -103,9 +103,11 @@
             save(formData) {
                 this.saving = true;
 
-                axios.put(`api/pages/${this.page.id}`, this.formData)
+                console.log(formData);
+
+                axios.put(`api/pages/${this.page.id}`, formData)
                     .then(response => {
-                        this.page = this.$copyObject(formData);
+                        this.page = formData;
                         this.$store.commit('page/page', this.$copyObject(formData));
                         this.errors = {};
                     })
