@@ -11,6 +11,8 @@ import TrixField from './TrixField';
 import ColorField from './ColorField';
 import IconField from './IconField';
 import RowField from './RowField';
+import SlugField from './SlugField';
+import TextWithSlugField from './TextWithSlugField';
 
 export default {
     install(Vue, options = {}) {
@@ -27,5 +29,7 @@ export default {
         Vue.component(ColorField.name, ColorField);
         Vue.component(IconField.name, IconField);
         Vue.component(RowField.name, RowField);
+        Vue.component(SlugField.name, SlugField);
+        Vue.component(TextWithSlugField.name, TextWithSlugField);
     }
 }
