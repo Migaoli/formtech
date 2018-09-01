@@ -77,6 +77,8 @@ class PagesTest extends TestCase
             'type' => 'standard_page',
             'title' => 'awesome title',
             'slug' => 'awesome-title',
+            'in_menu' => true,
+            'published' => false,
         ];
 
         $response = $this->json('post', 'api/pages/', $payload);

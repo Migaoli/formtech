@@ -33,6 +33,8 @@ class PagesController extends Controller
             'type' => 'required|in:standard_page,menu_separator',
             'title' => 'required|string',
             'slug' => ['required', 'alpha_dash',],
+            'in_menu' => ['required', 'boolean'],
+            'published' => ['required', 'boolean'],
             'data' => [],
         ]);
 

@@ -24,7 +24,7 @@ class Page extends Model
         'published' => 'boolean'
     ];
 
-    protected $fillable = ['title', 'slug', 'parent_id', 'data'];
+    protected $fillable = ['title', 'slug', 'parent_id', 'data', 'in_menu', 'published'];
 
     protected $appends = ['fields'];
 

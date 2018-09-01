@@ -100,8 +100,9 @@ class TextBlockTest extends TestCase
         $payload = $this->createValidPayload();
         array_set($payload, $key, $value);
 
-        $this->json('post', "api/pages/{$page->id}/blocks", $payload)
-            ->assertStatus(422)
+        $response = $this->json('post', "api/pages/{$page->id}/blocks", $payload);
+
+        $response->assertStatus(422)
             ->assertJsonStructure([
                 'errors' => [$key]
             ]);

@@ -31,6 +31,7 @@ class Row extends Field
         return collect($this->children)
             ->flatMap(function ($field) {
                 return $field->createValidationRules();
-            });
+            })
+            ->toArray();
     }
 }
