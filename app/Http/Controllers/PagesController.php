@@ -29,15 +29,16 @@ class PagesController extends Controller
     public function create(Request $request)
     {
         $payload = $request->validate([
-            'type' => 'required|in:standard,menu_separator',
+            'type' => 'required|in:standard_page,menu_separator',
             'title' => 'required|string',
             'slug' => ['required', 'alpha_dash',],
+            'data' => [],
         ]);
 
         $page = null;
 
         switch ($payload['type']) {
-            case 'standard':
+            case 'standard_page':
                 $page = StandardPage::create($payload);
                 break;
             case 'menu_separator':

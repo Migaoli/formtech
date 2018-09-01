@@ -4,7 +4,8 @@
 namespace App\Pages;
 
 
-use App\Fields\Text;
+use App\Fields\Slug;
+use App\Fields\TextWithSlug;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Validation\Rule;
 
@@ -32,13 +33,13 @@ class Page extends Model
     public function fields(): array
     {
         return [
-            Text::make('Title')
+            TextWithSlug::make('Title')
+                ->slug('slug')
                 ->rules(['required', 'max:200']),
 
-            Text::make('Slug')
+            Slug::make('Slug')
                 ->rules([
                     'required',
-                    'alpha_dash',
                     'max:200',
                     Rule::unique('pages')
                         ->where(function ($query) {

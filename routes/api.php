@@ -21,6 +21,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //Route::middleware('auth:api')
 Route::prefix('pages')
     ->group(function () {
+        Route::get('meta', 'PageMetaController@index')->name('pages.meta');
+
         Route::get('', 'PagesController@index')->name('pages.index');
         Route::post('', 'PagesController@create')->name('pages.create');
         Route::get('{id}', 'PagesController@get')->name('pages.get');

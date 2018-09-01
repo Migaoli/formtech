@@ -21,6 +21,7 @@
 
         created() {
             this.$store.dispatch('themes/fetch');
+            this.$store.dispatch('page/fetchTypes');
         }
     }
 </script>

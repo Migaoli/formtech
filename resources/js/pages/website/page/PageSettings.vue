@@ -1,31 +1,55 @@
 <template>
     <div>
-        <div class="card py-8 px-4">
+        <form-container v-if="page"
+                        :fields="page.fields"
+                        :data="page"
+                        :errors="errors"
+                        @reset="reset"
+                        @submit="save">
 
-            <generic-field v-for="(field, i) in page.fields"
-                           :field="field"
-                           :errors="errors"
-                           :data="page"
-                           class="mb-8"
-            ></generic-field>
+            <div slot-scope="{formData, fields, errors, isDirty, submitActions, resetActions}">
+
+                <div class="flex justify-end" v-if="isDirty">
+                    <button class="btn btn-tertiary btn-default mr-4"
+                            type="button"
+                            :disabled="saving"
+                            @click="reset">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary btn-blue"
+                            type="submit"
+                            :disabled="saving"
+                            @click.prevent="save">
+                        <span v-if="saving">Saving...</span>
+                        <span v-else>Save</span>
+                    </button>
+                </div>
+
+                <generic-field v-for="field in fields"
+                               :key="field.key"
+                               :field="field"
+                ></generic-field>
 
 
-            <div class="flex justify-end" v-if="isDirty">
-                <button class="btn btn-tertiary btn-default mr-4"
-                        type="button"
-                        :disabled="saving"
-                        @click="reset">
-                    Cancel
-                </button>
-                <button class="btn btn-primary btn-blue"
-                        type="submit"
-                        :disabled="saving"
-                        @click.prevent="save">
-                    <span v-if="saving">Saving...</span>
-                    <span v-else>Save</span>
-                </button>
+                <div class="flex justify-end" v-if="isDirty">
+                    <button class="btn btn-tertiary btn-default mr-4"
+                            type="button"
+                            :disabled="saving"
+                            @click="reset">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary btn-blue"
+                            type="submit"
+                            :disabled="saving"
+                            @click.prevent="save">
+                        <span v-if="saving">Saving...</span>
+                        <span v-else>Save</span>
+                    </button>
+                </div>
+
             </div>
-        </div>
+        </form-container>
+
     </div>
 </template>
 
@@ -58,7 +82,12 @@
         computed: {
             ...mapState({
                 original: state => state.page.page,
+                definitions: state => state.page.types,
             }),
+
+            pageDefinition() {
+                return this.definitions[this.page.type];
+            },
 
             isDirty() {
                 return !_.isEqual(this.page, this.original);
@@ -71,12 +100,13 @@
                 this.errors = {};
             },
 
-            save() {
+            save(formData) {
                 this.saving = true;
 
-                axios.put(`api/pages/${this.page.id}`, this.page)
+                axios.put(`api/pages/${this.page.id}`, this.formData)
                     .then(response => {
-                        this.$store.commit('page/page', this.$copyObject(this.page));
+                        this.page = this.$copyObject(formData);
+                        this.$store.commit('page/page', this.$copyObject(formData));
                         this.errors = {};
                     })
                     .catch(({response}) => {

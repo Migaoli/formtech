@@ -34,7 +34,7 @@ class Field implements Jsonable, Arrayable, \JsonSerializable
         }
 
         return str_replace(
-            '\\', '', Str::snake(class_basename($this))
+            '\\', '', Str::kebab(class_basename($this))
         );
     }
 

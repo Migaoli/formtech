@@ -10,7 +10,12 @@ const getters = {};
 
 const actions = {
     fetchTypes({dispatch, commit}) {
-
+        return axios
+            .get('api/pages/meta')
+            .then(response => {
+                commit('types', response.data);
+                return response;
+            });
     },
 
     fetch({dispatch, commit}, {id}) {
@@ -53,6 +58,10 @@ const mutations = {
     clear(state) {
         state.loading = false;
         state.page = null;
+    },
+
+    types(state, value) {
+        state.types = value;
     }
 };
 

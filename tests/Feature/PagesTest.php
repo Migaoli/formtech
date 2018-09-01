@@ -13,6 +13,25 @@ class PagesTest extends TestCase
 
 
     /** @test */
+    public function can_can_get_meta_data()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        $this->withoutExceptionHandling();
+
+        $response = $this->json('get', 'api/pages/meta');
+        $response->assertStatus(200)
+            ->assertJsonStructure([
+                '*' => [
+                    'name',
+                    'type',
+                    'fields',
+                ],
+            ]);
+    }
+
+
+    /** @test */
     public function can_get_page_by_id()
     {
         $this->actingAs(factory(User::class)->create(), 'api');
@@ -55,7 +74,7 @@ class PagesTest extends TestCase
         $this->withoutExceptionHandling();
 
         $payload = [
-            'type' => 'standard',
+            'type' => 'standard_page',
             'title' => 'awesome title',
             'slug' => 'awesome-title',
         ];

@@ -54,6 +54,6 @@ export default {
 
         _onErrors(errors) {
             this.errors = errors[this.field.key];
-        }
+        },
     }
 }
