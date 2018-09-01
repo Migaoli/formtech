@@ -20,6 +20,8 @@ class CreatePagesTable extends Migration
             $table->integer('order')->default(0);
             $table->string('title', 200);
             $table->string('slug', 200);
+            $table->boolean('in_menu');
+            $table->boolean('published');
             $table->json('data')->nullable();
             $table->timestamps();
 

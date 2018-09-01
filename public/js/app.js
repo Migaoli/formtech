@@ -73573,6 +73573,9 @@ function clickedInsideElement(el, x, y) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__SlugField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_13__SlugField__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__TextWithSlugField__ = __webpack_require__(319);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__TextWithSlugField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_14__TextWithSlugField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__CheckboxField__ = __webpack_require__(329);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__CheckboxField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_15__CheckboxField__);
+
 
 
 
@@ -73608,6 +73611,7 @@ function clickedInsideElement(el, x, y) {
         Vue.component(__WEBPACK_IMPORTED_MODULE_12__RowField___default.a.name, __WEBPACK_IMPORTED_MODULE_12__RowField___default.a);
         Vue.component(__WEBPACK_IMPORTED_MODULE_13__SlugField___default.a.name, __WEBPACK_IMPORTED_MODULE_13__SlugField___default.a);
         Vue.component(__WEBPACK_IMPORTED_MODULE_14__TextWithSlugField___default.a.name, __WEBPACK_IMPORTED_MODULE_14__TextWithSlugField___default.a);
+        Vue.component(__WEBPACK_IMPORTED_MODULE_15__CheckboxField___default.a.name, __WEBPACK_IMPORTED_MODULE_15__CheckboxField___default.a);
     }
 });
 
@@ -76205,6 +76209,179 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;(function (root)
         } catch (e) {}
     }
 })(this);
+
+/***/ }),
+/* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(330)
+/* template */
+var __vue_template__ = __webpack_require__(334)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\components\\fields\\CheckboxField.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-8b5303e8", Component.options)
+  } else {
+    hotAPI.reload("data-v-8b5303e8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 330 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseField__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__BaseField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__BaseField__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__FormField__ = __webpack_require__(3);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'checkbox-field',
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_1__FormField__["a" /* default */]],
+
+    components: { BaseField: __WEBPACK_IMPORTED_MODULE_0__BaseField___default.a }
+
+});
+
+/***/ }),
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "relative w-full mb-8" }, [
+    _c(
+      "div",
+      { staticClass: "form-checkbox", class: { "form-error": _vm.hasErrors } },
+      [
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.value,
+              expression: "value"
+            }
+          ],
+          attrs: { type: "checkbox", id: _vm.field.key },
+          domProps: {
+            checked: Array.isArray(_vm.value)
+              ? _vm._i(_vm.value, null) > -1
+              : _vm.value
+          },
+          on: {
+            change: function($event) {
+              var $$a = _vm.value,
+                $$el = $event.target,
+                $$c = $$el.checked ? true : false
+              if (Array.isArray($$a)) {
+                var $$v = null,
+                  $$i = _vm._i($$a, $$v)
+                if ($$el.checked) {
+                  $$i < 0 && (_vm.value = $$a.concat([$$v]))
+                } else {
+                  $$i > -1 &&
+                    (_vm.value = $$a.slice(0, $$i).concat($$a.slice($$i + 1)))
+                }
+              } else {
+                _vm.value = $$c
+              }
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "label",
+          { staticClass: "form-label", attrs: { for: _vm.field.key } },
+          [_vm._v("\n            " + _vm._s(_vm.field.name) + "\n        ")]
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _vm.hasErrors
+      ? _c(
+          "ul",
+          { staticClass: "mt-2 text-red-dark" },
+          _vm._l(_vm.errors, function(error, i) {
+            return _c("li", [
+              _vm._v("\n            " + _vm._s(error) + "\n        ")
+            ])
+          })
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-8b5303e8", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

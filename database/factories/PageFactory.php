@@ -7,6 +7,9 @@ $factory->define(\App\Pages\StandardPage::class, function (Faker $faker) {
         'type' => \App\Pages\StandardPage::class,
         'title' => $faker->domainWord,
         'slug' => $faker->slug(2),
+        'in_menu' => true,
+        'published' => false,
+        'order' => 1,
         'data' => [
             'layout' => 'landing_page'
         ]

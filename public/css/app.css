@@ -935,9 +935,9 @@ table {
 
 .form-checkbox input[type=checkbox]:checked::before {
   position: absolute;
-  margin-left: .5rem;
   color: #fff;
   font-size: 1.125rem;
+  margin-left: .4rem;
   content: '\2143';
   -webkit-transform: rotate(40deg);
           transform: rotate(40deg);

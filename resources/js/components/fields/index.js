@@ -13,6 +13,7 @@ import IconField from './IconField';
 import RowField from './RowField';
 import SlugField from './SlugField';
 import TextWithSlugField from './TextWithSlugField';
+import CheckboxField from './CheckboxField';
 
 export default {
     install(Vue, options = {}) {
@@ -31,5 +32,6 @@ export default {
         Vue.component(RowField.name, RowField);
         Vue.component(SlugField.name, SlugField);
         Vue.component(TextWithSlugField.name, TextWithSlugField);
+        Vue.component(CheckboxField.name, CheckboxField);
     }
 }

@@ -4,6 +4,8 @@
 namespace App\Pages;
 
 
+use App\Fields\Checkbox;
+use App\Fields\Row;
 use App\Fields\Slug;
 use App\Fields\TextWithSlug;
 use Illuminate\Database\Eloquent\Model;
@@ -17,6 +19,9 @@ class Page extends Model
     protected $casts = [
         'data' => 'array',
         'parent_id' => 'integer',
+        'order' => 'integer',
+        'in_menu' => 'boolean',
+        'published' => 'boolean'
     ];
 
     protected $fillable = ['title', 'slug', 'parent_id', 'data'];
@@ -33,20 +38,32 @@ class Page extends Model
     public function fields(): array
     {
         return [
-            TextWithSlug::make('Title')
-                ->slug('slug')
-                ->rules(['required', 'max:200']),
+            new Row([
+                TextWithSlug::make('Title')
+                    ->slug('slug')
+                    ->rules(['required', 'max:200']),
 
-            Slug::make('Slug')
-                ->rules([
-                    'required',
-                    'max:200',
-                    Rule::unique('pages')
-                        ->where(function ($query) {
-                            $query->where('parent_id', $this->parent_id);
-                        })
-                        ->ignore($this->id)
-                ]),
+                Slug::make('Slug')
+                    ->rules([
+                        'required',
+                        'max:200',
+                        Rule::unique('pages')
+                            ->where(function ($query) {
+                                $query->where('parent_id', $this->parent_id);
+                            })
+                            ->ignore($this->id)
+                    ]),
+            ]),
+
+            new Row([
+                Checkbox::make('Show in menu', 'in_menu')
+                    ->rules(['required'])
+                    ->defaultTo(true),
+
+                Checkbox::make('Published', 'published')
+                    ->rules(['required'])
+                    ->defaultTo(false),
+            ])
         ];
     }
 
