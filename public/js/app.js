@@ -62641,6 +62641,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vuex__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Loading__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Loading___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Loading__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Icon__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_Icon___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_Icon__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DeletePageButton__ = __webpack_require__(332);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__DeletePageButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__DeletePageButton__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 //
@@ -62675,17 +62679,31 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'page-view',
-    components: { Loading: __WEBPACK_IMPORTED_MODULE_1__components_Loading___default.a },
-    data: function data() {
-        return {};
-    },
 
+    components: { DeletePageButton: __WEBPACK_IMPORTED_MODULE_3__DeletePageButton___default.a, Icon: __WEBPACK_IMPORTED_MODULE_2__components_Icon___default.a, Loading: __WEBPACK_IMPORTED_MODULE_1__components_Loading___default.a },
 
     computed: _extends({}, Object(__WEBPACK_IMPORTED_MODULE_0_vuex__["b" /* mapState */])({
         page: function page(state) {
@@ -62767,41 +62785,96 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "flex mb-8 border-b-2" },
+              { staticClass: "flex mb-8 border-b-2 justify-between items-end" },
               [
                 _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline",
-                    attrs: {
-                      "active-class": "border-brand",
-                      to: {
-                        name: "pages.view.content",
-                        params: { id: _vm.$route.params.id }
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Content\n            ")]
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline",
+                        attrs: {
+                          "active-class": "border-brand",
+                          to: {
+                            name: "pages.view.content",
+                            params: { id: _vm.$route.params.id }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Content\n                "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "router-link",
+                      {
+                        staticClass:
+                          "block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline",
+                        attrs: {
+                          "active-class": "border-brand",
+                          to: {
+                            name: "pages.view.settings",
+                            params: { id: _vm.$route.params.id }
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                    Settings\n                "
+                        )
+                      ]
+                    )
+                  ],
+                  1
                 ),
                 _vm._v(" "),
                 _c(
-                  "router-link",
-                  {
-                    staticClass:
-                      "block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline",
-                    attrs: {
-                      "active-class": "border-brand",
-                      to: {
-                        name: "pages.view.settings",
-                        params: { id: _vm.$route.params.id }
-                      }
-                    }
-                  },
-                  [_vm._v("\n                Settings\n            ")]
+                  "div",
+                  { staticClass: "flex" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "p-3 text-tertiary hover:text-primary mr-2",
+                        attrs: { type: "button" },
+                        on: { click: function($event) {} }
+                      },
+                      [
+                        _c("icon", {
+                          staticClass: "w-4 h-4",
+                          attrs: { icon: "view-show" }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("delete-page-button", { attrs: { page: _vm.page } }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass: "p-3 text-tertiary hover:text-primary",
+                          attrs: { type: "button" }
+                        },
+                        [
+                          _c("icon", {
+                            staticClass: "w-4 h-4",
+                            attrs: { icon: "trash" }
+                          })
+                        ],
+                        1
+                      )
+                    ])
+                  ],
+                  1
                 )
-              ],
-              1
+              ]
             )
           ]
         : _vm._e(),
@@ -62889,9 +62962,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_fields_GenericField___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_fields_GenericField__);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
-//
-//
-//
 //
 //
 //
@@ -69700,49 +69770,6 @@ var render = function() {
                     "div",
                     {},
                     [
-                      isDirty
-                        ? _c("div", { staticClass: "flex justify-end" }, [
-                            _c(
-                              "button",
-                              _vm._g(
-                                {
-                                  staticClass:
-                                    "btn btn-tertiary btn-default mr-4",
-                                  attrs: {
-                                    type: "button",
-                                    disabled: _vm.saving
-                                  }
-                                },
-                                resetActions
-                              ),
-                              [
-                                _vm._v(
-                                  "\n                    Cancel\n                "
-                                )
-                              ]
-                            ),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              _vm._g(
-                                {
-                                  staticClass: "btn btn-primary btn-blue",
-                                  attrs: {
-                                    type: "submit",
-                                    disabled: _vm.saving
-                                  }
-                                },
-                                submitActions
-                              ),
-                              [
-                                _vm.saving
-                                  ? _c("span", [_vm._v("Saving...")])
-                                  : _c("span", [_vm._v("Save")])
-                              ]
-                            )
-                          ])
-                        : _vm._e(),
-                      _vm._v(" "),
                       _vm._l(fields, function(field) {
                         return _c("generic-field", {
                           key: field.key,
@@ -69799,12 +69826,37 @@ var render = function() {
               }
             ])
           })
-        : _vm._e()
+        : _vm._e(),
+      _vm._v(" "),
+      _c("hr", { staticClass: "block border-b my-10" }),
+      _vm._v(" "),
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "px-4 py-8 mb-8 border rounded shadow-md bg-white" },
+      [
+        _c("div", { staticClass: "flex" }, [
+          _c("div", { staticClass: "mr-4" }, [
+            _c("span", [_vm._v("Delete this page")]),
+            _vm._v(" "),
+            _c("p", [_vm._v("This operation cannot be reverted!")])
+          ]),
+          _vm._v(" "),
+          _c("div")
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -70389,8 +70441,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.$emit('close');
         },
-        confirm: function confirm() {
-            this.$emit('confirm');
+        delete: function _delete() {
+            this.$emit('delete');
         }
     }
 });
@@ -76397,6 +76449,324 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(333)
+/* template */
+var __vue_template__ = __webpack_require__(334)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\pages\\website\\page\\DeletePageButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1ccd03f2", Component.options)
+  } else {
+    hotAPI.reload("data-v-1ccd03f2", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 333 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Modal__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Modal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Modal__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'delete-page-button',
+
+    components: { Modal: __WEBPACK_IMPORTED_MODULE_1__components_Modal___default.a },
+
+    props: {
+        page: {
+            type: Object
+        }
+    },
+
+    data: function data() {
+        return {
+            loading: false,
+            show: true,
+            deleteSubPages: false
+        };
+    },
+
+
+    watch: {
+        show: function show(newValue, oldValue) {
+            var _this = this;
+
+            if (newValue && !oldValue) {
+                this.$nextTick(function () {
+                    _this.$refs.cancelButton.focus();
+                });
+            }
+        }
+    },
+
+    computed: {},
+
+    methods: {
+        close: function close() {
+            this.show = false;
+        },
+        deletePage: function deletePage() {
+            var _this2 = this;
+
+            this.loading = true;
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete('api/pages/' + this.page.id).then(function (response) {}).catch(function (_ref) {
+                var response = _ref.response;
+            }).finally(function () {
+                _this2.loading = false;
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 334 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    [
+      _c(
+        "div",
+        {
+          on: {
+            click: function($event) {
+              _vm.show = true
+            }
+          }
+        },
+        [_vm._t("default")],
+        2
+      ),
+      _vm._v(" "),
+      _c("modal", { attrs: { show: _vm.show }, on: { close: _vm.close } }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "flex flex-col justify-center items-center p-8 bg-white border rounded"
+          },
+          [
+            _c("div", {}, [
+              _c("div", { staticClass: "font-bold mb-2" }, [
+                _vm._v("Delete page")
+              ]),
+              _vm._v(" "),
+              _c("p", {}, [_vm._v("This action cannot be reverted.")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "my-4" }, [
+                _c("div", { staticClass: "form-checkbox mb-4" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.deleteSubPages,
+                        expression: "deleteSubPages"
+                      }
+                    ],
+                    attrs: {
+                      type: "checkbox",
+                      id: "delete-sub-pages",
+                      disabled: _vm.loading
+                    },
+                    domProps: {
+                      checked: Array.isArray(_vm.deleteSubPages)
+                        ? _vm._i(_vm.deleteSubPages, null) > -1
+                        : _vm.deleteSubPages
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$a = _vm.deleteSubPages,
+                          $$el = $event.target,
+                          $$c = $$el.checked ? true : false
+                        if (Array.isArray($$a)) {
+                          var $$v = null,
+                            $$i = _vm._i($$a, $$v)
+                          if ($$el.checked) {
+                            $$i < 0 && (_vm.deleteSubPages = $$a.concat([$$v]))
+                          } else {
+                            $$i > -1 &&
+                              (_vm.deleteSubPages = $$a
+                                .slice(0, $$i)
+                                .concat($$a.slice($$i + 1)))
+                          }
+                        } else {
+                          _vm.deleteSubPages = $$c
+                        }
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "label",
+                    {
+                      staticClass: "text-secondary ml-2",
+                      attrs: { for: "delete-sub-pages" }
+                    },
+                    [
+                      _vm._v(
+                        "\n                            delete sub pages\n                        "
+                      )
+                    ]
+                  )
+                ])
+              ]),
+              _vm._v(" "),
+              _c("p")
+            ]),
+            _vm._v(" "),
+            _c("div", [
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-tertiary btn-default mr-4",
+                  attrs: { type: "button", disabled: _vm.loading },
+                  on: { click: _vm.close }
+                },
+                [_vm._v("\n                    Cancel\n                ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "button",
+                {
+                  staticClass: "btn btn-primary btn-red",
+                  attrs: { type: "button", disabled: _vm.loading },
+                  on: { click: _vm.deletePage }
+                },
+                [
+                  _vm.loading
+                    ? _c("span", [
+                        _vm._v(
+                          "\n                        Deleting...\n                    "
+                        )
+                      ])
+                    : _c("span", [
+                        _vm._v(
+                          "\n                        Delete\n                    "
+                        )
+                      ])
+                ]
+              )
+            ])
+          ]
+        )
+      ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1ccd03f2", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

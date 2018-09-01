@@ -89,4 +89,47 @@ class PagesTest extends TestCase
 
         $this->assertNotNull(StandardPage::find($id));
     }
+
+    /** @test */
+    public function user_can_delete_page()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        $page = factory(StandardPage::class)->create();
+
+        $this->json('delete', "api/pages/$page->id")
+            ->assertStatus(204);
+
+        $this->assertDatabaseMissing('pages', ['id' => $page->id]);
+    }
+
+    /** @test */
+    public function delete_sub_pages()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        $page = factory(StandardPage::class)->create();
+        $subPage = factory(StandardPage::class)->create(['parent_id' => $page->id]);
+
+        $this->json('delete', "api/pages/$page->id", ['deleteSubPages' => true])
+            ->assertStatus(204);
+
+        $this->assertDatabaseMissing('pages', ['id' => $page->id]);
+        $this->assertDatabaseMissing('pages', ['id' => $subPage->id]);
+    }
+
+    /** @test */
+    public function move_sub_pages_up_on_delete()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        $page = factory(StandardPage::class)->create();
+        $subPage = factory(StandardPage::class)->create(['parent_id' => $page->id]);
+
+        $this->json('delete', "api/pages/$page->id", ['deleteSubPages' => false])
+            ->assertStatus(204);
+
+        $this->assertDatabaseMissing('pages', ['id' => $page->id]);
+        $this->assertDatabaseHas('pages', ['id' => $subPage->id, 'parent_id' => null]);
+    }
 }

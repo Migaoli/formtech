@@ -28,6 +28,7 @@ Route::prefix('pages')
         Route::put('', 'PagesController@updateOrder')->name('pages.order');
         Route::get('{id}', 'PagesController@get')->name('pages.get');
         Route::put('{id}', 'PagesController@update')->name('pages.update');
+        Route::delete('{id}', 'PagesController@delete')->name('pages.delete');
 
         Route::get('{id}/preview', 'PagePreviewController@get')->name('pages.preview.get');
 

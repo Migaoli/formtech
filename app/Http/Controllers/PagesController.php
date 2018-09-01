@@ -65,6 +65,29 @@ class PagesController extends Controller
         return response()->json([], 204);
     }
 
+    public function delete($id, Request $request)
+    {
+        $deleteSubPages = $request->get('deleteSubPages', false);
+
+        $page = Page::findOrFail($id);
+
+        DB::transaction(function () use ($page, $deleteSubPages) {
+            if (!$deleteSubPages) {
+                DB::table('pages')
+                    ->where('parent_id', $page->id)
+                    ->update(['parent_id' => $page->parent_id]);
+
+            } else {
+                DB::table('pages')
+                    ->where('parent_id', $page->id)
+                    ->delete();
+            }
+            $page->delete();
+        });
+
+        return response()->json([], 204);
+    }
+
     public function updateOrder(Request $request)
     {
         $payload = $request->validate([
