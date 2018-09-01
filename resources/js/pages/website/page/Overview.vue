@@ -21,8 +21,9 @@
             </dropdown-menu>
         </div>
         <loading :loading="loading">
-            <sortable-container container-selector=".page-tree-container">
-                <page-tree :pages="pages"></page-tree>
+            <sortable-container container-selector=".page-tree-container"
+                                @stop="movePage">
+                <page-tree :pages="tree"></page-tree>
             </sortable-container>
         </loading>
     </div>
@@ -53,13 +54,29 @@
             ...mapState({
                 pageTypes: state => state.page.types,
             }),
+
+            tree() {
+                return this.buildTree(this.pages, null);
+            }
         },
 
         methods: {
+            buildTree(pages, parentId = null) {
+                const branch = {};
+
+                pages.filter(page => page.parent_id === parentId)
+                    .forEach(page => {
+                        page.children = this.buildTree(pages, page.id);
+                        branch[page.id] = page;
+                    });
+
+                return branch;
+            },
+
             fetchPages() {
                 this.loading = true;
 
-                axios.get('api/pages?tree')
+                axios.get('api/pages')
                     .then(response => {
                         this.pages = response.data;
                     })
@@ -75,6 +92,37 @@
                         type,
                     },
                 });
+            },
+
+            movePage(e) {
+                const newParentId = e.newContainer.id ? Number(e.newContainer.id) : null;
+                const oldParentId = e.oldContainer.id ? Number(e.oldContainer.id) : null;
+                const index = e.newIndex;
+                const pageId = Number(e.data.dragEvent.source.id);
+
+                const page = this.findPage(pageId);
+
+                this.pages.filter(p => p.parent_id === newParentId)
+                    .filter(p => p.order >= index)
+                    .forEach(p => p.order++);
+
+                page.parent_id = newParentId === 0 ? null : newParentId;
+                page.order = index;
+
+                const newTree = this.pages
+                    .map(p => {
+                        return {
+                            id: p.id,
+                            parent_id: p.parent_id,
+                            order: p.order,
+                        };
+                    });
+
+                axios.put('api/pages', newTree);
+            },
+
+            findPage(id) {
+                return this.pages.find(page => page.id === id);
             }
         },
 

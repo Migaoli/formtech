@@ -58107,6 +58107,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -58133,18 +58134,38 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
         pageTypes: function pageTypes(state) {
             return state.page.types;
         }
-    })),
+    }), {
+        tree: function tree() {
+            return this.buildTree(this.pages, null);
+        }
+    }),
 
     methods: {
-        fetchPages: function fetchPages() {
+        buildTree: function buildTree(pages) {
             var _this = this;
+
+            var parentId = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+            var branch = {};
+
+            pages.filter(function (page) {
+                return page.parent_id === parentId;
+            }).forEach(function (page) {
+                page.children = _this.buildTree(pages, page.id);
+                branch[page.id] = page;
+            });
+
+            return branch;
+        },
+        fetchPages: function fetchPages() {
+            var _this2 = this;
 
             this.loading = true;
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('api/pages?tree').then(function (response) {
-                _this.pages = response.data;
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get('api/pages').then(function (response) {
+                _this2.pages = response.data;
             }).finally(function () {
-                _this.loading = false;
+                _this2.loading = false;
             });
         },
         create: function create(type) {
@@ -58153,6 +58174,40 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 query: {
                     type: type
                 }
+            });
+        },
+        movePage: function movePage(e) {
+            var newParentId = e.newContainer.id ? Number(e.newContainer.id) : null;
+            var oldParentId = e.oldContainer.id ? Number(e.oldContainer.id) : null;
+            var index = e.newIndex;
+            var pageId = Number(e.data.dragEvent.source.id);
+
+            var page = this.findPage(pageId);
+
+            this.pages.filter(function (p) {
+                return p.parent_id === newParentId;
+            }).filter(function (p) {
+                return p.order >= index;
+            }).forEach(function (p) {
+                return p.order++;
+            });
+
+            page.parent_id = newParentId === 0 ? null : newParentId;
+            page.order = index;
+
+            var newTree = this.pages.map(function (p) {
+                return {
+                    id: p.id,
+                    parent_id: p.parent_id,
+                    order: p.order
+                };
+            });
+
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('api/pages', newTree);
+        },
+        findPage: function findPage(id) {
+            return this.pages.find(function (page) {
+                return page.id === id;
             });
         }
     },
@@ -59178,6 +59233,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_lodash___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_lodash__);
 //
 //
 //
@@ -59204,6 +59261,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+
 
 
 
@@ -59214,7 +59274,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: { SortableHandle: __WEBPACK_IMPORTED_MODULE_2__components_sortable_SortableHandle___default.a, SortableItem: __WEBPACK_IMPORTED_MODULE_1__components_sortable_SortableItem___default.a, Icon: __WEBPACK_IMPORTED_MODULE_0__components_Icon___default.a },
 
-    props: ['pages']
+    props: ['pages', 'parent'],
+
+    computed: {
+        sortedPages: function sortedPages() {
+            return __WEBPACK_IMPORTED_MODULE_3_lodash___default.a.sortBy(this.pages, 'order');
+        }
+    }
 });
 
 /***/ }),
@@ -59267,12 +59333,15 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "ul",
-    { staticClass: "list-reset page-tree-container pb-2" },
-    _vm._l(_vm.pages, function(page) {
+    {
+      staticClass: "list-reset page-tree-container pb-2",
+      attrs: { id: _vm.parent }
+    },
+    _vm._l(_vm.sortedPages, function(page) {
       return _c("sortable-item", { key: page.id }, [
         _c(
           "li",
-          {},
+          { attrs: { id: page.id } },
           [
             _c(
               "div",
@@ -59294,6 +59363,15 @@ var render = function() {
                           "p-2 inline-block font-semibold text-primary group-hover:text-brand"
                       },
                       [_vm._v(_vm._s(page.title))]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      {
+                        staticClass:
+                          "p-2 inline-block font-semibold text-primary group-hover:text-brand"
+                      },
+                      [_vm._v(_vm._s(page.order))]
                     ),
                     _vm._v(" "),
                     _c("span", { staticClass: "text-secondary text-sm" }, [
@@ -59331,7 +59409,7 @@ var render = function() {
             _vm._v(" "),
             _c("page-tree", {
               staticClass: "pl-10",
-              attrs: { pages: page.children }
+              attrs: { pages: page.children, parent: page.id }
             })
           ],
           1
@@ -62165,8 +62243,11 @@ var render = function() {
         [
           _c(
             "sortable-container",
-            { attrs: { "container-selector": ".page-tree-container" } },
-            [_c("page-tree", { attrs: { pages: _vm.pages } })],
+            {
+              attrs: { "container-selector": ".page-tree-container" },
+              on: { stop: _vm.movePage }
+            },
+            [_c("page-tree", { attrs: { pages: _vm.tree } })],
             1
           )
         ],

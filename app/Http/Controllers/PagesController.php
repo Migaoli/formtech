@@ -6,6 +6,7 @@ use App\Pages\MenuSeparator;
 use App\Pages\Page;
 use App\Pages\StandardPage;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PagesController extends Controller
 {
@@ -60,5 +61,31 @@ class PagesController extends Controller
         $page->save();
 
         return response()->json([], 204);
+    }
+
+    public function updateOrder(Request $request)
+    {
+        $payload = $request->validate([
+            '*.id' => 'required|integer',
+            '*.parent_id' => '',
+            '*.order' => 'required|integer',
+        ]);
+
+        DB::transaction(function () use ($payload) {
+            foreach ($payload as $page) {
+                DB::table('pages')
+                    ->where([
+                        ['id', $page['id']]
+                    ])
+                    ->update([
+                        'order' => $page['order'],
+                        'parent_id' => $page['parent_id'],
+                    ]);
+            }
+        });
+
+        return response()->json([], 204);
+
+
     }
 }

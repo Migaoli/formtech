@@ -25,6 +25,7 @@ Route::prefix('pages')
 
         Route::get('', 'PagesController@index')->name('pages.index');
         Route::post('', 'PagesController@create')->name('pages.create');
+        Route::put('', 'PagesController@updateOrder')->name('pages.order');
         Route::get('{id}', 'PagesController@get')->name('pages.get');
         Route::put('{id}', 'PagesController@update')->name('pages.update');
 
