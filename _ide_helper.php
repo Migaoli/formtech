@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.33 on 2018-08-24 17:58:18.
+ * Generated for Laravel 5.6.33 on 2018-09-04 12:04:09.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -7332,28 +7332,16 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
-         * Get the number of queue jobs that are ready to process.
-         *
-         * @param string|null $queue
-         * @return int 
-         * @static 
-         */ 
-        public static function readyNow($queue = null)
-        {
-            return \Laravel\Horizon\RedisQueue::readyNow($queue);
-        }
-        
-        /**
          * Migrate the delayed jobs that are ready to the regular queue.
          *
          * @param string $from
          * @param string $to
-         * @return void 
+         * @return array 
          * @static 
          */ 
         public static function migrateExpiredJobs($from, $to)
         {
-            \Laravel\Horizon\RedisQueue::migrateExpiredJobs($from, $to);
+            return \Illuminate\Queue\RedisQueue::migrateExpiredJobs($from, $to);
         }
         
         /**
@@ -7366,7 +7354,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function deleteReserved($queue, $job)
         {
-            \Laravel\Horizon\RedisQueue::deleteReserved($queue, $job);
+            \Illuminate\Queue\RedisQueue::deleteReserved($queue, $job);
         }
         
         /**
@@ -7380,7 +7368,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function deleteAndRelease($queue, $job, $delay)
         {
-            \Laravel\Horizon\RedisQueue::deleteAndRelease($queue, $job, $delay);
+            \Illuminate\Queue\RedisQueue::deleteAndRelease($queue, $job, $delay);
         }
         
         /**
@@ -7392,8 +7380,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getQueue($queue)
         {
-            //Method inherited from \Illuminate\Queue\RedisQueue            
-            return \Laravel\Horizon\RedisQueue::getQueue($queue);
+            return \Illuminate\Queue\RedisQueue::getQueue($queue);
         }
         
         /**
@@ -7404,8 +7391,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getRedis()
         {
-            //Method inherited from \Illuminate\Queue\RedisQueue            
-            return \Laravel\Horizon\RedisQueue::getRedis();
+            return \Illuminate\Queue\RedisQueue::getRedis();
         }
         
         /**
@@ -7418,7 +7404,7 @@ namespace Illuminate\Support\Facades {
         public static function getJobExpiration($job)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-            return \Laravel\Horizon\RedisQueue::getJobExpiration($job);
+            return \Illuminate\Queue\RedisQueue::getJobExpiration($job);
         }
         
         /**
@@ -7431,7 +7417,7 @@ namespace Illuminate\Support\Facades {
         public static function setContainer($container)
         {
             //Method inherited from \Illuminate\Queue\Queue            
-            \Laravel\Horizon\RedisQueue::setContainer($container);
+            \Illuminate\Queue\RedisQueue::setContainer($container);
         }
          
     }
@@ -7656,53 +7642,6 @@ namespace Illuminate\Support\Facades {
         public static function hasMacro($name)
         {
             return \Illuminate\Routing\Redirector::hasMacro($name);
-        }
-         
-    }
-
-    /**
-     * 
-     *
-     * @method static \Illuminate\Redis\Connections\Connection connection(string $name = null)
-     * @see \Illuminate\Redis\RedisManager
-     * @see \Illuminate\Contracts\Redis\Factory
-     */ 
-    class Redis {
-        
-        /**
-         * Get a Redis connection by name.
-         *
-         * @param string|null $name
-         * @return \Illuminate\Redis\Connections\Connection 
-         * @static 
-         */ 
-        public static function connection($name = null)
-        {
-            return \Illuminate\Redis\RedisManager::connection($name);
-        }
-        
-        /**
-         * Resolve the given connection by name.
-         *
-         * @param string|null $name
-         * @return \Illuminate\Redis\Connections\Connection 
-         * @throws \InvalidArgumentException
-         * @static 
-         */ 
-        public static function resolve($name = null)
-        {
-            return \Illuminate\Redis\RedisManager::resolve($name);
-        }
-        
-        /**
-         * Return all of the created connections.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function connections()
-        {
-            return \Illuminate\Redis\RedisManager::connections();
         }
          
     }
@@ -14702,18 +14641,6 @@ namespace Intervention\Image\Facades {
  
 }
 
-namespace Laravel\Horizon { 
-
-    /**
-     * 
-     *
-     */ 
-    class Horizon {
-         
-    }
- 
-}
-
 
 namespace  { 
 
@@ -17040,8 +16967,6 @@ namespace  {
 
     class Redirect extends \Illuminate\Support\Facades\Redirect {}
 
-    class Redis extends \Illuminate\Support\Facades\Redis {}
-
     class Request extends \Illuminate\Support\Facades\Request {}
 
     class Response extends \Illuminate\Support\Facades\Response {}
@@ -17065,8 +16990,6 @@ namespace  {
     class Html extends \Spatie\Html\Facades\Html {}
 
     class Image extends \Intervention\Image\Facades\Image {}
-
-    class Horizon extends \Laravel\Horizon\Horizon {}
  
 }
 

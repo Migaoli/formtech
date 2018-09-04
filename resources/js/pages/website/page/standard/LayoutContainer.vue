@@ -1,7 +1,9 @@
 <template>
     <div>
         <sortable-container container-selector=".column-container"
-                       @stop="moveBlock">
+                            @stop="moveBlock"
+                            @start="start"
+                            @mirror:created="mirrorCreated">
             <div>
                 <div v-for="(row, i) in layout.grid"
                      class="grid mb-8">
@@ -43,21 +45,27 @@
         },
 
         methods: {
+            mirrorCreated({mirror}) {
+                mirror.removeChild(mirror.querySelector('.block-preview-container'));
+
+                console.log({mirror});
+            },
+
+            start(e) {
+                const dragEvent = e.data.dragEvent;
+                this.previewNode = dragEvent.originalSource.querySelector('.block-preview-container');
+                dragEvent.originalSource.removeChild(this.previewNode);
+                dragEvent.source.removeChild(dragEvent.source.querySelector('.block-preview-container'));
+            },
+
             moveBlock(e) {
+                e.data.dragEvent.originalSource.appendChild(this.previewNode);
+                console.log(e);
                 const oldContainer = e.oldContainer.id;
                 const newContainer = e.newContainer.id;
                 const oldIndex = e.oldIndex;
                 const newIndex = e.newIndex;
                 const blockId = Number(e.data.dragEvent.source.id);
-
-                console.log({
-                    oldContainer,
-                    newContainer,
-                    oldIndex,
-                    newIndex,
-                    blockId
-                });
-
 
                 const part1 = this.blocks.filter(block => block.container !== newContainer);
                 const part2 = this.blocks.filter(block => block.container === newContainer);

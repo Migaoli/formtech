@@ -40,6 +40,8 @@ Route::prefix('pages')
                 Route::get('{id}', 'PageBlockController@get')->name('pages.blocks.get');
                 Route::put('{id}', 'PageBlockController@update')->name('pages.blocks.update');
                 Route::delete('{id}', 'PageBlockController@delete')->name('pages.blocks.delete');
+
+                Route::get('{id}/preview', 'BlockPreviewController@show')->name('pages.blocks.preview');
             });
     });
 

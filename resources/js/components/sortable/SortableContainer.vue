@@ -26,11 +26,10 @@
                 mirror: {
                     constrainDimensions: true
                 }
-            }).on("sortable:stop", (event) => {
-                this.$emit('stop', event);
-            }).on("sortable:start", (event) => {
-                this.$emit('start', event);
             })
+                .on("sortable:stop", e => this.$emit('stop', e))
+                .on("sortable:start", e => this.$emit('start', e))
+                .on('mirror:created', e => this.$emit('mirror:created', e))
         },
 
         provide() {

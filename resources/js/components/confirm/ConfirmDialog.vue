@@ -98,8 +98,8 @@
                 this.$emit('close');
             },
 
-            delete() {
-                this.$emit('delete');
+            confirm() {
+                this.$emit('confirm');
             }
         }
     }

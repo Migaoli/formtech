@@ -2,6 +2,9 @@
 
 return [
     'name' => 'formtech',
+    'styles' => [
+        '/css/formtech.css'
+    ],
     'layouts' => [
         'landing_page' => [
             'name' => 'Landing page',

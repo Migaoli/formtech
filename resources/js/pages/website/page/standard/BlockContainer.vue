@@ -1,5 +1,5 @@
 <template>
-    <div :id="block.id" class="block-container"
+    <div :id="block.id" class="block-container overflow-hidden"
          @mouseenter="showToolbar = true"
          @mouseleave="showToolbar = false">
         <div class="shadow flex justify-between w-full bg-grey-darkest">
@@ -27,6 +27,8 @@
                         Are you sure you want the delete this block?
                     </confirm-dialog>
                 </button>
+
+                <span class="text-secondary-inverse">{{ block.name }}</span>
             </div>
             <div class="flex items-center">
                 <sortable-handle>
@@ -39,8 +41,13 @@
                 </sortable-handle>
             </div>
         </div>
-        <div>
-            <pre>{{ block }}</pre>
+        <div class="p-4 block-preview-container">
+            <iframe v-once
+                    ref="preview"
+                    :src="previewUrl"
+                    class="w-full max-h-5xl h-full block-preview"
+                    scrolling="no"
+            ></iframe>
         </div>
     </div>
 </template>
@@ -62,12 +69,14 @@
                 deleting: false,
                 showToolbar: false,
                 showConfirmDelete: false,
+                previewUrl: `http://192.168.10.10/api/pages/${this.block.page_id}/blocks/${this.block.id}/preview`,
+                showPreview: true,
             }
         },
 
         computed: {
             confirmDeleteText() {
-                return this.deleting ?  'Deleting...' : 'Delete';
+                return this.deleting ? 'Deleting...' : 'Delete';
             },
         },
 
@@ -98,6 +107,18 @@
                         this.showConfirmDelete = false;
                     })
             },
-        }
+
+            resizePreview() {
+
+            },
+        },
     }
 </script>
+
+
+<!--
+<style>
+    .draggable-mirror .block-preview {
+        visibility: hidden;
+    }
+</style>-->

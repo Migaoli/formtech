@@ -66,7 +66,7 @@
         data() {
             return {
                 loading: false,
-                show: true,
+                show: false,
                 deleteSubPages: false,
             }
         },
