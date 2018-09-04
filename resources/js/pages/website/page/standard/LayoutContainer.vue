@@ -46,20 +46,31 @@
 
         methods: {
             mirrorCreated({mirror}) {
-                mirror.removeChild(mirror.querySelector('.block-preview-container'));
+                /*mirror
+                    .querySelector('.block-preview-container')
+                    .removeChild(mirror.querySelector('.block-preview'));*/
 
                 console.log({mirror});
             },
 
             start(e) {
                 const dragEvent = e.data.dragEvent;
-                this.previewNode = dragEvent.originalSource.querySelector('.block-preview-container');
-                dragEvent.originalSource.removeChild(this.previewNode);
-                dragEvent.source.removeChild(dragEvent.source.querySelector('.block-preview-container'));
+                this.previewNode = dragEvent.originalSource.querySelector('.block-preview');
+
+                dragEvent.originalSource
+                    .querySelector('.block-preview-container')
+                    .removeChild(this.previewNode);
+
+                dragEvent.source
+                    .querySelector('.block-preview-container')
+                    .removeChild(dragEvent.source.querySelector('.block-preview'));
             },
 
             moveBlock(e) {
-                e.data.dragEvent.originalSource.appendChild(this.previewNode);
+                e.data.dragEvent.originalSource
+                    .querySelector('.block-preview-container')
+                    .appendChild(this.previewNode);
+
                 console.log(e);
                 const oldContainer = e.oldContainer.id;
                 const newContainer = e.newContainer.id;

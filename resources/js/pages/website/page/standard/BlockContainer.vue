@@ -4,17 +4,12 @@
          @mouseleave="showToolbar = false">
         <div class="shadow flex justify-between w-full bg-grey-darkest">
             <div class="flex items-center">
-                <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
+                <button class="py-3 px-3 text-tertiary hover:text-primary-inverse"
                         type="button"
                         @click="edit">
                     <icon icon="edit-pencil" class="w-4 h-4 fill-current"></icon>
                 </button>
-                <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
-                        type="button"
-                        @click="preview">
-                    <icon icon="view-show" class="w-4 h-4 fill-current"></icon>
-                </button>
-                <button class="py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse"
+                <button class="py-3 px-3 mr-2 text-tertiary hover:text-primary-inverse"
                         type="button"
                         @click="showConfirmDelete = true">
                     <icon icon="trash" class="w-4 h-4 fill-current"></icon>
@@ -28,11 +23,11 @@
                     </confirm-dialog>
                 </button>
 
-                <span class="text-secondary-inverse">{{ block.name }}</span>
+                <span class="text-tertiary-inverse">{{ block.name }}</span>
             </div>
             <div class="flex items-center">
                 <sortable-handle>
-                    <svg class="w-6 h-6 fill-current text-tertiary-inverse hover:text-primary-inverse cursor-move"
+                    <svg class="w-6 h-6 fill-current text-tertiary hover:text-primary-inverse cursor-move"
                          xmlns="http://www.w3.org/2000/svg"
                          viewBox="0 0 24 24" fill="currentColor">
                         <path fill-rule="evenodd"
@@ -41,12 +36,13 @@
                 </sortable-handle>
             </div>
         </div>
-        <div class="p-4 block-preview-container">
+        <div class="p-4 block-preview-container min-h-64">
             <iframe v-once
                     ref="preview"
                     :src="previewUrl"
-                    class="w-full max-h-5xl h-full block-preview"
+                    class="w-full block-preview"
                     scrolling="no"
+                    @load="resizePreview"
             ></iframe>
         </div>
     </div>
@@ -69,7 +65,7 @@
                 deleting: false,
                 showToolbar: false,
                 showConfirmDelete: false,
-                previewUrl: `http://192.168.10.10/api/pages/${this.block.page_id}/blocks/${this.block.id}/preview`,
+                previewUrl: `api/pages/${this.block.page_id}/blocks/${this.block.id}/preview`,
                 showPreview: true,
             }
         },
@@ -86,10 +82,6 @@
                     name: 'pages.blocks.view',
                     params: {id: this.$route.params.id, blockId: this.block.id}
                 });
-            },
-
-            preview() {
-
             },
 
             remove() {
@@ -109,16 +101,9 @@
             },
 
             resizePreview() {
-
+                const preview = this.$refs.preview;
+                preview.height = preview.contentWindow.document.body.scrollHeight + "px"
             },
         },
     }
 </script>
-
-
-<!--
-<style>
-    .draggable-mirror .block-preview {
-        visibility: hidden;
-    }
-</style>-->

@@ -70460,18 +70460,23 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
         mirrorCreated: function mirrorCreated(_ref) {
             var mirror = _ref.mirror;
 
-            mirror.removeChild(mirror.querySelector('.block-preview-container'));
+            /*mirror
+                .querySelector('.block-preview-container')
+                .removeChild(mirror.querySelector('.block-preview'));*/
 
             console.log({ mirror: mirror });
         },
         start: function start(e) {
             var dragEvent = e.data.dragEvent;
-            this.previewNode = dragEvent.originalSource.querySelector('.block-preview-container');
-            dragEvent.originalSource.removeChild(this.previewNode);
-            dragEvent.source.removeChild(dragEvent.source.querySelector('.block-preview-container'));
+            this.previewNode = dragEvent.originalSource.querySelector('.block-preview');
+
+            dragEvent.originalSource.querySelector('.block-preview-container').removeChild(this.previewNode);
+
+            dragEvent.source.querySelector('.block-preview-container').removeChild(dragEvent.source.querySelector('.block-preview'));
         },
         moveBlock: function moveBlock(e) {
-            e.data.dragEvent.originalSource.appendChild(this.previewNode);
+            e.data.dragEvent.originalSource.querySelector('.block-preview-container').appendChild(this.previewNode);
+
             console.log(e);
             var oldContainer = e.oldContainer.id;
             var newContainer = e.newContainer.id;
@@ -70565,10 +70570,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 
 
@@ -70586,7 +70587,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             deleting: false,
             showToolbar: false,
             showConfirmDelete: false,
-            previewUrl: "http://192.168.10.10/api/pages/" + this.block.page_id + "/blocks/" + this.block.id + "/preview",
+            previewUrl: "api/pages/" + this.block.page_id + "/blocks/" + this.block.id + "/preview",
             showPreview: true
         };
     },
@@ -70605,7 +70606,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 params: { id: this.$route.params.id, blockId: this.block.id }
             });
         },
-        preview: function preview() {},
         remove: function remove() {
             var _this = this;
 
@@ -70616,7 +70616,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.showConfirmDelete = false;
             });
         },
-        resizePreview: function resizePreview() {}
+        resizePreview: function resizePreview() {
+            var preview = this.$refs.preview;
+            preview.height = preview.contentWindow.document.body.scrollHeight + "px";
+        }
     }
 });
 
@@ -70879,7 +70882,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse",
+                  "py-3 px-3 text-tertiary hover:text-primary-inverse",
                 attrs: { type: "button" },
                 on: { click: _vm.edit }
               },
@@ -70896,24 +70899,7 @@ var render = function() {
               "button",
               {
                 staticClass:
-                  "py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse",
-                attrs: { type: "button" },
-                on: { click: _vm.preview }
-              },
-              [
-                _c("icon", {
-                  staticClass: "w-4 h-4 fill-current",
-                  attrs: { icon: "view-show" }
-                })
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass:
-                  "py-3 px-3 mr-2 text-tertiary-inverse hover:text-primary-inverse",
+                  "py-3 px-3 mr-2 text-tertiary hover:text-primary-inverse",
                 attrs: { type: "button" },
                 on: {
                   click: function($event) {
@@ -70953,7 +70939,7 @@ var render = function() {
               1
             ),
             _vm._v(" "),
-            _c("span", { staticClass: "text-secondary-inverse" }, [
+            _c("span", { staticClass: "text-tertiary-inverse" }, [
               _vm._v(_vm._s(_vm.block.name))
             ])
           ]),
@@ -70967,7 +70953,7 @@ var render = function() {
                   "svg",
                   {
                     staticClass:
-                      "w-6 h-6 fill-current text-tertiary-inverse hover:text-primary-inverse cursor-move",
+                      "w-6 h-6 fill-current text-tertiary hover:text-primary-inverse cursor-move",
                     attrs: {
                       xmlns: "http://www.w3.org/2000/svg",
                       viewBox: "0 0 24 24",
@@ -70991,7 +70977,9 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "p-4 block-preview-container" }, [_vm._m(0)])
+      _c("div", { staticClass: "p-4 block-preview-container min-h-64" }, [
+        _vm._m(0)
+      ])
     ]
   )
 }
@@ -71002,8 +70990,9 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("iframe", {
       ref: "preview",
-      staticClass: "w-full max-h-5xl h-full block-preview",
-      attrs: { src: _vm.previewUrl, scrolling: "no" }
+      staticClass: "w-full block-preview",
+      attrs: { src: _vm.previewUrl, scrolling: "no" },
+      on: { load: _vm.resizePreview }
     })
   }
 ]

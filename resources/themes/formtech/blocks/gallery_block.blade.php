@@ -8,7 +8,7 @@
     <div class="flex flex-wrap justify-center -m-3">
         @foreach($block->images as $image)
 
-            <div class="p-3">
+            <div class="p-3 flex-1">
                 <img src="{{ url('storage/media/') }}/{{ $image->media->file_path }}"/>
             </div>
 
