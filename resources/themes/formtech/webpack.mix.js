@@ -8,3 +8,5 @@ mix.less('less/app.less', '../../../public/css/formtech.css')
             tailwindcss('less/tailwind.js')
         ]
     });
+
+mix.copy('icons.svg', '../../../public/icons.svg');

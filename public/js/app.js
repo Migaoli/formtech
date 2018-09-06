@@ -74489,6 +74489,12 @@ module.exports = Component.exports
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FormField__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_SearchInput__ = __webpack_require__(228);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__input_SearchInput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__input_SearchInput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__IconPreview__ = __webpack_require__(335);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__IconPreview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__IconPreview__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_color__ = __webpack_require__(311);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_vue_color___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_vue_color__);
 //
 //
 //
@@ -74500,13 +74506,56 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'icon-field',
 
-    mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]]
+    components: {
+        IconPreview: __WEBPACK_IMPORTED_MODULE_2__IconPreview___default.a,
+        SearchInput: __WEBPACK_IMPORTED_MODULE_1__input_SearchInput___default.a,
+        'slider-color-picker': __WEBPACK_IMPORTED_MODULE_3_vue_color__["Slider"]
+    },
+
+    mixins: [__WEBPACK_IMPORTED_MODULE_0__FormField__["a" /* default */]],
+
+    data: function data() {
+        return {
+            icons: this.field.icons || []
+        };
+    },
+
+
+    computed: {
+        link: function link() {
+            return "/icons.svg#" + this.value;
+        }
+    },
+
+    methods: {
+        filterIcons: function filterIcons(query) {
+            this.icons = this.field.icons.filter(function (icon) {
+                return icon.includes(query);
+            });
+        }
+    }
 
 });
 
@@ -74519,28 +74568,53 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("base-field", { attrs: { field: _vm.field, errors: _vm.errors } }, [
-    _c("input", {
-      directives: [
-        {
-          name: "model",
-          rawName: "v-model",
-          value: _vm.value,
-          expression: "value"
-        }
-      ],
-      staticClass: "form-input",
-      class: { "form-error": _vm.hasErrors },
-      attrs: { id: _vm.field.key, type: "text", placeholder: _vm.field.name },
-      domProps: { value: _vm.value },
-      on: {
-        input: function($event) {
-          if ($event.target.composing) {
-            return
+    _c(
+      "div",
+      { staticClass: "flex items-center mb-4" },
+      [
+        _vm.value
+          ? _c(
+              "svg",
+              {
+                staticClass: "text-secondary w-6 h-6 mr-4",
+                attrs: {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  viewBox: "0 0 20 20"
+                }
+              },
+              [_c("use", { attrs: { "xlink:href": _vm.link } })]
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("search-input", {
+          staticClass: "flex-1",
+          attrs: { options: _vm.icons, placeholder: _vm.field.name },
+          on: { search: _vm.filterIcons },
+          scopedSlots: _vm._u([
+            {
+              key: "option",
+              fn: function(ref) {
+                var option = ref.option
+                return _c(
+                  "div",
+                  {},
+                  [_c("icon-preview", { attrs: { icon: option } })],
+                  1
+                )
+              }
+            }
+          ]),
+          model: {
+            value: _vm.value,
+            callback: function($$v) {
+              _vm.value = $$v
+            },
+            expression: "value"
           }
-          _vm.value = $event.target.value
-        }
-      }
-    })
+        })
+      ],
+      1
+    )
   ])
 }
 var staticRenderFns = []
@@ -76792,6 +76866,124 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(336)
+/* template */
+var __vue_template__ = __webpack_require__(337)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\components\\fields\\IconPreview.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-66060b64", Component.options)
+  } else {
+    hotAPI.reload("data-v-66060b64", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 336 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: 'icon-preview',
+
+    props: {
+        icon: {
+            type: String,
+            required: true
+        }
+    },
+
+    computed: {
+        link: function link() {
+            return '/icons.svg#' + this.icon;
+        },
+        name: function name() {
+            return this.icon.replace('zondicon-', '');
+        }
+    }
+});
+
+/***/ }),
+/* 337 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "flex items-center" }, [
+    _c(
+      "svg",
+      {
+        staticClass: "text-secondary w-6 h-6 mr-4",
+        attrs: { xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 20 20" }
+      },
+      [_c("use", { attrs: { "xlink:href": _vm.link } })]
+    ),
+    _vm._v("\n    " + _vm._s(_vm.name) + "\n")
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-66060b64", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
