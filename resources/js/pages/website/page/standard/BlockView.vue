@@ -1,5 +1,6 @@
 <template>
     <div>
+        <page-view-header></page-view-header>
         <loading :loading="loading">
             <div v-if="block">
                 <form-container :fields="blockDefinition.fields"
@@ -50,10 +51,12 @@
     import Loading from "../../../../components/Loading";
     import FormContainer from "../../../../components/fields/FormContainer";
     import FormToolbar from "../../../../components/fields/FormToolbar";
+    import PageViewHeader from "../PageViewHeader";
 
     export default {
         name: '',
         components: {
+            PageViewHeader,
             FormToolbar,
             FormContainer, Loading, Icon
         },

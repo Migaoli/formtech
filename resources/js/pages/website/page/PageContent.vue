@@ -1,5 +1,7 @@
 <template>
     <div>
+        <page-view-header></page-view-header>
+        <page-view-toolbar></page-view-toolbar>
         <div v-if="hasContent">
             <div class="flex justify-end mb-8" v-if="isDirty">
                 <button class="btn btn-tertiary btn-default mr-4"
@@ -31,11 +33,13 @@
     import axios from 'axios';
     import {mapState} from 'vuex';
     import LayoutContainer from "./standard/LayoutContainer";
+    import PageViewHeader from "./PageViewHeader";
+    import PageViewToolbar from "./PageViewToolbar";
 
     export default {
         name: '',
 
-        components: {LayoutContainer},
+        components: {PageViewToolbar, PageViewHeader, LayoutContainer},
 
         data() {
             return {

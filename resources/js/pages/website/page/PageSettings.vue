@@ -1,5 +1,7 @@
 <template>
     <div>
+        <page-view-header></page-view-header>
+        <page-view-toolbar></page-view-toolbar>
         <form-container v-if="page"
                         :fields="pageDefinition.fields"
                         :data="page"
@@ -58,11 +60,13 @@
     import TextField from "../../../components/fields/TextField";
     import SelectField from "../../../components/fields/SelectField";
     import GenericField from "../../../components/fields/GenericField";
+    import PageViewHeader from "./PageViewHeader";
+    import PageViewToolbar from "./PageViewToolbar";
 
     export default {
         name: 'page-settings',
 
-        components: {GenericField, SelectField, TextField, SearchInput},
+        components: {PageViewToolbar, PageViewHeader, GenericField, SelectField, TextField, SearchInput},
 
         data() {
             return {

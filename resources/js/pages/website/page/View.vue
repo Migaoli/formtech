@@ -1,46 +1,5 @@
 <template>
     <loading :loading="pageLoading">
-        <template v-if="page">
-            <div class="mb-8 flex justify-between items-center">
-                <div>
-                    <span class="inline-block py-2 px-4 rounded-full bg-brand text-primary-inverse mr-2">{{page.title}}</span>
-                    <span class="text-secondary mr-1">{{page.slug}}</span>
-                </div>
-                <div class="text-tertiary text-sm">
-                    <span class="mr-2">Last updated: {{ page.update_at | from-now }}</span>
-                    <span>Created: {{ page.created_at | from-now }}</span>
-                </div>
-            </div>
-            <div class="flex mb-8 border-b-2 justify-between items-end">
-                <div class="flex">
-                    <router-link
-                            class="block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline"
-                            :active-class="'border-brand'"
-                            :to="{name: 'pages.view.content', params: {id: $route.params.id}}">
-                        Content
-                    </router-link>
-                    <router-link
-                            class="block py-2 px-6 -mb-2px border-b-2 border-transparent hover:border-brand text-primary font-thin no-underline"
-                            :active-class="'border-brand'"
-                            :to="{name: 'pages.view.settings', params: {id: $route.params.id}}">
-                        Settings
-                    </router-link>
-                </div>
-                <div class="flex">
-                    <button class="p-3 text-tertiary hover:text-primary mr-2"
-                            type="button"
-                            @click="">
-                        <icon icon="view-show" class="w-4 h-4"></icon>
-                    </button>
-                    <delete-page-button :page="page">
-                        <button class="p-3 text-tertiary hover:text-primary"
-                                type="button">
-                            <icon icon="trash" class="w-4 h-4"></icon>
-                        </button>
-                    </delete-page-button>
-                </div>
-            </div>
-        </template>
         <router-view></router-view>
     </loading>
 </template>
