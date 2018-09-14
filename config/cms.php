@@ -3,10 +3,13 @@
 return [
     'theme' => [
         'name' => 'formtech',
+        'styles' => [
+            '/css/formtech.css'
+        ],
         'layouts' => [
             'landing_page' => [
                 'name' => 'Landing page',
-                'description',
+                'description' => '',
                 'template' => 'layouts.landing_page',
                 'grid' => [
                     ['c1'],

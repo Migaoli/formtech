@@ -28,4 +28,9 @@ class MediaReference extends Model
     {
         return $this->morphTo();
     }
+
+    public function url(): string
+    {
+        return $this->media->url();
+    }
 }

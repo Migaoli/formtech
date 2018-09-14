@@ -6,6 +6,6 @@ class TestController extends Controller
 {
     public function index()
     {
-        dd(\Storage::disk('public')->allFiles());
+        return view('formtech::test');
     }
 }

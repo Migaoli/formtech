@@ -57923,9 +57923,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }, {
                 name: 'Website',
                 items: [{
+                    name: 'Publish',
+                    route: 'pages',
+                    icon: 'cloud-upload'
+                }, {
+                    name: 'Preview',
+                    route: 'pages',
+                    icon: 'view-show'
+                }, {
                     name: 'Pages',
                     route: 'pages',
-                    icon: 'document'
+                    icon: 'news-paper'
                 }]
             }]
         };
@@ -58038,7 +58046,7 @@ var render = function() {
                 {
                   key: item.name,
                   staticClass:
-                    "flex py-2 no-underline text-secondary hover:text-brand",
+                    "flex py-2 no-underline text-secondary text-lg hover:text-brand",
                   attrs: {
                     to: { name: item.route },
                     "active-class": _vm.activeClass
@@ -58046,7 +58054,7 @@ var render = function() {
                 },
                 [
                   _c("icon", {
-                    staticClass: "w-4 h-4 mr-2",
+                    staticClass: "w-5 h-5 mr-3",
                     attrs: { icon: item.icon }
                   }),
                   _vm._v(

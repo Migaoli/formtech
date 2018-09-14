@@ -8,8 +8,8 @@
                              :key="item.name"
                              :to="{name: item.route}"
                              :active-class="activeClass"
-                             class="flex py-2 no-underline text-secondary hover:text-brand">
-                    <icon :icon="item.icon" class="w-4 h-4 mr-2"></icon>
+                             class="flex py-2 no-underline text-secondary text-lg hover:text-brand">
+                    <icon :icon="item.icon" class="w-5 h-5 mr-3"></icon>
                     {{ item.name }}
                 </router-link>
             </div>
@@ -39,9 +39,17 @@
                         name: 'Website',
                         items: [
                             {
+                                name: 'Publish',
+                                route: 'pages',
+                                icon: 'cloud-upload'
+                            }, {
+                                name: 'Preview',
+                                route: 'pages',
+                                icon: 'view-show'
+                            }, {
                                 name: 'Pages',
                                 route: 'pages',
-                                icon: 'document'
+                                icon: 'news-paper'
                             }
                         ]
                     }

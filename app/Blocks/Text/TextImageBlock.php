@@ -90,6 +90,29 @@ class TextImageBlock extends Block
         ];
     }
 
+    public function alignment() {
+        return $this->getData('alignment');
+    }
+
+    public function headingType()
+    {
+        return $this->getData('heading_type');
+    }
+
+    public function heading()
+    {
+        return $this->getData('heading');
+    }
+
+    public function content()
+    {
+        return $this->getData('content');
+    }
+
+    public function imagePosition()
+    {
+        return $this->getData('image_position');
+    }
 
     public function images()
     {

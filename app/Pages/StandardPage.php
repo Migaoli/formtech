@@ -17,12 +17,18 @@ class StandardPage extends Page
     {
         return array_merge(parent::fields(), [
             Select::make('Layout', 'data.layout')
-                ->options([
-                    'landing_page' => 'Landing page',
-                    'normal' => 'Normal'
-                ])
+                ->options($this->getLayouts())
                 ->defaultTo('normal'),
         ]);
+    }
+
+    private function getLayouts(): array
+    {
+        return collect(config('cms.theme.layouts'))
+            ->map(function ($layout) {
+                return $layout['name'];
+            })
+            ->toArray();
     }
 
 
