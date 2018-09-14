@@ -558,6 +558,8 @@ module.exports = {
         '48': '12rem',
         '64': '16rem',
         'full': '100%',
+        'screen-50': '50vh',
+        'screen-80': '80vh',
         'screen': '100vh'
     },
 

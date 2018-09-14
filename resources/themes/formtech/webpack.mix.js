@@ -10,3 +10,5 @@ mix.less('less/app.less', '../../../public/css/formtech.css')
     });
 
 mix.copy('icons.svg', '../../../public/icons.svg');
+
+mix.copy('static', '../../../public/static');

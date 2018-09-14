@@ -9,7 +9,7 @@
         @foreach($block->images as $image)
 
             <div class="p-3 flex-1">
-                <img src="{{ url('storage/media/') }}/{{ $image->media->file_path }}"/>
+                <img src="{{ $image->media->url() }}"/>
             </div>
 
         @endforeach

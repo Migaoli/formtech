@@ -672,6 +672,14 @@ table {
   padding-right: .75rem;
 }
 
+.page\:landing-page {
+  background-image: url("/static/background_image.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .text-block .header {
   margin-bottom: 2rem;
 }
@@ -4157,6 +4165,14 @@ table {
 
 .h-full {
   height: 100%;
+}
+
+.h-screen-50 {
+  height: 50vh;
+}
+
+.h-screen-80 {
+  height: 80vh;
 }
 
 .h-screen {
@@ -11350,6 +11366,14 @@ table {
     height: 100%;
   }
 
+  .sm\:h-screen-50 {
+    height: 50vh;
+  }
+
+  .sm\:h-screen-80 {
+    height: 80vh;
+  }
+
   .sm\:h-screen {
     height: 100vh;
   }
@@ -18524,6 +18548,14 @@ table {
 
   .md\:h-full {
     height: 100%;
+  }
+
+  .md\:h-screen-50 {
+    height: 50vh;
+  }
+
+  .md\:h-screen-80 {
+    height: 80vh;
   }
 
   .md\:h-screen {
@@ -25702,6 +25734,14 @@ table {
     height: 100%;
   }
 
+  .lg\:h-screen-50 {
+    height: 50vh;
+  }
+
+  .lg\:h-screen-80 {
+    height: 80vh;
+  }
+
   .lg\:h-screen {
     height: 100vh;
   }
@@ -32876,6 +32916,14 @@ table {
 
   .xl\:h-full {
     height: 100%;
+  }
+
+  .xl\:h-screen-50 {
+    height: 50vh;
+  }
+
+  .xl\:h-screen-80 {
+    height: 80vh;
   }
 
   .xl\:h-screen {

@@ -8,7 +8,7 @@ return [
     'layouts' => [
         'landing_page' => [
             'name' => 'Landing page',
-            'description',
+            'description' => '',
             'template' => 'layouts.landing_page',
             'grid' => [
                 ['c1'],
