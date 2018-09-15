@@ -91,6 +91,34 @@ class PagesTest extends TestCase
     }
 
     /** @test */
+    public function user_can_update_page()
+    {
+        $this->actingAs(factory(User::class)->create(), 'api');
+
+        //$this->withoutExceptionHandling();
+
+        $page = factory(StandardPage::class)->create();
+
+        $payload = [
+            'title' => 'new title',
+            'slug' => 'new-slug',
+            'published' => true,
+            'in_menu' => true,
+            'data' => [
+                'layout' => 'landing_page',
+            ],
+        ];
+
+        $response = $this->json('put', "api/pages/$page->id", $payload);
+
+        $response->assertStatus(204);
+
+        $page->refresh();
+
+        $this->assertEquals('new title', $page->title);
+    }
+
+    /** @test */
     public function user_can_delete_page()
     {
         $this->actingAs(factory(User::class)->create(), 'api');

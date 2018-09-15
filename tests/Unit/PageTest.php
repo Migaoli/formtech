@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Page;
+use App\Pages\Page;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Validation\ValidationException;
 use Tests\TestCase;

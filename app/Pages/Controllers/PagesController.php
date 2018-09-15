@@ -18,14 +18,14 @@ class PagesController extends Controller
             return Page::tree();
         }
 
-        return Page::all();
+        return new PageCollection(Page::all());
     }
 
     public function get($id)
     {
         $page = Page::findOrFail($id);
 
-        return response()->json($page);
+        return new PageResource($page);
     }
 
     public function create(Request $request)
@@ -57,7 +57,8 @@ class PagesController extends Controller
     {
         $page = Page::findOrFail($id);
 
-        $payload = $request->validate($page->rules());
+        $rules = $page->rules();
+        $payload = $request->validate($rules);
 
         $page->fill($payload);
 

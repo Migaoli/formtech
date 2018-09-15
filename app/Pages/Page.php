@@ -26,8 +26,6 @@ class Page extends Model
 
     protected $fillable = ['title', 'slug', 'parent_id', 'data', 'in_menu', 'published'];
 
-    protected $appends = ['fields'];
-
     public function __construct(array $attributes = [])
     {
         $this->data = [];
@@ -67,17 +65,18 @@ class Page extends Model
         ];
     }
 
-    public function getFieldsAttribute()
-    {
-        return $this->fields();
-    }
-
     public function rules(): array
     {
         return collect($this->fields())
-            ->mapWithKeys(function ($field) {
-                return [$field->getKey() => $field->getRules()];
+            ->flatMap(function ($field) {
+                return $field->createValidationRules();
             })
+            ->merge([
+                'title' => 'required|string',
+                'slug' => ['required', 'alpha_dash',],
+                'in_menu' => ['required', 'boolean'],
+                'published' => ['required', 'boolean'],
+            ])
             ->toArray();
     }
 

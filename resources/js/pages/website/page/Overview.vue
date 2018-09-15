@@ -78,7 +78,7 @@
 
                 axios.get('api/pages')
                     .then(response => {
-                        this.pages = response.data;
+                        this.pages = response.data.data;
                     })
                     .finally(() => {
                         this.loading = false;
