@@ -12,13 +12,20 @@
                 <div v-if="hasChanged"
                      :class="modifiedColor"
                      class="w-2 h-2 rounded-full"
+                     v-tooltip="'Page has been modified.'"
                 ></div>
             </div>
             <div class="w-4 h-4 mr-4">
-                <icon icon="menu" class="w-4 h-4 text-tertiary"></icon>
+                <icon icon="menu"
+                      class="w-4 h-4 text-tertiary"
+                      v-tooltip="'Page is shown in menu.'"
+                ></icon>
             </div>
             <div class="w-4 h-4">
-                <icon icon="view-hide" class="w-4 h-4 text-tertiary"></icon>
+                <icon icon="view-hide"
+                      class="w-4 h-4 text-tertiary"
+                      v-tooltip="'Page is hidden.'"
+                ></icon>
             </div>
         </div>
     </div>

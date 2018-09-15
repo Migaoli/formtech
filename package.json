@@ -27,6 +27,7 @@
         "speakingurl": "^14.0.1",
         "tailwindcss": "^0.6.5",
         "trix": "^0.12.0",
+        "v-tooltip": "^2.0.0-rc.33",
         "vue": "^2.5.17",
         "vue-router": "^3.0.1",
         "vuex": "^3.0.1"

@@ -6,6 +6,7 @@ import App from './App';
 import Filters from './filters';
 import CopyHelper from './util/CopyHelper';
 import PortalVue from 'portal-vue';
+import VTooltip from 'v-tooltip';
 import clickOutside from './directives/click-outside';
 
 import Events from './plugins/events';
@@ -17,6 +18,7 @@ Vue.use(Router);
 Vue.use(Filters);
 Vue.use(CopyHelper);
 Vue.use(PortalVue);
+Vue.use(VTooltip);
 
 Vue.use(Events);
 Vue.use(Flash);
