@@ -1,1 +1,1 @@
-{{ new \App\Blocks\Text\TextIconParser($block) }}
+{{ new \App\Pages\Blocks\Text\TextIconParser($block) }}

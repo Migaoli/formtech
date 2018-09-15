@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Blocks;
 
-use App\Blocks\Text\TextBlock;
+use App\Pages\Blocks\Text\TextBlock;
 use App\Pages\StandardPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

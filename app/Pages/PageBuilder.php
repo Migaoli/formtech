@@ -4,7 +4,7 @@
 namespace App\Pages;
 
 
-use App\Blocks\Block;
+use App\Pages\Blocks\Block;
 use Illuminate\View\Factory;
 use Illuminate\View\View;
 

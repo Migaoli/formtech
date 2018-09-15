@@ -159,9 +159,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-        App\Providers\PageServiceProvider::class,
-        App\Providers\BlockServiceProvider::class,
         App\Providers\ThemeServiceProvider::class,
+        App\Pages\PagePlugin::class,
 
     ],
 

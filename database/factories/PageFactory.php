@@ -16,7 +16,7 @@ $factory->define(\App\Pages\StandardPage::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\Blocks\Text\TextBlock::class, function (Faker $faker) {
+$factory->define(\App\Pages\Blocks\Text\TextBlock::class, function (Faker $faker) {
     return [
         'container' => 'c1',
         'order' => 1,
@@ -29,7 +29,7 @@ $factory->define(\App\Blocks\Text\TextBlock::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\App\Blocks\Gallery\GalleryBlock::class, function (Faker $faker) {
+$factory->define(\App\Pages\Blocks\Gallery\GalleryBlock::class, function (Faker $faker) {
     return [
         'container' => 'c1',
         'order' => 1,

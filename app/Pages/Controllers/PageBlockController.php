@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Pages\Controllers;
 
-use App\Blocks\Block;
-use App\Blocks\Blocks;
-use App\Blocks\Rules\ValidBlockType;
+use App\Http\Controllers\Controller;
+use App\Pages\Blocks\Block;
+use App\Pages\Blocks\Blocks;
+use App\Pages\Blocks\Rules\ValidBlockType;
 use App\Pages\StandardPage;
 use Illuminate\Database\Connection;
 use Illuminate\Http\Request;

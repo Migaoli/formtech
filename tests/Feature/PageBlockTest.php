@@ -2,7 +2,7 @@
 
 namespace Tests\Feature;
 
-use App\Blocks\Text\TextBlock;
+use App\Pages\Blocks\Text\TextBlock;
 use App\Pages\StandardPage;
 use App\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;

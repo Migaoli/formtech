@@ -1,16 +1,14 @@
 <?php
 
 
-namespace App\Blocks\Text;
+namespace App\Pages\Blocks\Gallery;
 
 
-use App\Blocks\Block;
-use App\Blocks\RequestHandler;
+use App\Pages\Blocks\Block;
 use Illuminate\Http\Request;
 
-class TextImageRequestHandler implements RequestHandler
+class RequestHandler implements \App\Pages\Blocks\RequestHandler
 {
-
     public function get($id): Block
     {
         // TODO: Implement get() method.
@@ -18,7 +16,7 @@ class TextImageRequestHandler implements RequestHandler
 
     public function create(Request $request): Block
     {
-        $gallery = new TextImageBlock($request->only('data'));
+        $gallery = new GalleryBlock($request->only('data'));
 
         $gallery->save();
 
@@ -30,7 +28,7 @@ class TextImageRequestHandler implements RequestHandler
 
     public function update(Block $block, Request $request): Block
     {
-        /** @var TextImageBlock $block */
+        /** @var GalleryBlock $block */
         $block->fill($request->only('data'));
 
         $block->updateImages($request->get('images', []));
@@ -43,9 +41,11 @@ class TextImageRequestHandler implements RequestHandler
     public function delete(Block $block, Request $request): void
     {
 
-        /** @var TextImageBlock $block */
+        /** @var GalleryBlock $block */
         $block->images()->delete();
 
         $block->delete();
     }
+
+
 }

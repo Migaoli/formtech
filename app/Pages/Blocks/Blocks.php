@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Blocks;
+namespace App\Pages\Blocks;
 
 
 interface Blocks

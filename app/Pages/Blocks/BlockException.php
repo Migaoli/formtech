@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Blocks;
+namespace App\Pages\Blocks;
 
 
 class BlockException extends \RuntimeException

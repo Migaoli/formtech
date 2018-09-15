@@ -2,8 +2,8 @@
 
 namespace Tests\Feature\Blocks;
 
-use App\Blocks\Gallery\GalleryBlock;
 use App\Media\Media;
+use App\Pages\Blocks\Gallery\GalleryBlock;
 use App\Pages\StandardPage;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;

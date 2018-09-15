@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Pages\Controllers;
 
+use App\Http\Controllers\Controller;
 use App\Pages\Page;
 use App\Pages\PageBuilder;
 

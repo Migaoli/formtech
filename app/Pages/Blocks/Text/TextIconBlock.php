@@ -1,10 +1,9 @@
 <?php
 
 
-namespace App\Blocks\Text;
+namespace App\Pages\Blocks\Text;
 
 
-use App\Blocks\Block;
 use App\Fields\Color;
 use App\Fields\Icon;
 use App\Fields\Markdown;
@@ -12,6 +11,7 @@ use App\Fields\Panel;
 use App\Fields\Row;
 use App\Fields\Select;
 use App\Fields\Text;
+use App\Pages\Blocks\Block;
 
 class TextIconBlock extends Block
 {

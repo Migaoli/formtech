@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Blocks;
+namespace App\Pages\Blocks;
 
 
 use App\Validation\Validatable;
@@ -25,14 +25,14 @@ use Illuminate\Validation\Validator;
  * @property array $data
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereContainer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block wherePageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block wherePosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\Block whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block whereContainer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block wherePageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\Block whereUpdatedAt($value)
  */
 class Block extends \Eloquent implements Validatable
 {

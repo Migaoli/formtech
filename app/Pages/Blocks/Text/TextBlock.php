@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Blocks\Text;
+namespace App\Pages\Blocks\Text;
 
 
-use App\Blocks\Block;
 use App\Fields\Markdown;
 use App\Fields\Row;
 use App\Fields\Select;
 use App\Fields\Text;
+use App\Pages\Blocks\Block;
 
 /**
  * App\Blocks\Text\TextBlock
@@ -22,14 +22,14 @@ use App\Fields\Text;
  * @property array $data
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock whereContainer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock whereData($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock wherePageId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock wherePosition($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock whereType($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Blocks\TextBlock whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock whereContainer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock whereData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock wherePageId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock wherePosition($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock whereType($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Pages\Blocks\TextBlock whereUpdatedAt($value)
  */
 class TextBlock extends Block
 {

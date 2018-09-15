@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Pages\Controllers;
 
-use App\Blocks\Blocks;
+use App\Http\Controllers\Controller;
+use App\Pages\Blocks\Blocks;
 
 class BlockController extends Controller
 {

@@ -1,1 +1,1 @@
-{{ new \App\Blocks\Text\TextParser($block) }}
+{{ new \App\Pages\Blocks\Text\TextParser($block) }}

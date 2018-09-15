@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Blocks\Gallery;
+namespace App\Pages\Blocks\Gallery;
 
 
-use App\Blocks\Parser;
+use App\Pages\Blocks\Parser;
 
 class GalleryParser extends Parser
 {

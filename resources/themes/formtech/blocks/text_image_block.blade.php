@@ -1,1 +1,1 @@
-{{ new \App\Blocks\Text\TextImageParser($block) }}
+{{ new \App\Pages\Blocks\Text\TextImageParser($block) }}

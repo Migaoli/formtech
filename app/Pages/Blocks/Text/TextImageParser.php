@@ -1,10 +1,10 @@
 <?php
 
 
-namespace App\Blocks\Text;
+namespace App\Pages\Blocks\Text;
 
 
-use App\Blocks\Parser;
+use App\Pages\Blocks\Parser;
 use Illuminate\Support\Str;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\Div;

@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Pages\Controllers;
 
-use App\Blocks\Block;
+use App\Http\Controllers\Controller;
+use App\Pages\Blocks\Block;
 use App\Pages\PageBuilder;
 
 class BlockPreviewController extends Controller

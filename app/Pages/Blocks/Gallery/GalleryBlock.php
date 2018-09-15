@@ -1,14 +1,14 @@
 <?php
 
 
-namespace App\Blocks\Gallery;
+namespace App\Pages\Blocks\Gallery;
 
 
-use App\Blocks\Block;
 use App\Fields\Markdown;
 use App\Fields\Media as MediaField;
 use App\Fields\Text;
 use App\Media\MediaReference;
+use App\Pages\Blocks\Block;
 
 class GalleryBlock extends Block
 {

@@ -4,8 +4,8 @@
 namespace App\Pages;
 
 
-use App\Blocks\Block;
 use App\Fields\Select;
+use App\Pages\Blocks\Block;
 
 class StandardPage extends Page
 {

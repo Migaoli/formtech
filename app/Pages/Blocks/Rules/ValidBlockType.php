@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Blocks\Rules;
+namespace App\Pages\Blocks\Rules;
 
-use App\Blocks\Blocks;
+use App\Pages\Blocks\Blocks;
 use Illuminate\Contracts\Validation\Rule;
 
 class ValidBlockType implements Rule
