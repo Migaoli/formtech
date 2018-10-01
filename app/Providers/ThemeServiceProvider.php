@@ -15,7 +15,7 @@ class ThemeServiceProvider extends ServiceProvider
     {
         $theme = config('cms.theme.name');
 
-        $this->loadViewsFrom(resource_path("themes/{$theme}"), $theme);
+        $this->loadViewsFrom(resource_path("themes/{$theme}/views"), $theme);
     }
 
     /**

@@ -4,17 +4,18 @@ namespace App\Pages\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Pages\Blocks\Block;
+use App\Pages\Builder\StandardPageBuilder;
 use App\Pages\PageBuilder;
 
 class BlockPreviewController extends Controller
 {
 
     /**
-     * @var PageBuilder
+     * @var StandardPageBuilder
      */
     private $pageBuilder;
 
-    public function __construct(PageBuilder $pageBuilder)
+    public function __construct(StandardPageBuilder $pageBuilder)
     {
         \Debugbar::disable();
         $this->pageBuilder = $pageBuilder;

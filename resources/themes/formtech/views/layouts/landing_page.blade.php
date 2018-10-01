@@ -6,8 +6,8 @@
         <div class="">
             <div class="container mx-auto grid py-16">
                 <div class="w-full">
-                    @foreach($blocks['c1'] as $block)
-                        {!! $block !!}
+                    @foreach($page->blocksInContainer('c1') as $block)
+                        {!! $builder->buildBlock($block) !!}
                     @endforeach
                 </div>
             </div>
@@ -15,18 +15,18 @@
         <div class="">
             <div class="container mx-auto grid py-16">
                 <div class="w-1/3">
-                    @foreach($blocks['c2'] as $block)
-                        {!! $block !!}
+                    @foreach($page->blocksInContainer('c2') as $block)
+                        {!! $builder->buildBlock($block) !!}
                     @endforeach
                 </div>
                 <div class="w-1/3">
-                    @foreach($blocks['c3'] as $block)
-                        {!! $block !!}
+                    @foreach($page->blocksInContainer('c3') as $block)
+                        {!! $builder->buildBlock($block) !!}
                     @endforeach
                 </div>
                 <div class="w-1/3">
-                    @foreach($blocks['c4'] as $block)
-                        {!! $block !!}
+                    @foreach($page->blocksInContainer('c4') as $block)
+                        {!! $builder->buildBlock($block) !!}
                     @endforeach
                 </div>
             </div>
@@ -34,8 +34,8 @@
         <div class="">
             <div class="container mx-auto grid py-16">
                 <div class="w-full">
-                    @foreach($blocks['c5'] as $block)
-                        {!! $block !!}
+                    @foreach($page->blocksInContainer('c5') as $block)
+                        {!! $builder->buildBlock($block) !!}
                     @endforeach
                 </div>
             </div>

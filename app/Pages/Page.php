@@ -101,6 +101,14 @@ class Page extends Model
         return $this->hasMany(__CLASS__, 'parent_id');
     }
 
+    public function blocksInContainer($container)
+    {
+        return $this->blocks
+            ->filter(function ($block) use ($container) {
+                return $block->container === $container;
+            });
+    }
+
     public static function tree()
     {
         $elements = Page::all()->toArray();
