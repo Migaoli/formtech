@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.6.33 on 2018-09-04 12:04:09.
+ * Generated for Laravel 5.6.38 on 2018-10-03 10:11:17.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -1807,7 +1807,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $password
          * @param string $attribute
-         * @return null|bool 
+         * @return bool|null 
          * @static 
          */ 
         public static function logoutOtherDevices($password, $attribute = 'password')
@@ -4498,6 +4498,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param int|null $toLevel
          * @return void 
+         * @throws \Exception
          * @static 
          */ 
         public static function rollBack($toLevel = null)
@@ -8872,7 +8873,7 @@ namespace Illuminate\Support\Facades {
          *  * _format request attribute
          *  * $default
          *
-         * @param string $default The default format
+         * @param string|null $default The default format
          * @return string The request format
          * @static 
          */ 
@@ -9907,6 +9908,7 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Routing\Route any(string $uri, \Closure|array|string|null $action = null)
      * @method static \Illuminate\Routing\Route match(array|string $methods, string $uri, \Closure|array|string|null $action = null)
      * @method static \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
+     * @method static \Illuminate\Routing\RouteRegistrar where(array  $where)
      * @method static \Illuminate\Routing\PendingResourceRegistration resource(string $name, string $controller, array $options = [])
      * @method static \Illuminate\Routing\PendingResourceRegistration apiResource(string $name, string $controller, array $options = [])
      * @method static void apiResources(array $resources)
@@ -13515,6 +13517,580 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace Intervention\Image\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Image {
+        
+        /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = array())
+        {
+            return \Intervention\Image\ImageManager::configure($config);
+        }
+        
+        /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+            return \Intervention\Image\ImageManager::make($data);
+        }
+        
+        /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
+        }
+        
+        /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+ 
+}
+
+namespace Spatie\Html\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Html {
+        
+        /**
+         * 
+         *
+         * @param string|null $href
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\A 
+         * @static 
+         */ 
+        public static function a($href = null, $contents = null)
+        {
+            return \Spatie\Html\Html::a($href, $contents);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $href
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\I 
+         * @static 
+         */ 
+        public static function i($contents = null)
+        {
+            return \Spatie\Html\Html::i($contents);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $type
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\Button 
+         * @static 
+         */ 
+        public static function button($contents = null, $type = null)
+        {
+            return \Spatie\Html\Html::button($contents, $type);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Illuminate\Support\Collection|\Spatie\Html\iterable|string $classes
+         * @return \Illuminate\Contracts\Support\Htmlable 
+         * @static 
+         */ 
+        public static function class($classes)
+        {
+            return \Spatie\Html\Html::class($classes);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param bool $checked
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function checkbox($name = null, $checked = false, $value = '1')
+        {
+            return \Spatie\Html\Html::checkbox($name, $checked, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Spatie\Html\HtmlElement|string|null $contents
+         * @return \Spatie\Html\Elements\Div 
+         * @static 
+         */ 
+        public static function div($contents = null)
+        {
+            return \Spatie\Html\Html::div($contents);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function email($name = '', $value = '')
+        {
+            return \Spatie\Html\Html::email($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function date($name = '', $value = '')
+        {
+            return \Spatie\Html\Html::date($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function time($name = '', $value = '')
+        {
+            return \Spatie\Html\Html::time($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $tag
+         * @return \Spatie\Html\Elements\Element 
+         * @static 
+         */ 
+        public static function element($tag)
+        {
+            return \Spatie\Html\Html::element($tag);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $type
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function input($type = null, $name = null, $value = null)
+        {
+            return \Spatie\Html\Html::input($type, $name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Spatie\Html\HtmlElement|string|null $legend
+         * @return \Spatie\Html\Elements\Fieldset 
+         * @static 
+         */ 
+        public static function fieldset($legend = null)
+        {
+            return \Spatie\Html\Html::fieldset($legend);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $method
+         * @param string|null $action
+         * @return \Spatie\Html\Elements\Form 
+         * @static 
+         */ 
+        public static function form($method = 'POST', $action = null)
+        {
+            return \Spatie\Html\Html::form($method, $action);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function hidden($name = null, $value = null)
+        {
+            return \Spatie\Html\Html::hidden($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $src
+         * @param string|null $alt
+         * @return \Spatie\Html\Elements\Img 
+         * @static 
+         */ 
+        public static function img($src = null, $alt = null)
+        {
+            return \Spatie\Html\Html::img($src, $alt);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Spatie\Html\HtmlElement|\Spatie\Html\iterable|string|null $contents
+         * @param string|null $for
+         * @return \Spatie\Html\Elements\Label 
+         * @static 
+         */ 
+        public static function label($contents = null, $for = null)
+        {
+            return \Spatie\Html\Html::label($contents, $for);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Spatie\Html\HtmlElement|string|null $contents
+         * @return \Spatie\Html\Elements\Legend 
+         * @static 
+         */ 
+        public static function legend($contents = null)
+        {
+            return \Spatie\Html\Html::legend($contents);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $email
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\A 
+         * @static 
+         */ 
+        public static function mailto($email, $text = null)
+        {
+            return \Spatie\Html\Html::mailto($email, $text);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param \Spatie\Html\iterable $options
+         * @param string|\Spatie\Html\iterable|null $value
+         * @return \Spatie\Html\Elements\Select 
+         * @static 
+         */ 
+        public static function multiselect($name = null, $options = array(), $value = null)
+        {
+            return \Spatie\Html\Html::multiselect($name, $options, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $text
+         * @param string|null $value
+         * @param bool $selected
+         * @return \Spatie\Html\Elements\Option 
+         * @static 
+         */ 
+        public static function option($text = null, $value = null, $selected = false)
+        {
+            return \Spatie\Html\Html::option($text, $value, $selected);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function password($name = null)
+        {
+            return \Spatie\Html\Html::password($name);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param bool $checked
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function radio($name = null, $checked = false, $value = null)
+        {
+            return \Spatie\Html\Html::radio($name, $checked, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param \Spatie\Html\iterable $options
+         * @param string|\Spatie\Html\iterable|null $value
+         * @return \Spatie\Html\Elements\Select 
+         * @static 
+         */ 
+        public static function select($name = null, $options = array(), $value = null)
+        {
+            return \Spatie\Html\Html::select($name, $options, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param \Spatie\Html\HtmlElement|string|null $contents
+         * @return \Spatie\Html\Elements\Span 
+         * @static 
+         */ 
+        public static function span($contents = null)
+        {
+            return \Spatie\Html\Html::span($contents);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\Button 
+         * @static 
+         */ 
+        public static function submit($text = null)
+        {
+            return \Spatie\Html\Html::submit($text);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\Button 
+         * @static 
+         */ 
+        public static function reset($text = null)
+        {
+            return \Spatie\Html\Html::reset($text);
+        }
+        
+        /**
+         * 
+         *
+         * @param string $number
+         * @param string|null $text
+         * @return \Spatie\Html\Elements\A 
+         * @static 
+         */ 
+        public static function tel($number, $text = null)
+        {
+            return \Spatie\Html\Html::tel($number, $text);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function text($name = null, $value = null)
+        {
+            return \Spatie\Html\Html::text($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @return \Spatie\Html\Elements\File 
+         * @static 
+         */ 
+        public static function file($name = null)
+        {
+            return \Spatie\Html\Html::file($name);
+        }
+        
+        /**
+         * 
+         *
+         * @param string|null $name
+         * @param string|null $value
+         * @return \Spatie\Html\Elements\Textarea 
+         * @static 
+         */ 
+        public static function textarea($name = null, $value = null)
+        {
+            return \Spatie\Html\Html::textarea($name, $value);
+        }
+        
+        /**
+         * 
+         *
+         * @return \Spatie\Html\Elements\Input 
+         * @static 
+         */ 
+        public static function token()
+        {
+            return \Spatie\Html\Html::token();
+        }
+        
+        /**
+         * 
+         *
+         * @param \ArrayAccess|array $model
+         * @return $this 
+         * @static 
+         */ 
+        public static function model($model)
+        {
+            return \Spatie\Html\Html::model($model);
+        }
+        
+        /**
+         * 
+         *
+         * @param \ArrayAccess|array $model
+         * @param string|null $method
+         * @param string|null $action
+         * @return \Spatie\Html\Elements\Form 
+         * @static 
+         */ 
+        public static function modelForm($model, $method = 'POST', $action = null)
+        {
+            return \Spatie\Html\Html::modelForm($model, $method, $action);
+        }
+        
+        /**
+         * 
+         *
+         * @return $this 
+         * @static 
+         */ 
+        public static function endModel()
+        {
+            return \Spatie\Html\Html::endModel();
+        }
+        
+        /**
+         * 
+         *
+         * @return \Illuminate\Contracts\Support\Htmlable 
+         * @static 
+         */ 
+        public static function closeModelForm()
+        {
+            return \Spatie\Html\Html::closeModelForm();
+        }
+        
+        /**
+         * Retrieve the value from the current session or assigned model. This is
+         * a public alias for `old`.
+         *
+         * @param string $name
+         * @param mixed $value
+         * @return mixed 
+         * @static 
+         */ 
+        public static function value($name, $default = null)
+        {
+            return \Spatie\Html\Html::value($name, $default);
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Spatie\Html\Html::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Spatie\Html\Html::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Spatie\Html\Html::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
 namespace Barryvdh\Debugbar { 
 
     /**
@@ -14061,580 +14637,6 @@ namespace Barryvdh\Debugbar {
         {
             //Method inherited from \DebugBar\DebugBar            
             return \Barryvdh\Debugbar\LaravelDebugbar::offsetUnset($key);
-        }
-         
-    }
- 
-}
-
-namespace Spatie\Html\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Html {
-        
-        /**
-         * 
-         *
-         * @param string|null $href
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\A 
-         * @static 
-         */ 
-        public static function a($href = null, $contents = null)
-        {
-            return \Spatie\Html\Html::a($href, $contents);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $href
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\I 
-         * @static 
-         */ 
-        public static function i($contents = null)
-        {
-            return \Spatie\Html\Html::i($contents);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $type
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\Button 
-         * @static 
-         */ 
-        public static function button($contents = null, $type = null)
-        {
-            return \Spatie\Html\Html::button($contents, $type);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Illuminate\Support\Collection|\Spatie\Html\iterable|string $classes
-         * @return \Illuminate\Contracts\Support\Htmlable 
-         * @static 
-         */ 
-        public static function class($classes)
-        {
-            return \Spatie\Html\Html::class($classes);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param bool $checked
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function checkbox($name = null, $checked = false, $value = '1')
-        {
-            return \Spatie\Html\Html::checkbox($name, $checked, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Spatie\Html\HtmlElement|string|null $contents
-         * @return \Spatie\Html\Elements\Div 
-         * @static 
-         */ 
-        public static function div($contents = null)
-        {
-            return \Spatie\Html\Html::div($contents);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function email($name = '', $value = '')
-        {
-            return \Spatie\Html\Html::email($name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function date($name = '', $value = '')
-        {
-            return \Spatie\Html\Html::date($name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function time($name = '', $value = '')
-        {
-            return \Spatie\Html\Html::time($name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $tag
-         * @return \Spatie\Html\Elements\Element 
-         * @static 
-         */ 
-        public static function element($tag)
-        {
-            return \Spatie\Html\Html::element($tag);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $type
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function input($type = null, $name = null, $value = null)
-        {
-            return \Spatie\Html\Html::input($type, $name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Spatie\Html\HtmlElement|string|null $legend
-         * @return \Spatie\Html\Elements\Fieldset 
-         * @static 
-         */ 
-        public static function fieldset($legend = null)
-        {
-            return \Spatie\Html\Html::fieldset($legend);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $method
-         * @param string|null $action
-         * @return \Spatie\Html\Elements\Form 
-         * @static 
-         */ 
-        public static function form($method = 'POST', $action = null)
-        {
-            return \Spatie\Html\Html::form($method, $action);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function hidden($name = null, $value = null)
-        {
-            return \Spatie\Html\Html::hidden($name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $src
-         * @param string|null $alt
-         * @return \Spatie\Html\Elements\Img 
-         * @static 
-         */ 
-        public static function img($src = null, $alt = null)
-        {
-            return \Spatie\Html\Html::img($src, $alt);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Spatie\Html\HtmlElement|\Spatie\Html\iterable|string|null $contents
-         * @param string|null $for
-         * @return \Spatie\Html\Elements\Label 
-         * @static 
-         */ 
-        public static function label($contents = null, $for = null)
-        {
-            return \Spatie\Html\Html::label($contents, $for);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Spatie\Html\HtmlElement|string|null $contents
-         * @return \Spatie\Html\Elements\Legend 
-         * @static 
-         */ 
-        public static function legend($contents = null)
-        {
-            return \Spatie\Html\Html::legend($contents);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $email
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\A 
-         * @static 
-         */ 
-        public static function mailto($email, $text = null)
-        {
-            return \Spatie\Html\Html::mailto($email, $text);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param \Spatie\Html\iterable $options
-         * @param string|\Spatie\Html\iterable|null $value
-         * @return \Spatie\Html\Elements\Select 
-         * @static 
-         */ 
-        public static function multiselect($name = null, $options = array(), $value = null)
-        {
-            return \Spatie\Html\Html::multiselect($name, $options, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $text
-         * @param string|null $value
-         * @param bool $selected
-         * @return \Spatie\Html\Elements\Option 
-         * @static 
-         */ 
-        public static function option($text = null, $value = null, $selected = false)
-        {
-            return \Spatie\Html\Html::option($text, $value, $selected);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function password($name = null)
-        {
-            return \Spatie\Html\Html::password($name);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param bool $checked
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function radio($name = null, $checked = false, $value = null)
-        {
-            return \Spatie\Html\Html::radio($name, $checked, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param \Spatie\Html\iterable $options
-         * @param string|\Spatie\Html\iterable|null $value
-         * @return \Spatie\Html\Elements\Select 
-         * @static 
-         */ 
-        public static function select($name = null, $options = array(), $value = null)
-        {
-            return \Spatie\Html\Html::select($name, $options, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param \Spatie\Html\HtmlElement|string|null $contents
-         * @return \Spatie\Html\Elements\Span 
-         * @static 
-         */ 
-        public static function span($contents = null)
-        {
-            return \Spatie\Html\Html::span($contents);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\Button 
-         * @static 
-         */ 
-        public static function submit($text = null)
-        {
-            return \Spatie\Html\Html::submit($text);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\Button 
-         * @static 
-         */ 
-        public static function reset($text = null)
-        {
-            return \Spatie\Html\Html::reset($text);
-        }
-        
-        /**
-         * 
-         *
-         * @param string $number
-         * @param string|null $text
-         * @return \Spatie\Html\Elements\A 
-         * @static 
-         */ 
-        public static function tel($number, $text = null)
-        {
-            return \Spatie\Html\Html::tel($number, $text);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function text($name = null, $value = null)
-        {
-            return \Spatie\Html\Html::text($name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @return \Spatie\Html\Elements\File 
-         * @static 
-         */ 
-        public static function file($name = null)
-        {
-            return \Spatie\Html\Html::file($name);
-        }
-        
-        /**
-         * 
-         *
-         * @param string|null $name
-         * @param string|null $value
-         * @return \Spatie\Html\Elements\Textarea 
-         * @static 
-         */ 
-        public static function textarea($name = null, $value = null)
-        {
-            return \Spatie\Html\Html::textarea($name, $value);
-        }
-        
-        /**
-         * 
-         *
-         * @return \Spatie\Html\Elements\Input 
-         * @static 
-         */ 
-        public static function token()
-        {
-            return \Spatie\Html\Html::token();
-        }
-        
-        /**
-         * 
-         *
-         * @param \ArrayAccess|array $model
-         * @return $this 
-         * @static 
-         */ 
-        public static function model($model)
-        {
-            return \Spatie\Html\Html::model($model);
-        }
-        
-        /**
-         * 
-         *
-         * @param \ArrayAccess|array $model
-         * @param string|null $method
-         * @param string|null $action
-         * @return \Spatie\Html\Elements\Form 
-         * @static 
-         */ 
-        public static function modelForm($model, $method = 'POST', $action = null)
-        {
-            return \Spatie\Html\Html::modelForm($model, $method, $action);
-        }
-        
-        /**
-         * 
-         *
-         * @return $this 
-         * @static 
-         */ 
-        public static function endModel()
-        {
-            return \Spatie\Html\Html::endModel();
-        }
-        
-        /**
-         * 
-         *
-         * @return \Illuminate\Contracts\Support\Htmlable 
-         * @static 
-         */ 
-        public static function closeModelForm()
-        {
-            return \Spatie\Html\Html::closeModelForm();
-        }
-        
-        /**
-         * Retrieve the value from the current session or assigned model. This is
-         * a public alias for `old`.
-         *
-         * @param string $name
-         * @param mixed $value
-         * @return mixed 
-         * @static 
-         */ 
-        public static function value($name, $default = null)
-        {
-            return \Spatie\Html\Html::value($name, $default);
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-            \Spatie\Html\Html::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin)
-        {
-            \Spatie\Html\Html::mixin($mixin);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function hasMacro($name)
-        {
-            return \Spatie\Html\Html::hasMacro($name);
-        }
-         
-    }
- 
-}
-
-namespace Intervention\Image\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Image {
-        
-        /**
-         * Overrides configuration settings
-         *
-         * @param array $config
-         * @return self 
-         * @static 
-         */ 
-        public static function configure($config = array())
-        {
-            return \Intervention\Image\ImageManager::configure($config);
-        }
-        
-        /**
-         * Initiates an Image instance from different input types
-         *
-         * @param mixed $data
-         * @return \Intervention\Image\Image 
-         * @static 
-         */ 
-        public static function make($data)
-        {
-            return \Intervention\Image\ImageManager::make($data);
-        }
-        
-        /**
-         * Creates an empty image canvas
-         *
-         * @param int $width
-         * @param int $height
-         * @param mixed $background
-         * @return \Intervention\Image\Image 
-         * @static 
-         */ 
-        public static function canvas($width, $height, $background = null)
-        {
-            return \Intervention\Image\ImageManager::canvas($width, $height, $background);
-        }
-        
-        /**
-         * Create new cached image and run callback
-         * (requires additional package intervention/imagecache)
-         *
-         * @param \Closure $callback
-         * @param int $lifetime
-         * @param boolean $returnObj
-         * @return \Image 
-         * @static 
-         */ 
-        public static function cache($callback, $lifetime = null, $returnObj = false)
-        {
-            return \Intervention\Image\ImageManager::cache($callback, $lifetime, $returnObj);
         }
          
     }
@@ -16985,11 +16987,11 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
-    class Debugbar extends \Barryvdh\Debugbar\Facade {}
+    class Image extends \Intervention\Image\Facades\Image {}
 
     class Html extends \Spatie\Html\Facades\Html {}
 
-    class Image extends \Intervention\Image\Facades\Image {}
+    class Debugbar extends \Barryvdh\Debugbar\Facade {}
  
 }
 

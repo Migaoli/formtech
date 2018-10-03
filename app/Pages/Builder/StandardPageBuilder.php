@@ -27,11 +27,10 @@ class StandardPageBuilder
         $this->theme = config('cms.theme');
     }
 
-
     public function build(StandardPage $page): View
     {
         return $this
-            ->getView('pages.standard_page')
+            ->getView('layouts.' . $page->layout())
             ->with('builder', $this)
             ->with('page', $page);
     }

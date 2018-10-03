@@ -12,6 +12,11 @@ class StandardPage extends Page
 
     protected $with = ['blocks'];
 
+    public function layout(): string
+    {
+        return $this->getData('layout');
+    }
+
     public function fields(): array
     {
         return array_merge(parent::fields(), [
