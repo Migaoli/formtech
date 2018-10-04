@@ -35,9 +35,11 @@ class PageBlockController extends Controller
 
     public function index($pageId)
     {
-        $page = StandardPage::with('blocks')->findOrFail($pageId);
+        $page = StandardPage::findOrFail($pageId);
 
-        return response()->json($page->blocks);
+        $blocks = Block::where('page_id', $pageId)->get();
+
+        return response()->json($blocks);
     }
 
     public function get($pageId, $id)

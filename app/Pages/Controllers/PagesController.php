@@ -3,6 +3,7 @@
 namespace App\Pages\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Pages\ErrorPage;
 use App\Pages\MenuSeparator;
 use App\Pages\Page;
 use App\Pages\StandardPage;
@@ -31,7 +32,7 @@ class PagesController extends Controller
     public function create(Request $request)
     {
         $payload = $request->validate([
-            'type' => 'required|in:standard_page,menu_separator',
+            'type' => 'required|in:standard_page,menu_separator,error_page',
             'title' => 'required|string',
             'slug' => ['required', 'alpha_dash',],
             'in_menu' => ['required', 'boolean'],
@@ -47,6 +48,9 @@ class PagesController extends Controller
                 break;
             case 'menu_separator':
                 $page = MenuSeparator::create($payload);
+                break;
+            case 'error_page':
+                $page = ErrorPage::create($payload);
                 break;
         }
 

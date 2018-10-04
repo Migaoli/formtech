@@ -5,13 +5,9 @@ namespace App\Pages;
 
 
 use App\Fields\Select;
-use App\Pages\Blocks\Block;
 
 class StandardPage extends Page
 {
-
-    protected $with = ['blocks'];
-
     public function layout(): string
     {
         return $this->getData('layout');
@@ -33,16 +29,5 @@ class StandardPage extends Page
                 return $layout['name'];
             })
             ->toArray();
-    }
-
-
-    public function addBlock(Block $block)
-    {
-        $this->blocks()->save($block);
-    }
-
-    public function blocks()
-    {
-        return $this->hasMany(Block::class, 'page_id');
     }
 }

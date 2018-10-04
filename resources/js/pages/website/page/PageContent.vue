@@ -44,6 +44,7 @@
         data() {
             return {
                 saving: false,
+                original: [],
                 blocks: [],
                 showCreateBlockDialog: false,
                 blockDefinition: null,
@@ -52,10 +53,8 @@
         },
 
         watch: {
-            '$store.state.page.page.blocks': function () {
-                this.$nextTick(() => {
-                    this.reset();
-                });
+            '$route.params.id': function () {
+                this.fetchContent();
             },
         },
 
@@ -70,13 +69,21 @@
             },
 
             isDirty() {
-                return !_.isEqual(this.page.blocks, this.blocks);
+                return !_.isEqual(this.original, this.blocks);
             }
         },
 
         methods: {
             reset() {
-                this.blocks = this.$copyObject(this.page.blocks);
+                //this.blocks = this.$copyObject(this.original);
+            },
+
+            fetchContent() {
+                axios.get(`api/pages/${this.$route.params.id}/blocks`)
+                    .then(response => {
+                        this.original = response.data;
+                        this.blocks= this.$copyObject(this.original);
+                    });
             },
 
             saveOrder() {
@@ -102,7 +109,7 @@
         },
 
         created() {
-            this.reset();
+            this.fetchContent();
         }
     }
 </script>

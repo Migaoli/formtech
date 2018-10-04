@@ -57720,6 +57720,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     components: { SideBar: __WEBPACK_IMPORTED_MODULE_1__partials_SideBar___default.a, TopBar: __WEBPACK_IMPORTED_MODULE_0__partials_TopBar___default.a },
 
+    computed: {
+        breadcrumbs: function breadcrumbs() {
+            return this.$route.meta;
+        }
+    },
+
     created: function created() {
         this.$store.dispatch('themes/fetch');
         this.$store.dispatch('page/fetchTypes');
@@ -59608,8 +59614,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 
 
@@ -59628,6 +59632,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         modifiedColor: function modifiedColor() {
             return this.page.live_version ? 'bg-blue-dark' : 'bg-green-dark';
+        },
+        icon: function icon() {
+            if (this.page.type === 'App\\Pages\\StandardPage') {
+                return 'document';
+            }
+
+            if (this.page.type === 'App\\Pages\\MenuSeparator') {
+                return 'folder-outline';
+            }
+
+            if (this.page.type === 'App\\Pages\\ErrorPage') {
+                return 'exclamation-outline';
+            }
+
+            return '';
         }
     }
 });
@@ -59644,6 +59663,11 @@ var render = function() {
     "div",
     { staticClass: "flex justify-between items-center w-full" },
     [
+      _c("icon", {
+        staticClass: "w-4 h-4 text-tertiary",
+        attrs: { icon: _vm.icon }
+      }),
+      _vm._v(" "),
       _c(
         "router-link",
         {
@@ -59661,10 +59685,6 @@ var render = function() {
           )
         ]
       ),
-      _vm._v(" "),
-      _c("div", { staticClass: "text-secondary text-sm" }, [
-        _vm._v("\n        " + _vm._s(_vm.page.type) + "\n    ")
-      ]),
       _vm._v(" "),
       _c("div", { staticClass: "px-8 flex items-center" }, [
         _c(
@@ -59753,7 +59773,7 @@ var render = function() {
   return _c(
     "ul",
     {
-      staticClass: "list-reset page-tree-container pb-2",
+      staticClass: "list-reset page-tree-container py-2",
       attrs: { id: _vm.parent }
     },
     _vm._l(_vm.sortedPages, function(page) {
@@ -70674,6 +70694,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     data: function data() {
         return {
             saving: false,
+            original: [],
             blocks: [],
             showCreateBlockDialog: false,
             blockDefinition: null,
@@ -70683,12 +70704,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 
     watch: {
-        '$store.state.page.page.blocks': function $storeStatePagePageBlocks() {
-            var _this = this;
-
-            this.$nextTick(function () {
-                _this.reset();
-            });
+        '$route.params.id': function $routeParamsId() {
+            this.fetchContent();
         }
     },
 
@@ -70704,13 +70721,21 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             return this.page.type === 'App\\Pages\\StandardPage';
         },
         isDirty: function isDirty() {
-            return !__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEqual(this.page.blocks, this.blocks);
+            return !__WEBPACK_IMPORTED_MODULE_0_lodash___default.a.isEqual(this.original, this.blocks);
         }
     }),
 
     methods: {
         reset: function reset() {
-            this.blocks = this.$copyObject(this.page.blocks);
+            //this.blocks = this.$copyObject(this.original);
+        },
+        fetchContent: function fetchContent() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_axios___default.a.get('api/pages/' + this.$route.params.id + '/blocks').then(function (response) {
+                _this.original = response.data;
+                _this.blocks = _this.$copyObject(_this.original);
+            });
         },
         saveOrder: function saveOrder() {
             var _this2 = this;
@@ -70732,7 +70757,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     },
 
     created: function created() {
-        this.reset();
+        this.fetchContent();
     }
 });
 

@@ -19,9 +19,16 @@
 
         components: {SideBar, TopBar},
 
+        computed: {
+            breadcrumbs() {
+                return this.$route.meta;
+            }
+        },
+
+
         created() {
             this.$store.dispatch('themes/fetch');
             this.$store.dispatch('page/fetchTypes');
-        }
+        },
     }
 </script>

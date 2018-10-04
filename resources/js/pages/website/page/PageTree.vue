@@ -1,5 +1,5 @@
 <template>
-    <ul class="list-reset page-tree-container pb-2" :id="parent">
+    <ul class="list-reset page-tree-container py-2" :id="parent">
         <sortable-item v-for="page in sortedPages" :key="page.id">
             <li class="" :id="page.id">
                 <div class="flex items-center justify-between">

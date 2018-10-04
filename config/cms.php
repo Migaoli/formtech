@@ -25,6 +25,10 @@ return [
                     ['c1']
                 ]
             ]
+        ],
+        'templates' => [
+            'templates.404' => 'Not found error page',
+            'templates.500' => 'Server error page',
         ]
     ]
 ];

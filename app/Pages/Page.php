@@ -53,15 +53,13 @@ class Page extends Model
                     ]),
             ]),
 
-            new Row([
-                Checkbox::make('Show in menu', 'in_menu')
-                    ->rules(['required'])
-                    ->defaultTo(true),
+            Checkbox::make('Show in menu', 'in_menu')
+                ->rules(['required'])
+                ->defaultTo(true),
 
-                Checkbox::make('Published', 'published')
-                    ->rules(['required'])
-                    ->defaultTo(false),
-            ])
+            Checkbox::make('Published', 'published')
+                ->rules(['required'])
+                ->defaultTo(false),
         ];
     }
 
@@ -89,24 +87,6 @@ class Page extends Model
         }
 
         return data_get($data, $key, $default);
-    }
-
-    public function addSubPage(Page $page)
-    {
-        $this->subPages()->save($page);
-    }
-
-    public function subPages(): \Illuminate\Database\Eloquent\Relations\HasMany
-    {
-        return $this->hasMany(__CLASS__, 'parent_id');
-    }
-
-    public function blocksInContainer($container)
-    {
-        return $this->blocks
-            ->filter(function ($block) use ($container) {
-                return $block->container === $container;
-            });
     }
 
     public static function tree()

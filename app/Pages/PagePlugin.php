@@ -13,6 +13,7 @@ class PagePlugin extends ServiceProvider
     private $pages = [
         StandardPage::class,
         MenuSeparator::class,
+        ErrorPage::class,
     ];
 
     private $blocks = [
