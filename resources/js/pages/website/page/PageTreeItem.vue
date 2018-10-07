@@ -1,5 +1,5 @@
 <template>
-    <div class="flex justify-between items-center w-full">
+    <div class="flex justify-between items-center w-full page-tree-item" :data-id="page.id">
         <icon :icon="icon" class="w-4 h-4 text-tertiary"></icon>
         <router-link :to="{name: 'pages.view', params: {id: page.id}}"
                      class="no-underline w-full group">

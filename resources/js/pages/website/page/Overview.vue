@@ -1,32 +1,52 @@
 <template>
-    <div class="card px-2">
-        <div class="border-b mb-4 flex justify-between items-center">
-            <div class="uppercase tracking-wide px-2 py-4">Pages</div>
-            <dropdown-menu>
-                <button slot="activator"
-                        class="text-tertiary hover:text-blue"
-                        type="button">
-                    <icon icon="document-add" class="w-4 h-4"></icon>
-                </button>
-                <div class="bg-white shadow-md border rounded z-100 -mt-2">
-                    <div class="py-2 px-4 font-bold border-b">Create a new page</div>
-                    <ul class="list-reset">
-                        <li v-for="definition in pageTypes"
-                            class="py-2 px-4 text-secondary hover:text-brand cursor-pointer"
-                            @click="create(definition.name)">
-                            {{ definition.name }}
-                        </li>
-                    </ul>
-                </div>
-            </dropdown-menu>
+    <div>
+
+        <div class="card mb-8 px-2">
+            <div class="border-b mb-4 flex justify-between items-center">
+                <div class="uppercase tracking-wide px-2 py-4">Pages</div>
+                <dropdown-menu>
+                    <button slot="activator"
+                            class="text-tertiary hover:text-blue"
+                            type="button">
+                        <icon icon="document-add" class="w-4 h-4"></icon>
+                    </button>
+                    <div class="bg-white shadow-md border rounded z-100 -mt-2">
+                        <div class="py-2 px-4 font-bold border-b">Create a new page</div>
+                        <ul class="list-reset">
+                            <li v-for="definition in pageTypes"
+                                class="py-2 px-4 text-secondary hover:text-brand cursor-pointer"
+                                @click="create(definition.name)">
+                                {{ definition.name }}
+                            </li>
+                        </ul>
+                    </div>
+                </dropdown-menu>
+            </div>
+            <loading :loading="loading">
+                <sortable-container container-selector=".page-tree-container"
+                                    ref="sortableContainer"
+                                    @stop="movePage">
+                    <page-tree :pages="tree" ref="tree"></page-tree>
+                </sortable-container>
+            </loading>
         </div>
-        <loading :loading="loading">
-            <sortable-container container-selector=".page-tree-container"
-                                @stop="movePage">
-                <page-tree :pages="tree"></page-tree>
-            </sortable-container>
-        </loading>
+        <div class="flex justify-end" v-if="sorted">
+            <button class="btn btn-tertiary btn-default mr-4"
+                    type="button"
+                    :disable="loading"
+                    @click="resetOrder">
+                Cancel
+            </button>
+            <button class="btn btn-primary btn-blue"
+                    type="button"
+                    :disable="loading"
+                    @click="saveOrder"
+            >
+                Save
+            </button>
+        </div>
     </div>
+
 </template>
 
 <script>
@@ -47,6 +67,7 @@
             return {
                 loading: false,
                 pages: [],
+                sorted: false,
             }
         },
 
@@ -95,19 +116,29 @@
             },
 
             movePage(e) {
-                const newParentId = e.newContainer.id ? Number(e.newContainer.id) : null;
-                const oldParentId = e.oldContainer.id ? Number(e.oldContainer.id) : null;
-                const index = e.newIndex;
-                const pageId = Number(e.data.dragEvent.source.id);
+                this.sorted = true;
+                const parentId = e.newContainer.dataset.parent ? Number(e.newContainer.dataset.parent) : null;
+                const pageId = Number(e.data.dragEvent.source.dataset.id);
 
-                const page = this.findPage(pageId);
+                const $tree = this.$refs.tree.$el;
+                const $items = this.$refs.sortableContainer.sortable.getDraggableElementsForContainer($tree);
 
-                this.pages.filter(p => p.parent_id === newParentId)
-                    .filter(p => p.order >= index)
-                    .forEach(p => p.order++);
+                let index = 8;
+                $items.forEach(el => {
+                    this.findPage(Number(el.dataset.id)).order = index;
+                    index += 8;
+                });
 
-                page.parent_id = newParentId === 0 ? null : newParentId;
-                page.order = index;
+                this.findPage(pageId).parent_id = parentId;
+            },
+
+            resetOrder() {
+                this.sorted = false;
+                this.fetchPages();
+            },
+
+            saveOrder() {
+                this.loading = true;
 
                 const newTree = this.pages
                     .map(p => {
@@ -118,7 +149,17 @@
                         };
                     });
 
-                axios.put('api/pages', newTree);
+                axios.put('api/pages', newTree)
+                    .then(this.fetchPages)
+                    .then(() => {
+                        this.sorted = false;
+                        this.$flash.success("Saved site tree.");
+                    })
+                    .catch(() => {
+                        this.$flash.error("Could not save site tree.");
+                    })
+
+
             },
 
             findPage(id) {

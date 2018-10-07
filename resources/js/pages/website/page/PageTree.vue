@@ -1,7 +1,7 @@
 <template>
-    <ul class="list-reset page-tree-container py-2" :id="parent">
+    <ul class="list-reset page-tree-container py-2" :data-parent="parent">
         <sortable-item v-for="page in sortedPages" :key="page.id">
-            <li class="" :id="page.id">
+            <li class="" :data-id="page.id">
                 <div class="flex items-center justify-between">
                     <page-tree-item :page="page"/>
                     <sortable-handle>

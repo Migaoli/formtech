@@ -20,7 +20,7 @@
         mounted() {
             const container = this.containerSelector ? document.querySelectorAll(this.containerSelector) : this.$el;
 
-            new Sortable(container, {
+            this.sortable = new Sortable(container, {
                 draggable: `.${this.itemClass}`,
                 handle: `.${this.handleClass}`,
                 mirror: {

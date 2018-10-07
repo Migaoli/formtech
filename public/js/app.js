@@ -37955,17 +37955,32 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
+/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
 /******/ 		}
 /******/ 	};
 /******/
 /******/ 	// define __esModule on exports
 /******/ 	__webpack_require__.r = function(exports) {
+/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
+/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
+/******/ 		}
 /******/ 		Object.defineProperty(exports, '__esModule', { value: true });
+/******/ 	};
+/******/
+/******/ 	// create a fake namespace object
+/******/ 	// mode & 1: value is a module id, require it
+/******/ 	// mode & 2: merge all properties of value into the ns
+/******/ 	// mode & 4: return value when already ns object
+/******/ 	// mode & 8|1: behave like require
+/******/ 	__webpack_require__.t = function(value, mode) {
+/******/ 		if(mode & 1) value = __webpack_require__(value);
+/******/ 		if(mode & 8) return value;
+/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
+/******/ 		var ns = Object.create(null);
+/******/ 		__webpack_require__.r(ns);
+/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
+/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
+/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -38018,7 +38033,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _AbstractPlugin = __webpack_require__(59);
+var _AbstractPlugin = __webpack_require__(60);
 
 var _AbstractPlugin2 = _interopRequireDefault(_AbstractPlugin);
 
@@ -38037,7 +38052,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _closest = __webpack_require__(52);
+var _closest = __webpack_require__(51);
 
 Object.defineProperty(exports, 'closest', {
   enumerable: true,
@@ -38046,7 +38061,7 @@ Object.defineProperty(exports, 'closest', {
   }
 });
 
-var _requestNextAnimationFrame = __webpack_require__(50);
+var _requestNextAnimationFrame = __webpack_require__(49);
 
 Object.defineProperty(exports, 'requestNextAnimationFrame', {
   enumerable: true,
@@ -38068,7 +38083,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SensorEvent = __webpack_require__(45);
+var _SensorEvent = __webpack_require__(44);
 
 Object.keys(_SensorEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38091,7 +38106,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Sensor = __webpack_require__(48);
+var _Sensor = __webpack_require__(47);
 
 var _Sensor2 = _interopRequireDefault(_Sensor);
 
@@ -38110,7 +38125,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _DragEvent = __webpack_require__(15);
+var _DragEvent = __webpack_require__(14);
 
 Object.keys(_DragEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38122,7 +38137,7 @@ Object.keys(_DragEvent).forEach(function (key) {
   });
 });
 
-var _DraggableEvent = __webpack_require__(14);
+var _DraggableEvent = __webpack_require__(13);
 
 Object.keys(_DraggableEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38130,18 +38145,6 @@ Object.keys(_DraggableEvent).forEach(function (key) {
     enumerable: true,
     get: function () {
       return _DraggableEvent[key];
-    }
-  });
-});
-
-var _MirrorEvent = __webpack_require__(13);
-
-Object.keys(_MirrorEvent).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _MirrorEvent[key];
     }
   });
 });
@@ -38170,7 +38173,7 @@ Object.keys(_Sensors).forEach(function (key) {
   });
 });
 
-var _Draggable = __webpack_require__(38);
+var _Draggable = __webpack_require__(37);
 
 var _Draggable2 = _interopRequireDefault(_Draggable);
 
@@ -38198,7 +38201,7 @@ Object.defineProperty(exports, 'Sensor', {
   }
 });
 
-var _MouseSensor = __webpack_require__(47);
+var _MouseSensor = __webpack_require__(46);
 
 Object.defineProperty(exports, 'MouseSensor', {
   enumerable: true,
@@ -38207,7 +38210,7 @@ Object.defineProperty(exports, 'MouseSensor', {
   }
 });
 
-var _TouchSensor = __webpack_require__(44);
+var _TouchSensor = __webpack_require__(43);
 
 Object.defineProperty(exports, 'TouchSensor', {
   enumerable: true,
@@ -38216,7 +38219,7 @@ Object.defineProperty(exports, 'TouchSensor', {
   }
 });
 
-var _DragSensor = __webpack_require__(42);
+var _DragSensor = __webpack_require__(41);
 
 Object.defineProperty(exports, 'DragSensor', {
   enumerable: true,
@@ -38225,7 +38228,7 @@ Object.defineProperty(exports, 'DragSensor', {
   }
 });
 
-var _ForceTouchSensor = __webpack_require__(40);
+var _ForceTouchSensor = __webpack_require__(39);
 
 Object.defineProperty(exports, 'ForceTouchSensor', {
   enumerable: true,
@@ -38259,7 +38262,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SnappableEvent = __webpack_require__(19);
+var _SnappableEvent = __webpack_require__(18);
 
 Object.keys(_SnappableEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38282,7 +38285,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _CollidableEvent = __webpack_require__(24);
+var _CollidableEvent = __webpack_require__(23);
 
 Object.keys(_CollidableEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38305,7 +38308,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SortableEvent = __webpack_require__(28);
+var _SortableEvent = __webpack_require__(27);
 
 Object.keys(_SortableEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38328,7 +38331,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _SwappableEvent = __webpack_require__(31);
+var _SwappableEvent = __webpack_require__(30);
 
 Object.keys(_SwappableEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38351,7 +38354,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _DroppableEvent = __webpack_require__(34);
+var _DroppableEvent = __webpack_require__(33);
 
 Object.keys(_DroppableEvent).forEach(function (key) {
   if (key === "default" || key === "__esModule") return;
@@ -38374,7 +38377,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Announcement = __webpack_require__(61);
+var _Announcement = __webpack_require__(62);
 
 Object.defineProperty(exports, 'Announcement', {
   enumerable: true,
@@ -38389,7 +38392,7 @@ Object.defineProperty(exports, 'defaultAnnouncementOptions', {
   }
 });
 
-var _Focusable = __webpack_require__(58);
+var _Focusable = __webpack_require__(59);
 
 Object.defineProperty(exports, 'Focusable', {
   enumerable: true,
@@ -38398,7 +38401,7 @@ Object.defineProperty(exports, 'Focusable', {
   }
 });
 
-var _Mirror = __webpack_require__(56);
+var _Mirror = __webpack_require__(57);
 
 Object.defineProperty(exports, 'Mirror', {
   enumerable: true,
@@ -38413,7 +38416,7 @@ Object.defineProperty(exports, 'defaultMirrorOptions', {
   }
 });
 
-var _Scrollable = __webpack_require__(54);
+var _Scrollable = __webpack_require__(53);
 
 Object.defineProperty(exports, 'Scrollable', {
   enumerable: true,
@@ -38441,29 +38444,6 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _MirrorEvent = __webpack_require__(62);
-
-Object.keys(_MirrorEvent).forEach(function (key) {
-  if (key === "default" || key === "__esModule") return;
-  Object.defineProperty(exports, key, {
-    enumerable: true,
-    get: function () {
-      return _MirrorEvent[key];
-    }
-  });
-});
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
 var _DraggableEvent = __webpack_require__(63);
 
 Object.keys(_DraggableEvent).forEach(function (key) {
@@ -38477,7 +38457,7 @@ Object.keys(_DraggableEvent).forEach(function (key) {
 });
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38500,7 +38480,7 @@ Object.keys(_DragEvent).forEach(function (key) {
 });
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38526,11 +38506,13 @@ const onSortableSorted = Symbol('onSortableSorted');
  * @property {Object} defaultOptions
  * @property {Number} defaultOptions.duration
  * @property {String} defaultOptions.easingFunction
+ * @property {Boolean} defaultOptions.horizontal
  * @type {Object}
  */
 const defaultOptions = exports.defaultOptions = {
   duration: 150,
-  easingFunction: 'ease-in-out'
+  easingFunction: 'ease-in-out',
+  horizontal: false
 };
 
 /**
@@ -38612,26 +38594,32 @@ class SwapAnimation extends _AbstractPlugin2.default {
 
 exports.default = SwapAnimation; /**
                                   * Animates two elements
-                                  * @param {HTMLElement} top
-                                  * @param {HTMLElement} bottom
+                                  * @param {HTMLElement} from
+                                  * @param {HTMLElement} to
                                   * @param {Object} options
                                   * @param {Number} options.duration
                                   * @param {String} options.easingFunction
+                                  * @param {String} options.horizontal
                                   * @private
                                   */
 
-function animate(top, bottom, { duration, easingFunction }) {
-  const height = top.offsetHeight;
-
-  for (const element of [top, bottom]) {
+function animate(from, to, { duration, easingFunction, horizontal }) {
+  for (const element of [from, to]) {
     element.style.pointerEvents = 'none';
   }
 
-  top.style.transform = `translate3d(0, ${height}px, 0)`;
-  bottom.style.transform = `translate3d(0, -${height}px, 0)`;
+  if (horizontal) {
+    const width = from.offsetWidth;
+    from.style.transform = `translate3d(${width}px, 0, 0)`;
+    to.style.transform = `translate3d(-${width}px, 0, 0)`;
+  } else {
+    const height = from.offsetHeight;
+    from.style.transform = `translate3d(0, ${height}px, 0)`;
+    to.style.transform = `translate3d(0, -${height}px, 0)`;
+  }
 
   requestAnimationFrame(() => {
-    for (const element of [top, bottom]) {
+    for (const element of [from, to]) {
       element.addEventListener('transitionend', resetElementOnTransitionEnd);
       element.style.transition = `transform ${duration}ms ${easingFunction}`;
       element.style.transform = '';
@@ -38651,7 +38639,7 @@ function resetElementOnTransitionEnd(event) {
 }
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38662,7 +38650,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.defaultOptions = undefined;
 
-var _SwapAnimation = __webpack_require__(16);
+var _SwapAnimation = __webpack_require__(15);
 
 var _SwapAnimation2 = _interopRequireDefault(_SwapAnimation);
 
@@ -38672,7 +38660,7 @@ exports.default = _SwapAnimation2.default;
 exports.defaultOptions = _SwapAnimation.defaultOptions;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38694,6 +38682,8 @@ const onDragStart = Symbol('onDragStart');
 const onDragStop = Symbol('onDragStop');
 const onDragOver = Symbol('onDragOver');
 const onDragOut = Symbol('onDragOut');
+const onMirrorCreated = Symbol('onMirrorCreated');
+const onMirrorDestroy = Symbol('onMirrorDestroy');
 
 /**
  * Snappable plugin which snaps draggable elements into place
@@ -38713,28 +38703,35 @@ class Snappable extends _AbstractPlugin2.default {
     /**
      * Keeps track of the first source element
      * @property {HTMLElement|null} firstSource
-     * @type {HTMLElement|null}
      */
     this.firstSource = null;
+
+    /**
+     * Keeps track of the mirror element
+     * @property {HTMLElement} mirror
+     */
+    this.mirror = null;
 
     this[onDragStart] = this[onDragStart].bind(this);
     this[onDragStop] = this[onDragStop].bind(this);
     this[onDragOver] = this[onDragOver].bind(this);
     this[onDragOut] = this[onDragOut].bind(this);
+    this[onMirrorCreated] = this[onMirrorCreated].bind(this);
+    this[onMirrorDestroy] = this[onMirrorDestroy].bind(this);
   }
 
   /**
    * Attaches plugins event listeners
    */
   attach() {
-    this.draggable.on('drag:start', this[onDragStart]).on('drag:stop', this[onDragStop]).on('drag:over', this[onDragOver]).on('drag:out', this[onDragOut]).on('droppable:over', this[onDragOver]).on('droppable:out', this[onDragOut]);
+    this.draggable.on('drag:start', this[onDragStart]).on('drag:stop', this[onDragStop]).on('drag:over', this[onDragOver]).on('drag:out', this[onDragOut]).on('droppable:over', this[onDragOver]).on('droppable:out', this[onDragOut]).on('mirror:created', this[onMirrorCreated]).on('mirror:destroy', this[onMirrorDestroy]);
   }
 
   /**
    * Detaches plugins event listeners
    */
   detach() {
-    this.draggable.off('drag:start', this[onDragStart]).off('drag:stop', this[onDragStop]).off('drag:over', this[onDragOver]).off('drag:out', this[onDragOut]).off('droppable:over', this[onDragOver]).off('droppable:out', this[onDragOut]);
+    this.draggable.off('drag:start', this[onDragStart]).off('drag:stop', this[onDragStop]).off('drag:over', this[onDragOver]).off('drag:out', this[onDragOut]).off('droppable:over', this[onDragOver]).off('droppable:out', this[onDragOut]).off('mirror:created', this[onMirrorCreated]).off('mirror:destroy', this[onMirrorDestroy]);
   }
 
   /**
@@ -38770,7 +38767,6 @@ class Snappable extends _AbstractPlugin2.default {
     }
 
     const source = event.source || event.dragEvent.source;
-    const mirror = event.mirror || event.dragEvent.mirror;
 
     if (source === this.firstSource) {
       this.firstSource = null;
@@ -38788,8 +38784,8 @@ class Snappable extends _AbstractPlugin2.default {
       return;
     }
 
-    if (mirror) {
-      mirror.style.display = 'none';
+    if (this.mirror) {
+      this.mirror.style.display = 'none';
     }
 
     source.classList.remove(this.draggable.getClassNameFor('source:dragging'));
@@ -38811,7 +38807,6 @@ class Snappable extends _AbstractPlugin2.default {
       return;
     }
 
-    const mirror = event.mirror || event.dragEvent.mirror;
     const source = event.source || event.dragEvent.source;
 
     const snapOutEvent = new _SnappableEvent.SnapOutEvent({
@@ -38825,17 +38820,35 @@ class Snappable extends _AbstractPlugin2.default {
       return;
     }
 
-    if (mirror) {
-      mirror.style.display = '';
+    if (this.mirror) {
+      this.mirror.style.display = '';
     }
 
     source.classList.add(this.draggable.getClassNameFor('source:dragging'));
+  }
+
+  /**
+   * Mirror created handler
+   * @param {MirrorCreatedEvent} mirrorEvent
+   * @private
+   */
+  [onMirrorCreated]({ mirror }) {
+    this.mirror = mirror;
+  }
+
+  /**
+   * Mirror destroy handler
+   * @param {MirrorDestroyEvent} mirrorEvent
+   * @private
+   */
+  [onMirrorDestroy]() {
+    this.mirror = null;
   }
 }
 exports.default = Snappable;
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38906,7 +38919,7 @@ SnapOutEvent.type = 'snap:out';
 SnapOutEvent.cancelable = true;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38928,7 +38941,7 @@ Object.keys(_SnappableEvent).forEach(function (key) {
   });
 });
 
-var _Snappable = __webpack_require__(18);
+var _Snappable = __webpack_require__(17);
 
 var _Snappable2 = _interopRequireDefault(_Snappable);
 
@@ -38937,7 +38950,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Snappable2.default;
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -38958,6 +38971,8 @@ var _utils = __webpack_require__(2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+const onMirrorCreated = Symbol('onMirrorCreated');
+const onMirrorDestroy = Symbol('onMirrorDestroy');
 const onDragOver = Symbol('onDragOver');
 const resize = Symbol('resize');
 
@@ -38990,6 +39005,28 @@ class ResizeMirror extends _AbstractPlugin2.default {
      */
     this.options = _extends({}, defaultOptions, this.getOptions());
 
+    /**
+     * ResizeMirror remembers the last width when resizing the mirror
+     * to avoid additional writes to the DOM
+     * @property {number} lastWidth
+     */
+    this.lastWidth = 0;
+
+    /**
+     * ResizeMirror remembers the last height when resizing the mirror
+     * to avoid additional writes to the DOM
+     * @property {number} lastHeight
+     */
+    this.lastHeight = 0;
+
+    /**
+     * Keeps track of the mirror element
+     * @property {HTMLElement} mirror
+     */
+    this.mirror = null;
+
+    this[onMirrorCreated] = this[onMirrorCreated].bind(this);
+    this[onMirrorDestroy] = this[onMirrorDestroy].bind(this);
     this[onDragOver] = this[onDragOver].bind(this);
   }
 
@@ -38997,16 +39034,14 @@ class ResizeMirror extends _AbstractPlugin2.default {
    * Attaches plugins event listeners
    */
   attach() {
-    this.draggable.on('drag:over', this[onDragOver]);
-    this.draggable.on('drag:over:container', this[onDragOver]);
+    this.draggable.on('mirror:created', this[onMirrorCreated]).on('drag:over', this[onDragOver]).on('drag:over:container', this[onDragOver]);
   }
 
   /**
    * Detaches plugins event listeners
    */
   detach() {
-    this.draggable.off('drag:over', this[onDragOver]);
-    this.draggable.off('drag:over:container', this[onDragOver]);
+    this.draggable.off('mirror:created', this[onMirrorCreated]).off('mirror:destroy', this[onMirrorDestroy]).off('drag:over', this[onDragOver]).off('drag:over:container', this[onDragOver]);
   }
 
   /**
@@ -39015,6 +39050,24 @@ class ResizeMirror extends _AbstractPlugin2.default {
    */
   getOptions() {
     return this.draggable.options.resizeMirror || {};
+  }
+
+  /**
+   * Mirror created handler
+   * @param {MirrorCreatedEvent} mirrorEvent
+   * @private
+   */
+  [onMirrorCreated]({ mirror }) {
+    this.mirror = mirror;
+  }
+
+  /**
+   * Mirror destroy handler
+   * @param {MirrorDestroyEvent} mirrorEvent
+   * @private
+   */
+  [onMirrorDestroy]() {
+    this.mirror = null;
   }
 
   /**
@@ -39031,11 +39084,13 @@ class ResizeMirror extends _AbstractPlugin2.default {
    * @param {DragOverEvent | DragOverContainer} dragEvent
    * @private
    */
-  [resize](dragEvent) {
+  [resize]({ overContainer, over }) {
     requestAnimationFrame(() => {
-      dragEvent.overContainer.appendChild(dragEvent.mirror);
+      if (this.mirror.parentNode !== overContainer) {
+        overContainer.appendChild(this.mirror);
+      }
 
-      const overElement = dragEvent.over || this.draggable.getDraggableElementsForContainer(dragEvent.overContainer)[0];
+      const overElement = over || this.draggable.getDraggableElementsForContainer(overContainer)[0];
 
       if (!overElement) {
         return;
@@ -39043,8 +39098,16 @@ class ResizeMirror extends _AbstractPlugin2.default {
 
       (0, _utils.requestNextAnimationFrame)(() => {
         const overRect = overElement.getBoundingClientRect();
-        dragEvent.mirror.style.width = `${overRect.width}px`;
-        dragEvent.mirror.style.height = `${overRect.height}px`;
+
+        if (this.lastHeight === overRect.height && this.lastWidth === overRect.width) {
+          return;
+        }
+
+        this.mirror.style.width = `${overRect.width}px`;
+        this.mirror.style.height = `${overRect.height}px`;
+
+        this.lastWidth = overRect.width;
+        this.lastHeight = overRect.height;
       });
     });
   }
@@ -39052,7 +39115,7 @@ class ResizeMirror extends _AbstractPlugin2.default {
 exports.default = ResizeMirror;
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39063,7 +39126,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.defaultOptions = undefined;
 
-var _ResizeMirror = __webpack_require__(21);
+var _ResizeMirror = __webpack_require__(20);
 
 var _ResizeMirror2 = _interopRequireDefault(_ResizeMirror);
 
@@ -39073,7 +39136,7 @@ exports.default = _ResizeMirror2.default;
 exports.defaultOptions = _ResizeMirror.defaultOptions;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39248,7 +39311,7 @@ class Collidable extends _AbstractPlugin2.default {
 exports.default = Collidable;
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39329,7 +39392,7 @@ exports.CollidableOutEvent = CollidableOutEvent;
 CollidableOutEvent.type = 'collidable:out';
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39351,7 +39414,7 @@ Object.keys(_CollidableEvent).forEach(function (key) {
   });
 });
 
-var _Collidable = __webpack_require__(23);
+var _Collidable = __webpack_require__(22);
 
 var _Collidable2 = _interopRequireDefault(_Collidable);
 
@@ -39360,7 +39423,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Collidable2.default;
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39370,7 +39433,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Collidable = __webpack_require__(25);
+var _Collidable = __webpack_require__(24);
 
 Object.defineProperty(exports, 'Collidable', {
   enumerable: true,
@@ -39379,7 +39442,7 @@ Object.defineProperty(exports, 'Collidable', {
   }
 });
 
-var _ResizeMirror = __webpack_require__(22);
+var _ResizeMirror = __webpack_require__(21);
 
 Object.defineProperty(exports, 'ResizeMirror', {
   enumerable: true,
@@ -39394,7 +39457,7 @@ Object.defineProperty(exports, 'defaultResizeMirrorOptions', {
   }
 });
 
-var _Snappable = __webpack_require__(20);
+var _Snappable = __webpack_require__(19);
 
 Object.defineProperty(exports, 'Snappable', {
   enumerable: true,
@@ -39403,7 +39466,7 @@ Object.defineProperty(exports, 'Snappable', {
   }
 });
 
-var _SwapAnimation = __webpack_require__(17);
+var _SwapAnimation = __webpack_require__(16);
 
 Object.defineProperty(exports, 'SwapAnimation', {
   enumerable: true,
@@ -39421,7 +39484,7 @@ Object.defineProperty(exports, 'defaultSwapAnimationOptions', {
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39731,7 +39794,7 @@ function moveOutsideContainer(source, over, overContainer) {
 }
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39946,7 +40009,7 @@ exports.SortableStopEvent = SortableStopEvent;
 SortableStopEvent.type = 'sortable:stop';
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -39968,7 +40031,7 @@ Object.keys(_SortableEvent).forEach(function (key) {
   });
 });
 
-var _Sortable = __webpack_require__(27);
+var _Sortable = __webpack_require__(26);
 
 var _Sortable2 = _interopRequireDefault(_Sortable);
 
@@ -39977,7 +40040,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Sortable2.default;
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40157,7 +40220,7 @@ function swap(source, over) {
 }
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40270,7 +40333,7 @@ exports.SwappableStopEvent = SwappableStopEvent;
 SwappableStopEvent.type = 'swappable:stop';
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40292,7 +40355,7 @@ Object.keys(_SwappableEvent).forEach(function (key) {
   });
 });
 
-var _Swappable = __webpack_require__(30);
+var _Swappable = __webpack_require__(29);
 
 var _Swappable2 = _interopRequireDefault(_Swappable);
 
@@ -40301,7 +40364,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Swappable2.default;
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40608,7 +40671,7 @@ class Droppable extends _Draggable2.default {
 exports.default = Droppable;
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40735,7 +40798,7 @@ DroppableStopEvent.type = 'droppable:stop';
 DroppableStopEvent.cancelable = true;
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40757,7 +40820,7 @@ Object.keys(_DroppableEvent).forEach(function (key) {
   });
 });
 
-var _Droppable = __webpack_require__(33);
+var _Droppable = __webpack_require__(32);
 
 var _Droppable2 = _interopRequireDefault(_Droppable);
 
@@ -40766,7 +40829,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Droppable2.default;
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40855,7 +40918,7 @@ class Emitter {
 exports.default = Emitter;
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40865,7 +40928,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Emitter = __webpack_require__(36);
+var _Emitter = __webpack_require__(35);
 
 var _Emitter2 = _interopRequireDefault(_Emitter);
 
@@ -40874,7 +40937,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Emitter2.default;
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -40891,17 +40954,15 @@ var _utils = __webpack_require__(2);
 
 var _Plugins = __webpack_require__(12);
 
-var _Emitter = __webpack_require__(37);
+var _Emitter = __webpack_require__(36);
 
 var _Emitter2 = _interopRequireDefault(_Emitter);
 
 var _Sensors = __webpack_require__(6);
 
-var _DraggableEvent = __webpack_require__(14);
+var _DraggableEvent = __webpack_require__(13);
 
-var _DragEvent = __webpack_require__(15);
-
-var _MirrorEvent = __webpack_require__(13);
+var _DragEvent = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -40909,7 +40970,6 @@ const onDragStart = Symbol('onDragStart');
 const onDragMove = Symbol('onDragMove');
 const onDragStop = Symbol('onDragStop');
 const onDragPressure = Symbol('onDragPressure');
-const getAppendableContainer = Symbol('getAppendableContainer');
 
 /**
  * @const {Object} defaultAnnouncements
@@ -41021,6 +41081,9 @@ class Draggable {
     const draggableInitializedEvent = new _DraggableEvent.DraggableInitializedEvent({
       draggable: this
     });
+
+    this.on('mirror:created', ({ mirror }) => this.mirror = mirror);
+    this.on('mirror:destroy', () => this.mirror = null);
 
     this.trigger(draggableInitializedEvent);
   }
@@ -41225,7 +41288,7 @@ class Draggable {
    */
   [onDragStart](event) {
     const sensorEvent = getSensorEvent(event);
-    const { target, container, originalEvent } = sensorEvent;
+    const { target, container } = sensorEvent;
 
     if (!this.containers.includes(container)) {
       return;
@@ -41251,56 +41314,12 @@ class Draggable {
       this.lastPlacedContainer.classList.remove(this.getClassNameFor('container:placed'));
     }
 
-    this.dragging = true;
-
     this.source = this.originalSource.cloneNode(true);
-
-    const mirrorCreateEvent = new _MirrorEvent.MirrorCreateEvent({
-      source: this.source,
-      originalSource: this.originalSource,
-      sourceContainer: container,
-      sensorEvent
-    });
-
-    this.trigger(mirrorCreateEvent);
-
-    if (!isDragEvent(originalEvent) && !mirrorCreateEvent.canceled()) {
-      const appendableContainer = this[getAppendableContainer]({ source: this.originalSource });
-      this.mirror = this.source.cloneNode(true);
-
-      const mirrorCreatedEvent = new _MirrorEvent.MirrorCreatedEvent({
-        source: this.source,
-        originalSource: this.originalSource,
-        mirror: this.mirror,
-        sourceContainer: container,
-        sensorEvent
-      });
-
-      const mirrorAttachedEvent = new _MirrorEvent.MirrorAttachedEvent({
-        source: this.source,
-        originalSource: this.originalSource,
-        mirror: this.mirror,
-        sourceContainer: container,
-        sensorEvent
-      });
-
-      this.trigger(mirrorCreatedEvent);
-      appendableContainer.appendChild(this.mirror);
-      this.trigger(mirrorAttachedEvent);
-    }
-
-    this.originalSource.classList.add(this.getClassNameFor('source:original'));
     this.originalSource.parentNode.insertBefore(this.source, this.originalSource);
-
     this.originalSource.style.display = 'none';
-    this.source.classList.add(this.getClassNameFor('source:dragging'));
-    this.sourceContainer.classList.add(this.getClassNameFor('container:dragging'));
-    document.body.classList.add(this.getClassNameFor('body:dragging'));
-    applyUserSelect(document.body, 'none');
 
     const dragEvent = new _DragEvent.DragStartEvent({
       source: this.source,
-      mirror: this.mirror,
       originalSource: this.originalSource,
       sourceContainer: container,
       sensorEvent
@@ -41308,30 +41327,28 @@ class Draggable {
 
     this.trigger(dragEvent);
 
+    this.dragging = !dragEvent.canceled();
+
     if (dragEvent.canceled()) {
-      this.dragging = false;
-
-      if (this.mirror) {
-        this.mirror.parentNode.removeChild(this.mirror);
-      }
-
       this.source.parentNode.removeChild(this.source);
       this.originalSource.style.display = null;
-
-      this.source.classList.remove(this.getClassNameFor('source:dragging'));
-      this.sourceContainer.classList.remove(this.getClassNameFor('container:dragging'));
-      document.body.classList.remove(this.getClassNameFor('body:dragging'));
-    } else {
-      requestAnimationFrame(() => {
-        // Temporary hack until we can correctly re-write the originalSource -> source
-        this[onDragMove](_extends({}, event, {
-          target: this.source,
-          detail: _extends({}, event.detail, {
-            target: this.source
-          })
-        }));
-      });
+      return;
     }
+
+    this.originalSource.classList.add(this.getClassNameFor('source:original'));
+    this.source.classList.add(this.getClassNameFor('source:dragging'));
+    this.sourceContainer.classList.add(this.getClassNameFor('container:dragging'));
+    document.body.classList.add(this.getClassNameFor('body:dragging'));
+    applyUserSelect(document.body, 'none');
+
+    requestAnimationFrame(() => {
+      const oldSensorEvent = getSensorEvent(event);
+      const newSensorEvent = oldSensorEvent.clone({ target: this.source });
+
+      this[onDragMove](_extends({}, event, {
+        detail: newSensorEvent
+      }));
+    });
   }
 
   /**
@@ -41350,7 +41367,6 @@ class Draggable {
 
     const dragMoveEvent = new _DragEvent.DragMoveEvent({
       source: this.source,
-      mirror: this.mirror,
       originalSource: this.originalSource,
       sourceContainer: container,
       sensorEvent
@@ -41360,18 +41376,6 @@ class Draggable {
 
     if (dragMoveEvent.canceled()) {
       sensorEvent.cancel();
-    }
-
-    if (this.mirror && !dragMoveEvent.canceled()) {
-      const mirrorMoveEvent = new _MirrorEvent.MirrorMoveEvent({
-        source: this.source,
-        mirror: this.mirror,
-        originalSource: this.originalSource,
-        sourceContainer: container,
-        sensorEvent
-      });
-
-      this.trigger(mirrorMoveEvent);
     }
 
     target = (0, _utils.closest)(target, this.options.draggable);
@@ -41385,7 +41389,6 @@ class Draggable {
     if (isLeavingDraggable) {
       const dragOutEvent = new _DragEvent.DragOutEvent({
         source: this.source,
-        mirror: this.mirror,
         originalSource: this.originalSource,
         sourceContainer: container,
         sensorEvent,
@@ -41401,7 +41404,6 @@ class Draggable {
     if (isLeavingContainer) {
       const dragOutContainerEvent = new _DragEvent.DragOutContainerEvent({
         source: this.source,
-        mirror: this.mirror,
         originalSource: this.originalSource,
         sourceContainer: container,
         sensorEvent,
@@ -41419,7 +41421,6 @@ class Draggable {
 
       const dragOverContainerEvent = new _DragEvent.DragOverContainerEvent({
         source: this.source,
-        mirror: this.mirror,
         originalSource: this.originalSource,
         sourceContainer: container,
         sensorEvent,
@@ -41436,7 +41437,6 @@ class Draggable {
 
       const dragOverEvent = new _DragEvent.DragOverEvent({
         source: this.source,
-        mirror: this.mirror,
         originalSource: this.originalSource,
         sourceContainer: container,
         sensorEvent,
@@ -41462,10 +41462,8 @@ class Draggable {
 
     this.dragging = false;
 
-    const sensorEvent = getSensorEvent(event);
     const dragStopEvent = new _DragEvent.DragStopEvent({
       source: this.source,
-      mirror: this.mirror,
       originalSource: this.originalSource,
       sensorEvent: event.sensorEvent,
       sourceContainer: this.sourceContainer
@@ -41493,21 +41491,6 @@ class Draggable {
       this.currentOverContainer.classList.remove(this.getClassNameFor('container:over'));
     }
 
-    if (this.mirror) {
-      const mirrorDestroyEvent = new _MirrorEvent.MirrorDestroyEvent({
-        source: this.source,
-        mirror: this.mirror,
-        sourceContainer: sensorEvent.container,
-        sensorEvent
-      });
-
-      this.trigger(mirrorDestroyEvent);
-
-      if (!mirrorDestroyEvent.canceled()) {
-        this.mirror.parentNode.removeChild(this.mirror);
-      }
-    }
-
     this.lastPlacedSource = this.originalSource;
     this.lastPlacedContainer = this.sourceContainer;
 
@@ -41525,7 +41508,6 @@ class Draggable {
     }, this.options.placedTimeout);
 
     this.source = null;
-    this.mirror = null;
     this.originalSource = null;
     this.currentOverContainer = null;
     this.currentOver = null;
@@ -41553,38 +41535,12 @@ class Draggable {
 
     this.trigger(dragPressureEvent);
   }
-
-  /**
-   * Returns appendable container for mirror based on the appendTo option
-   * @private
-   * @param {Object} options
-   * @param {HTMLElement} options.source - Current source
-   * @return {HTMLElement}
-   */
-  [getAppendableContainer]({ source }) {
-    const appendTo = this.options.appendTo;
-
-    if (typeof appendTo === 'string') {
-      return document.querySelector(appendTo);
-    } else if (appendTo instanceof HTMLElement) {
-      return appendTo;
-    } else if (typeof appendTo === 'function') {
-      return appendTo(source);
-    } else {
-      return source.parentNode;
-    }
-  }
 }
 
 exports.default = Draggable;
 Draggable.Plugins = { Announcement: _Plugins.Announcement, Focusable: _Plugins.Focusable, Mirror: _Plugins.Mirror, Scrollable: _Plugins.Scrollable };
 function getSensorEvent(event) {
   return event.detail;
-}
-
-function isDragEvent(event) {
-  return (/^drag/.test(event.type)
-  );
 }
 
 function applyUserSelect(element, value) {
@@ -41596,7 +41552,7 @@ function applyUserSelect(element, value) {
 }
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41838,7 +41794,7 @@ class ForceTouchSensor extends _Sensor2.default {
 exports.default = ForceTouchSensor;
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -41848,7 +41804,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _ForceTouchSensor = __webpack_require__(39);
+var _ForceTouchSensor = __webpack_require__(38);
 
 var _ForceTouchSensor2 = _interopRequireDefault(_ForceTouchSensor);
 
@@ -41857,7 +41813,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _ForceTouchSensor2.default;
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42123,7 +42079,7 @@ class DragSensor extends _Sensor2.default {
 exports.default = DragSensor;
 
 /***/ }),
-/* 42 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42133,7 +42089,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _DragSensor = __webpack_require__(41);
+var _DragSensor = __webpack_require__(40);
 
 var _DragSensor2 = _interopRequireDefault(_DragSensor);
 
@@ -42142,7 +42098,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _DragSensor2.default;
 
 /***/ }),
-/* 43 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42367,7 +42323,7 @@ function onContextMenu(event) {
 }
 
 /***/ }),
-/* 44 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42377,7 +42333,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _TouchSensor = __webpack_require__(43);
+var _TouchSensor = __webpack_require__(42);
 
 var _TouchSensor2 = _interopRequireDefault(_TouchSensor);
 
@@ -42386,7 +42342,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _TouchSensor2.default;
 
 /***/ }),
-/* 45 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42514,7 +42470,7 @@ exports.DragPressureSensorEvent = DragPressureSensorEvent;
 DragPressureSensorEvent.type = 'drag:pressure';
 
 /***/ }),
-/* 46 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42724,7 +42680,7 @@ function preventNativeDragStart(event) {
 }
 
 /***/ }),
-/* 47 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42734,7 +42690,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _MouseSensor = __webpack_require__(46);
+var _MouseSensor = __webpack_require__(45);
 
 var _MouseSensor2 = _interopRequireDefault(_MouseSensor);
 
@@ -42743,7 +42699,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _MouseSensor2.default;
 
 /***/ }),
-/* 48 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42849,7 +42805,7 @@ class Sensor {
 exports.default = Sensor;
 
 /***/ }),
-/* 49 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42866,7 +42822,7 @@ function requestNextAnimationFrame(callback) {
 }
 
 /***/ }),
-/* 50 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42876,7 +42832,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _requestNextAnimationFrame = __webpack_require__(49);
+var _requestNextAnimationFrame = __webpack_require__(48);
 
 var _requestNextAnimationFrame2 = _interopRequireDefault(_requestNextAnimationFrame);
 
@@ -42885,7 +42841,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _requestNextAnimationFrame2.default;
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42953,7 +42909,7 @@ function closest(element, value) {
 }
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -42963,7 +42919,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _closest = __webpack_require__(51);
+var _closest = __webpack_require__(50);
 
 var _closest2 = _interopRequireDefault(_closest);
 
@@ -42972,7 +42928,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _closest2.default;
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43294,7 +43250,7 @@ function getDocumentScrollingElement() {
 }
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43305,7 +43261,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.defaultOptions = undefined;
 
-var _Scrollable = __webpack_require__(53);
+var _Scrollable = __webpack_require__(52);
 
 var _Scrollable2 = _interopRequireDefault(_Scrollable);
 
@@ -43313,6 +43269,193 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _Scrollable2.default;
 exports.defaultOptions = _Scrollable.defaultOptions;
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.MirrorDestroyEvent = exports.MirrorMoveEvent = exports.MirrorAttachedEvent = exports.MirrorCreatedEvent = exports.MirrorCreateEvent = exports.MirrorEvent = undefined;
+
+var _AbstractEvent = __webpack_require__(0);
+
+var _AbstractEvent2 = _interopRequireDefault(_AbstractEvent);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Base mirror event
+ * @class MirrorEvent
+ * @module MirrorEvent
+ * @extends AbstractEvent
+ */
+class MirrorEvent extends _AbstractEvent2.default {
+  /**
+   * Draggables source element
+   * @property source
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get source() {
+    return this.data.source;
+  }
+
+  /**
+   * Draggables original source element
+   * @property originalSource
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get originalSource() {
+    return this.data.originalSource;
+  }
+
+  /**
+   * Draggables source container element
+   * @property sourceContainer
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get sourceContainer() {
+    return this.data.sourceContainer;
+  }
+
+  /**
+   * Sensor event
+   * @property sensorEvent
+   * @type {SensorEvent}
+   * @readonly
+   */
+  get sensorEvent() {
+    return this.data.sensorEvent;
+  }
+
+  /**
+   * Drag event
+   * @property dragEvent
+   * @type {DragEvent}
+   * @readonly
+   */
+  get dragEvent() {
+    return this.data.dragEvent;
+  }
+
+  /**
+   * Original event that triggered sensor event
+   * @property originalEvent
+   * @type {Event}
+   * @readonly
+   */
+  get originalEvent() {
+    if (this.sensorEvent) {
+      return this.sensorEvent.originalEvent;
+    }
+
+    return null;
+  }
+}
+
+exports.MirrorEvent = MirrorEvent; /**
+                                    * Mirror create event
+                                    * @class MirrorCreateEvent
+                                    * @module MirrorCreateEvent
+                                    * @extends MirrorEvent
+                                    */
+
+class MirrorCreateEvent extends MirrorEvent {}
+
+exports.MirrorCreateEvent = MirrorCreateEvent; /**
+                                                * Mirror created event
+                                                * @class MirrorCreatedEvent
+                                                * @module MirrorCreatedEvent
+                                                * @extends MirrorEvent
+                                                */
+
+MirrorCreateEvent.type = 'mirror:create';
+class MirrorCreatedEvent extends MirrorEvent {
+
+  /**
+   * Draggables mirror element
+   * @property mirror
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get mirror() {
+    return this.data.mirror;
+  }
+}
+
+exports.MirrorCreatedEvent = MirrorCreatedEvent; /**
+                                                  * Mirror attached event
+                                                  * @class MirrorAttachedEvent
+                                                  * @module MirrorAttachedEvent
+                                                  * @extends MirrorEvent
+                                                  */
+
+MirrorCreatedEvent.type = 'mirror:created';
+class MirrorAttachedEvent extends MirrorEvent {
+
+  /**
+   * Draggables mirror element
+   * @property mirror
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get mirror() {
+    return this.data.mirror;
+  }
+}
+
+exports.MirrorAttachedEvent = MirrorAttachedEvent; /**
+                                                    * Mirror move event
+                                                    * @class MirrorMoveEvent
+                                                    * @module MirrorMoveEvent
+                                                    * @extends MirrorEvent
+                                                    */
+
+MirrorAttachedEvent.type = 'mirror:attached';
+class MirrorMoveEvent extends MirrorEvent {
+
+  /**
+   * Draggables mirror element
+   * @property mirror
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get mirror() {
+    return this.data.mirror;
+  }
+}
+
+exports.MirrorMoveEvent = MirrorMoveEvent; /**
+                                            * Mirror destroy event
+                                            * @class MirrorDestroyEvent
+                                            * @module MirrorDestroyEvent
+                                            * @extends MirrorEvent
+                                            */
+
+MirrorMoveEvent.type = 'mirror:move';
+MirrorMoveEvent.cancelable = true;
+class MirrorDestroyEvent extends MirrorEvent {
+
+  /**
+   * Draggables mirror element
+   * @property mirror
+   * @type {HTMLElement}
+   * @readonly
+   */
+  get mirror() {
+    return this.data.mirror;
+  }
+}
+exports.MirrorDestroyEvent = MirrorDestroyEvent;
+MirrorDestroyEvent.type = 'mirror:destroy';
+MirrorDestroyEvent.cancelable = true;
 
 /***/ }),
 /* 55 */
@@ -43324,7 +43467,30 @@ exports.defaultOptions = _Scrollable.defaultOptions;
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.defaultOptions = exports.onScroll = exports.onMirrorMove = exports.onMirrorCreated = exports.onDragStop = exports.onDragStart = undefined;
+
+var _MirrorEvent = __webpack_require__(54);
+
+Object.keys(_MirrorEvent).forEach(function (key) {
+  if (key === "default" || key === "__esModule") return;
+  Object.defineProperty(exports, key, {
+    enumerable: true,
+    get: function () {
+      return _MirrorEvent[key];
+    }
+  });
+});
+
+/***/ }),
+/* 56 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.defaultOptions = exports.getAppendableContainer = exports.onScroll = exports.onMirrorMove = exports.onMirrorCreated = exports.onDragStop = exports.onDragMove = exports.onDragStart = undefined;
 
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -43332,15 +43498,19 @@ var _AbstractPlugin = __webpack_require__(1);
 
 var _AbstractPlugin2 = _interopRequireDefault(_AbstractPlugin);
 
+var _MirrorEvent = __webpack_require__(55);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 const onDragStart = exports.onDragStart = Symbol('onDragStart');
+const onDragMove = exports.onDragMove = Symbol('onDragMove');
 const onDragStop = exports.onDragStop = Symbol('onDragStop');
 const onMirrorCreated = exports.onMirrorCreated = Symbol('onMirrorCreated');
 const onMirrorMove = exports.onMirrorMove = Symbol('onMirrorMove');
 const onScroll = exports.onScroll = Symbol('onScroll');
+const getAppendableContainer = exports.getAppendableContainer = Symbol('getAppendableContainer');
 
 /**
  * Mirror default options
@@ -43383,6 +43553,7 @@ class Mirror extends _AbstractPlugin2.default {
      * @property {Boolean} options.yAxis
      * @property {Number|null} options.cursorOffsetX
      * @property {Number|null} options.cursorOffsetY
+     * @property {String|HTMLElement|Function} options.appendTo
      * @type {Object}
      */
     this.options = _extends({}, defaultOptions, this.getOptions());
@@ -43407,6 +43578,7 @@ class Mirror extends _AbstractPlugin2.default {
     };
 
     this[onDragStart] = this[onDragStart].bind(this);
+    this[onDragMove] = this[onDragMove].bind(this);
     this[onDragStop] = this[onDragStop].bind(this);
     this[onMirrorCreated] = this[onMirrorCreated].bind(this);
     this[onMirrorMove] = this[onMirrorMove].bind(this);
@@ -43417,14 +43589,14 @@ class Mirror extends _AbstractPlugin2.default {
    * Attaches plugins event listeners
    */
   attach() {
-    this.draggable.on('drag:start', this[onDragStart]).on('drag:stop', this[onDragStop]).on('mirror:created', this[onMirrorCreated]).on('mirror:move', this[onMirrorMove]);
+    this.draggable.on('drag:start', this[onDragStart]).on('drag:move', this[onDragMove]).on('drag:stop', this[onDragStop]).on('mirror:created', this[onMirrorCreated]).on('mirror:move', this[onMirrorMove]);
   }
 
   /**
    * Detaches plugins event listeners
    */
   detach() {
-    this.draggable.off('drag:start', this[onDragStart]).off('drag:stop', this[onDragStop]).off('mirror:created', this[onMirrorCreated]).off('mirror:move', this[onMirrorMove]);
+    this.draggable.off('drag:start', this[onDragStart]).off('drag:move', this[onDragMove]).off('drag:stop', this[onDragStop]).off('mirror:created', this[onMirrorCreated]).off('mirror:move', this[onMirrorMove]);
   }
 
   /**
@@ -43435,7 +43607,11 @@ class Mirror extends _AbstractPlugin2.default {
     return this.draggable.options.mirror || {};
   }
 
-  [onDragStart]() {
+  [onDragStart](dragEvent) {
+    if (dragEvent.canceled()) {
+      return;
+    }
+
     if ('ontouchstart' in window) {
       document.addEventListener('scroll', this[onScroll], true);
     }
@@ -43444,15 +43620,95 @@ class Mirror extends _AbstractPlugin2.default {
       x: window.scrollX,
       y: window.scrollY
     };
+
+    const { source, originalSource, sourceContainer, sensorEvent } = dragEvent;
+
+    const mirrorCreateEvent = new _MirrorEvent.MirrorCreateEvent({
+      source,
+      originalSource,
+      sourceContainer,
+      sensorEvent,
+      dragEvent
+    });
+
+    this.draggable.trigger(mirrorCreateEvent);
+
+    if (isNativeDragEvent(sensorEvent) || mirrorCreateEvent.canceled()) {
+      return;
+    }
+
+    const appendableContainer = this[getAppendableContainer](source) || sourceContainer;
+    this.mirror = source.cloneNode(true);
+
+    const mirrorCreatedEvent = new _MirrorEvent.MirrorCreatedEvent({
+      source,
+      originalSource,
+      sourceContainer,
+      sensorEvent,
+      dragEvent,
+      mirror: this.mirror
+    });
+
+    const mirrorAttachedEvent = new _MirrorEvent.MirrorAttachedEvent({
+      source,
+      originalSource,
+      sourceContainer,
+      sensorEvent,
+      dragEvent,
+      mirror: this.mirror
+    });
+
+    this.draggable.trigger(mirrorCreatedEvent);
+    appendableContainer.appendChild(this.mirror);
+    this.draggable.trigger(mirrorAttachedEvent);
   }
 
-  [onDragStop]() {
+  [onDragMove](dragEvent) {
+    if (!this.mirror || dragEvent.canceled()) {
+      return;
+    }
+
+    const { source, originalSource, sourceContainer, sensorEvent } = dragEvent;
+
+    const mirrorMoveEvent = new _MirrorEvent.MirrorMoveEvent({
+      source,
+      originalSource,
+      sourceContainer,
+      sensorEvent,
+      dragEvent,
+      mirror: this.mirror
+    });
+
+    this.draggable.trigger(mirrorMoveEvent);
+  }
+
+  [onDragStop](dragEvent) {
     if ('ontouchstart' in window) {
       document.removeEventListener('scroll', this[onScroll], true);
     }
 
     this.initialScrollOffset = { x: 0, y: 0 };
     this.scrollOffset = { x: 0, y: 0 };
+
+    if (!this.mirror) {
+      return;
+    }
+
+    const { source, sourceContainer, sensorEvent } = dragEvent;
+
+    const mirrorDestroyEvent = new _MirrorEvent.MirrorDestroyEvent({
+      source,
+      mirror: this.mirror,
+      sourceContainer,
+      sensorEvent,
+      dragEvent
+    });
+
+    this.draggable.trigger(mirrorDestroyEvent);
+
+    if (!mirrorDestroyEvent.canceled()) {
+      this.mirror.parentNode.removeChild(this.mirror);
+    }
   }
 
   [onScroll]() {
@@ -43498,13 +43754,17 @@ class Mirror extends _AbstractPlugin2.default {
   /**
    * Mirror move handler
    * @param {MirrorMoveEvent} mirrorEvent
-   * @return {Promise}
+   * @return {Promise|null}
    * @private
    */
-  [onMirrorMove]({ mirror, sensorEvent }) {
+  [onMirrorMove](mirrorEvent) {
+    if (mirrorEvent.canceled()) {
+      return null;
+    }
+
     const initialState = {
-      mirror,
-      sensorEvent,
+      mirror: mirrorEvent.mirror,
+      sensorEvent: mirrorEvent.sensorEvent,
       mirrorOffset: this.mirrorOffset,
       options: this.options,
       initialX: this.initialX,
@@ -43513,6 +43773,27 @@ class Mirror extends _AbstractPlugin2.default {
     };
 
     return Promise.resolve(initialState).then(positionMirror({ raf: true }));
+  }
+
+  /**
+   * Returns appendable container for mirror based on the appendTo option
+   * @private
+   * @param {Object} options
+   * @param {HTMLElement} options.source - Current source
+   * @return {HTMLElement}
+   */
+  [getAppendableContainer](source) {
+    const appendTo = this.options.appendTo;
+
+    if (typeof appendTo === 'string') {
+      return document.querySelector(appendTo);
+    } else if (appendTo instanceof HTMLElement) {
+      return appendTo;
+    } else if (typeof appendTo === 'function') {
+      return appendTo(source);
+    } else {
+      return source.parentNode;
+    }
   }
 }
 
@@ -43700,8 +43981,17 @@ function withPromise(callback, { raf = false } = {}) {
   });
 }
 
+/**
+ * Returns true if the sensor event was triggered by a native browser drag event
+ * @param {SensorEvent} sensorEvent
+ */
+function isNativeDragEvent(sensorEvent) {
+  return (/^drag/.test(sensorEvent.originalEvent.type)
+  );
+}
+
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43712,7 +44002,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.defaultOptions = undefined;
 
-var _Mirror = __webpack_require__(55);
+var _Mirror = __webpack_require__(56);
 
 var _Mirror2 = _interopRequireDefault(_Mirror);
 
@@ -43722,7 +44012,7 @@ exports.default = _Mirror2.default;
 exports.defaultOptions = _Mirror.defaultOptions;
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43867,7 +44157,7 @@ function stripElement(element) {
 }
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43877,7 +44167,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _Focusable = __webpack_require__(57);
+var _Focusable = __webpack_require__(58);
 
 var _Focusable2 = _interopRequireDefault(_Focusable);
 
@@ -43886,7 +44176,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.default = _Focusable2.default;
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -43935,7 +44225,7 @@ class AbstractPlugin {
 exports.default = AbstractPlugin;
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44094,7 +44384,7 @@ const liveRegion = createRegion();
 function announce(message, { expire }) {
   const element = document.createElement('div');
 
-  element.innerHTML = message;
+  element.textContent = message;
   liveRegion.appendChild(element);
 
   return setTimeout(() => {
@@ -44130,7 +44420,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -44141,7 +44431,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.defaultOptions = undefined;
 
-var _Announcement = __webpack_require__(60);
+var _Announcement = __webpack_require__(61);
 
 var _Announcement2 = _interopRequireDefault(_Announcement);
 
@@ -44149,191 +44439,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 exports.default = _Announcement2.default;
 exports.defaultOptions = _Announcement.defaultOptions;
-
-/***/ }),
-/* 62 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.MirrorDestroyEvent = exports.MirrorMoveEvent = exports.MirrorAttachedEvent = exports.MirrorCreatedEvent = exports.MirrorCreateEvent = exports.MirrorEvent = undefined;
-
-var _AbstractEvent = __webpack_require__(0);
-
-var _AbstractEvent2 = _interopRequireDefault(_AbstractEvent);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Base mirror event
- * @class MirrorEvent
- * @module MirrorEvent
- * @extends AbstractEvent
- */
-class MirrorEvent extends _AbstractEvent2.default {
-  /**
-   * Draggables source element
-   * @property source
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get source() {
-    return this.data.source;
-  }
-
-  /**
-   * Draggables original source element
-   * @property originalSource
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get originalSource() {
-    return this.data.originalSource;
-  }
-
-  /**
-   * Draggables source container element
-   * @property sourceContainer
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get sourceContainer() {
-    return this.data.sourceContainer;
-  }
-
-  /**
-   * Sensor event
-   * @property sensorEvent
-   * @type {SensorEvent}
-   * @readonly
-   */
-  get sensorEvent() {
-    return this.data.sensorEvent;
-  }
-
-  /**
-   * Original event that triggered sensor event
-   * @property originalEvent
-   * @type {Event}
-   * @readonly
-   */
-  get originalEvent() {
-    if (this.sensorEvent) {
-      return this.sensorEvent.originalEvent;
-    }
-
-    return null;
-  }
-
-  /**
-   * Checks if mirror has been created
-   * @return {Boolean}
-   */
-  hasMirror() {
-    return Boolean(this.mirror);
-  }
-}
-
-exports.MirrorEvent = MirrorEvent; /**
-                                    * Mirror create event
-                                    * @class MirrorCreateEvent
-                                    * @module MirrorCreateEvent
-                                    * @extends MirrorEvent
-                                    */
-
-class MirrorCreateEvent extends MirrorEvent {}
-
-exports.MirrorCreateEvent = MirrorCreateEvent; /**
-                                                * Mirror created event
-                                                * @class MirrorCreatedEvent
-                                                * @module MirrorCreatedEvent
-                                                * @extends MirrorEvent
-                                                */
-
-MirrorCreateEvent.type = 'mirror:create';
-class MirrorCreatedEvent extends MirrorEvent {
-
-  /**
-   * Draggables mirror element
-   * @property mirror
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get mirror() {
-    return this.data.mirror;
-  }
-}
-
-exports.MirrorCreatedEvent = MirrorCreatedEvent; /**
-                                                  * Mirror attached event
-                                                  * @class MirrorAttachedEvent
-                                                  * @module MirrorAttachedEvent
-                                                  * @extends MirrorEvent
-                                                  */
-
-MirrorCreatedEvent.type = 'mirror:created';
-class MirrorAttachedEvent extends MirrorEvent {
-
-  /**
-   * Draggables mirror element
-   * @property mirror
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get mirror() {
-    return this.data.mirror;
-  }
-}
-
-exports.MirrorAttachedEvent = MirrorAttachedEvent; /**
-                                                    * Mirror move event
-                                                    * @class MirrorMoveEvent
-                                                    * @module MirrorMoveEvent
-                                                    * @extends MirrorEvent
-                                                    */
-
-MirrorAttachedEvent.type = 'mirror:attached';
-class MirrorMoveEvent extends MirrorEvent {
-
-  /**
-   * Draggables mirror element
-   * @property mirror
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get mirror() {
-    return this.data.mirror;
-  }
-}
-
-exports.MirrorMoveEvent = MirrorMoveEvent; /**
-                                            * Mirror destroy event
-                                            * @class MirrorDestroyEvent
-                                            * @module MirrorDestroyEvent
-                                            * @extends MirrorEvent
-                                            */
-
-MirrorMoveEvent.type = 'mirror:move';
-MirrorMoveEvent.cancelable = true;
-class MirrorDestroyEvent extends MirrorEvent {
-
-  /**
-   * Draggables mirror element
-   * @property mirror
-   * @type {HTMLElement}
-   * @readonly
-   */
-  get mirror() {
-    return this.data.mirror;
-  }
-}
-exports.MirrorDestroyEvent = MirrorDestroyEvent;
-MirrorDestroyEvent.type = 'mirror:destroy';
-MirrorDestroyEvent.cancelable = true;
 
 /***/ }),
 /* 63 */
@@ -44404,6 +44509,9 @@ DraggableDestroyEvent.type = 'draggable:destroy';
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 const canceled = Symbol('canceled');
 
 /**
@@ -44476,6 +44584,16 @@ class AbstractEvent {
    */
   canceled() {
     return Boolean(this[canceled]);
+  }
+
+  /**
+   * Returns new event instance with existing event data.
+   * This method allows for overriding of event data.
+   * @param {Object} data
+   * @return {AbstractEvent}
+   */
+  clone(data) {
+    return new this.constructor(_extends({}, this.data, data));
   }
 }
 exports.default = AbstractEvent;
@@ -44570,14 +44688,6 @@ class DragEvent extends _AbstractEvent2.default {
     }
 
     return null;
-  }
-
-  /**
-   * Checks if mirror has been created
-   * @return {Boolean}
-   */
-  hasMirror() {
-    return Boolean(this.mirror);
   }
 }
 
@@ -44761,7 +44871,7 @@ Object.defineProperty(exports, 'Draggable', {
   }
 });
 
-var _Droppable = __webpack_require__(35);
+var _Droppable = __webpack_require__(34);
 
 Object.defineProperty(exports, 'Droppable', {
   enumerable: true,
@@ -44770,7 +44880,7 @@ Object.defineProperty(exports, 'Droppable', {
   }
 });
 
-var _Swappable = __webpack_require__(32);
+var _Swappable = __webpack_require__(31);
 
 Object.defineProperty(exports, 'Swappable', {
   enumerable: true,
@@ -44779,7 +44889,7 @@ Object.defineProperty(exports, 'Swappable', {
   }
 });
 
-var _Sortable = __webpack_require__(29);
+var _Sortable = __webpack_require__(28);
 
 Object.defineProperty(exports, 'Sortable', {
   enumerable: true,
@@ -44800,7 +44910,7 @@ var _Sensors = __webpack_require__(6);
 
 var Sensors = _interopRequireWildcard(_Sensors);
 
-var _Plugins = __webpack_require__(26);
+var _Plugins = __webpack_require__(25);
 
 var Plugins = _interopRequireWildcard(_Plugins);
 
@@ -58319,6 +58429,26 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -58336,7 +58466,8 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
     data: function data() {
         return {
             loading: false,
-            pages: []
+            pages: [],
+            sorted: false
         };
     },
 
@@ -58388,23 +58519,31 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
             });
         },
         movePage: function movePage(e) {
-            var newParentId = e.newContainer.id ? Number(e.newContainer.id) : null;
-            var oldParentId = e.oldContainer.id ? Number(e.oldContainer.id) : null;
-            var index = e.newIndex;
-            var pageId = Number(e.data.dragEvent.source.id);
+            var _this3 = this;
 
-            var page = this.findPage(pageId);
+            this.sorted = true;
+            var parentId = e.newContainer.dataset.parent ? Number(e.newContainer.dataset.parent) : null;
+            var pageId = Number(e.data.dragEvent.source.dataset.id);
 
-            this.pages.filter(function (p) {
-                return p.parent_id === newParentId;
-            }).filter(function (p) {
-                return p.order >= index;
-            }).forEach(function (p) {
-                return p.order++;
+            var $tree = this.$refs.tree.$el;
+            var $items = this.$refs.sortableContainer.sortable.getDraggableElementsForContainer($tree);
+
+            var index = 8;
+            $items.forEach(function (el) {
+                _this3.findPage(Number(el.dataset.id)).order = index;
+                index += 8;
             });
 
-            page.parent_id = newParentId === 0 ? null : newParentId;
-            page.order = index;
+            this.findPage(pageId).parent_id = parentId;
+        },
+        resetOrder: function resetOrder() {
+            this.sorted = false;
+            this.fetchPages();
+        },
+        saveOrder: function saveOrder() {
+            var _this4 = this;
+
+            this.loading = true;
 
             var newTree = this.pages.map(function (p) {
                 return {
@@ -58414,7 +58553,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 };
             });
 
-            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('api/pages', newTree);
+            __WEBPACK_IMPORTED_MODULE_0_axios___default.a.put('api/pages', newTree).then(this.fetchPages).then(function () {
+                _this4.sorted = false;
+                _this4.$flash.success("Saved site tree.");
+            }).catch(function () {
+                _this4.$flash.error("Could not save site tree.");
+            });
         },
         findPage: function findPage(id) {
             return this.pages.find(function (page) {
@@ -59661,7 +59805,10 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex justify-between items-center w-full" },
+    {
+      staticClass: "flex justify-between items-center w-full page-tree-item",
+      attrs: { "data-id": _vm.page.id }
+    },
     [
       _c("icon", {
         staticClass: "w-4 h-4 text-tertiary",
@@ -59774,13 +59921,13 @@ var render = function() {
     "ul",
     {
       staticClass: "list-reset page-tree-container py-2",
-      attrs: { id: _vm.parent }
+      attrs: { "data-parent": _vm.parent }
     },
     _vm._l(_vm.sortedPages, function(page) {
       return _c("sortable-item", { key: page.id }, [
         _c(
           "li",
-          { attrs: { id: page.id } },
+          { attrs: { "data-id": page.id } },
           [
             _c(
               "div",
@@ -59867,7 +60014,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var container = this.containerSelector ? document.querySelectorAll(this.containerSelector) : this.$el;
 
-        new __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__["Sortable"](container, {
+        this.sortable = new __WEBPACK_IMPORTED_MODULE_0__shopify_draggable__["Sortable"](container, {
             draggable: '.' + this.itemClass,
             handle: '.' + this.handleClass,
             mirror: {
@@ -62578,94 +62725,123 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "card px-2" },
-    [
-      _c(
-        "div",
-        { staticClass: "border-b mb-4 flex justify-between items-center" },
-        [
-          _c("div", { staticClass: "uppercase tracking-wide px-2 py-4" }, [
-            _vm._v("Pages")
-          ]),
-          _vm._v(" "),
-          _c("dropdown-menu", [
-            _c(
-              "button",
-              {
-                staticClass: "text-tertiary hover:text-blue",
-                attrs: { slot: "activator", type: "button" },
-                slot: "activator"
-              },
-              [
-                _c("icon", {
-                  staticClass: "w-4 h-4",
-                  attrs: { icon: "document-add" }
-                })
-              ],
-              1
-            ),
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "card mb-8 px-2" },
+      [
+        _c(
+          "div",
+          { staticClass: "border-b mb-4 flex justify-between items-center" },
+          [
+            _c("div", { staticClass: "uppercase tracking-wide px-2 py-4" }, [
+              _vm._v("Pages")
+            ]),
             _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "bg-white shadow-md border rounded z-100 -mt-2" },
-              [
-                _c("div", { staticClass: "py-2 px-4 font-bold border-b" }, [
-                  _vm._v("Create a new page")
-                ]),
-                _vm._v(" "),
-                _c(
-                  "ul",
-                  { staticClass: "list-reset" },
-                  _vm._l(_vm.pageTypes, function(definition) {
-                    return _c(
-                      "li",
-                      {
-                        staticClass:
-                          "py-2 px-4 text-secondary hover:text-brand cursor-pointer",
-                        on: {
-                          click: function($event) {
-                            _vm.create(definition.name)
-                          }
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n                        " +
-                            _vm._s(definition.name) +
-                            "\n                    "
-                        )
-                      ]
-                    )
+            _c("dropdown-menu", [
+              _c(
+                "button",
+                {
+                  staticClass: "text-tertiary hover:text-blue",
+                  attrs: { slot: "activator", type: "button" },
+                  slot: "activator"
+                },
+                [
+                  _c("icon", {
+                    staticClass: "w-4 h-4",
+                    attrs: { icon: "document-add" }
                   })
-                )
-              ]
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "bg-white shadow-md border rounded z-100 -mt-2"
+                },
+                [
+                  _c("div", { staticClass: "py-2 px-4 font-bold border-b" }, [
+                    _vm._v("Create a new page")
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "ul",
+                    { staticClass: "list-reset" },
+                    _vm._l(_vm.pageTypes, function(definition) {
+                      return _c(
+                        "li",
+                        {
+                          staticClass:
+                            "py-2 px-4 text-secondary hover:text-brand cursor-pointer",
+                          on: {
+                            click: function($event) {
+                              _vm.create(definition.name)
+                            }
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                            " +
+                              _vm._s(definition.name) +
+                              "\n                        "
+                          )
+                        ]
+                      )
+                    })
+                  )
+                ]
+              )
+            ])
+          ],
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "loading",
+          { attrs: { loading: _vm.loading } },
+          [
+            _c(
+              "sortable-container",
+              {
+                ref: "sortableContainer",
+                attrs: { "container-selector": ".page-tree-container" },
+                on: { stop: _vm.movePage }
+              },
+              [_c("page-tree", { ref: "tree", attrs: { pages: _vm.tree } })],
+              1
             )
-          ])
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "loading",
-        { attrs: { loading: _vm.loading } },
-        [
+          ],
+          1
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _vm.sorted
+      ? _c("div", { staticClass: "flex justify-end" }, [
           _c(
-            "sortable-container",
+            "button",
             {
-              attrs: { "container-selector": ".page-tree-container" },
-              on: { stop: _vm.movePage }
+              staticClass: "btn btn-tertiary btn-default mr-4",
+              attrs: { type: "button", disable: _vm.loading },
+              on: { click: _vm.resetOrder }
             },
-            [_c("page-tree", { attrs: { pages: _vm.tree } })],
-            1
+            [_vm._v("\n            Cancel\n        ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-primary btn-blue",
+              attrs: { type: "button", disable: _vm.loading },
+              on: { click: _vm.saveOrder }
+            },
+            [_vm._v("\n            Save\n        ")]
           )
-        ],
-        1
-      )
-    ],
-    1
-  )
+        ])
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
