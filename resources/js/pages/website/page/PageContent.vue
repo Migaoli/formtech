@@ -2,114 +2,41 @@
     <div>
         <page-view-header></page-view-header>
         <page-view-toolbar></page-view-toolbar>
-        <div v-if="hasContent">
-            <div class="flex justify-end mb-8" v-if="isDirty">
-                <button class="btn btn-tertiary btn-default mr-4"
-                        type="button"
-                        :disabled="saving"
-                        @click="reset">
-                    Cancel
-                </button>
-                <button class="btn btn-primary btn-blue"
-                        type="submit"
-                        :disabled="saving"
-                        @click.prevent="saveOrder">
-                    <span v-if="saving">Saving...</span>
-                    <span v-else>Save</span>
-                </button>
-            </div>
-            <layout-container :layout-name="page.data.layout"
-                              v-model="blocks"
-            ></layout-container>
-        </div>
-        <div v-else class="text-3xl font-thin text-secondary p-10">
-            This page type does not support content.
-        </div>
+        <component :is="contentEditorComponent"></component>
     </div>
 </template>
 
 <script>
-    import _ from 'lodash';
-    import axios from 'axios';
     import {mapState} from 'vuex';
-    import LayoutContainer from "./standard/LayoutContainer";
     import PageViewHeader from "./PageViewHeader";
     import PageViewToolbar from "./PageViewToolbar";
+    import BlockContentEditor from './standard/BlockContentEditor';
+    import MarkdownContentEditor from './markdown/MarkdownContentEditor';
+    import NoContentEditor from './NoContentEditor';
 
     export default {
         name: '',
 
-        components: {PageViewToolbar, PageViewHeader, LayoutContainer},
-
-        data() {
-            return {
-                saving: false,
-                original: [],
-                blocks: [],
-                showCreateBlockDialog: false,
-                blockDefinition: null,
-                container: '',
-            }
-        },
-
-        watch: {
-            '$route.params.id': function () {
-                this.fetchContent();
-            },
-        },
+        components: {PageViewToolbar, PageViewHeader},
 
         computed: {
             ...mapState({
                 page: state => state.page.page,
-                blockDefinitions: state => state.blocks.blocks,
             }),
 
-            hasContent() {
-                return this.page.type === 'App\\Pages\\StandardPage'
-            },
+            contentEditorComponent() {
+                switch (this.page.type) {
+                    case 'App\\Pages\\StandardPage':
+                        return BlockContentEditor;
+                    case 'App\\Pages\\MarkdownPage':
+                        return MarkdownContentEditor;
+                }
 
-            isDirty() {
-                return !_.isEqual(this.original, this.blocks);
-            }
-        },
+                return NoContentEditor;
 
-        methods: {
-            reset() {
-                //this.blocks = this.$copyObject(this.original);
-            },
-
-            fetchContent() {
-                axios.get(`api/pages/${this.$route.params.id}/blocks`)
-                    .then(response => {
-                        this.original = response.data;
-                        this.blocks= this.$copyObject(this.original);
-                    });
-            },
-
-            saveOrder() {
-                const payload = this.blocks.map(block => {
-                    return {
-                        'id': block.id,
-                        'container': block.container,
-                        'order': block.order,
-                    }
-                });
-
-                axios.put(`api/pages/${this.page.id}/blocks`, payload)
-                    .then(response => {
-                        this.$store.dispatch('page/fetch', {id: this.page.id});
-                    })
-                    .catch(({response}) => {
-
-                    })
-                    .finally(() => {
-
-                    })
             },
         },
 
-        created() {
-            this.fetchContent();
-        }
+
     }
 </script>

@@ -4,6 +4,7 @@ namespace App\Pages\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Pages\ErrorPage;
+use App\Pages\MarkdownPage;
 use App\Pages\MenuSeparator;
 use App\Pages\Page;
 use App\Pages\StandardPage;
@@ -32,7 +33,7 @@ class PagesController extends Controller
     public function create(Request $request)
     {
         $payload = $request->validate([
-            'type' => 'required|in:standard_page,menu_separator,error_page',
+            'type' => 'required|in:standard_page,menu_separator,error_page,markdown_page',
             'title' => 'required|string',
             'slug' => ['required', 'alpha_dash',],
             'in_menu' => ['required', 'boolean'],
@@ -43,6 +44,9 @@ class PagesController extends Controller
         $page = null;
 
         switch ($payload['type']) {
+            case 'markdown_page':
+                $page = MarkdownPage::create($payload);
+                break;
             case 'standard_page':
                 $page = StandardPage::create($payload);
                 break;

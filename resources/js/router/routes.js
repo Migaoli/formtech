@@ -51,11 +51,11 @@ const routes = [
                                 name: 'pages.view.content',
                                 component: PageContent,
                             }, {
-                                path: 'content/new',
+                                path: 'blocks/new',
                                 name: 'pages.blocks.create',
                                 component: BlockCreate,
                             }, {
-                                path: 'content/:blockId',
+                                path: 'blocks/:blockId',
                                 name: 'pages.blocks.view',
                                 component: BlockView,
                             }

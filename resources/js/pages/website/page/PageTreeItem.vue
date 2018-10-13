@@ -7,22 +7,16 @@
         </router-link>
         <div class="px-8 flex items-center">
             <div class="w-4 h-4 mr-4 flex justify-center items-center">
-                <div v-if="hasChanged"
-                     :class="modifiedColor"
-                     class="w-2 h-2 rounded-full"
+                <div :class="publishedColor"
+                     class="w-4 h-4 rounded-full border-2"
                      v-tooltip="'Page has been modified.'"
                 ></div>
             </div>
             <div class="w-4 h-4 mr-4">
-                <icon icon="menu"
+                <icon v-if="page.in_menu"
+                        icon="menu"
                       class="w-4 h-4 text-tertiary"
                       v-tooltip="'Page is shown in menu.'"
-                ></icon>
-            </div>
-            <div class="w-4 h-4">
-                <icon icon="view-hide"
-                      class="w-4 h-4 text-tertiary"
-                      v-tooltip="'Page is hidden.'"
                 ></icon>
             </div>
         </div>
@@ -41,17 +35,17 @@
         },
 
         computed: {
-            hasChanged() {
-                return this.page.live_version !== this.page.updated_at;
-            },
-
-            modifiedColor() {
-                return this.page.live_version ? 'bg-blue-dark' : 'bg-green-dark';
+            publishedColor() {
+                return this.page.published ? 'border-blue' : 'border-red-dark';
             },
 
             icon() {
-                if (this.page.type === 'App\\Pages\\StandardPage') {
+                if (this.page.type === 'App\\Pages\\MarkdownPage') {
                     return 'document';
+                }
+
+                if (this.page.type === 'App\\Pages\\StandardPage') {
+                    return 'view-tile';
                 }
 
                 if (this.page.type === 'App\\Pages\\MenuSeparator') {

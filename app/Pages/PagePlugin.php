@@ -11,6 +11,7 @@ use Illuminate\Support\ServiceProvider;
 class PagePlugin extends ServiceProvider
 {
     private $pages = [
+        MarkdownPage::class,
         StandardPage::class,
         MenuSeparator::class,
         ErrorPage::class,

@@ -9,22 +9,6 @@
 
             <div slot-scope="{formData, fields, errors, isDirty, submitActions, resetActions}">
 
-                <div class="flex justify-end mb-8">
-                    <button class="btn btn-tertiary btn-default mr-4"
-                            type="button"
-                            :disabled="creating"
-                            v-on="resetActions">
-                        Cancel
-                    </button>
-                    <button class="btn btn-primary btn-blue"
-                            type="submit"
-                            :disabled="creating"
-                            v-on="submitActions">
-                        <span v-if="creating">Creating...</span>
-                        <span v-else>Create</span>
-                    </button>
-                </div>
-
                 <generic-field v-for="field in fields"
                                :key="field.key"
                                :field="field"
@@ -126,7 +110,7 @@
             },
 
             cancel() {
-
+                this.$router.push({name: 'pages'});
             }
         }
     }

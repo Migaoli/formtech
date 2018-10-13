@@ -18,25 +18,27 @@ Route::prefix('api')
                 Route::delete('{id}', 'PagesController@delete')->name('pages.delete');
 
                 Route::get('{id}/preview', 'PagePreviewController@get')->name('pages.preview.get');
-
-                Route::prefix('{pageId}/blocks')
-                    ->group(function () {
-                        Route::get('', 'PageBlockController@index')->name('pages.blocks.index');
-                        Route::post('', 'PageBlockController@create')->name('pages.blocks.create');
-                        Route::put('', 'PageBlockController@updateOrder')->name('pages.blocks.order');
-                        Route::get('{id}', 'PageBlockController@get')->name('pages.blocks.get');
-                        Route::put('{id}', 'PageBlockController@update')->name('pages.blocks.update');
-                        Route::delete('{id}', 'PageBlockController@delete')->name('pages.blocks.delete');
-
-                        Route::get('{id}/preview', 'BlockPreviewController@show')->name('pages.blocks.preview');
-                    });
             });
 
+
+
+        /* Block feature */
         Route::prefix('blocks')
             ->group(function () {
                 Route::get('', 'BlockController@index')->name('blocks.index');
-                Route::post('', 'BlockController@create')->name('blocks.create');
                 Route::get('{name}', 'BlockController@get')->name('blocks.get');
+            });
+
+        Route::prefix('pages/{pageId}/blocks')
+            ->group(function () {
+                Route::get('', 'PageBlockController@index')->name('pages.blocks.index');
+                Route::post('', 'PageBlockController@create')->name('pages.blocks.create');
+                Route::put('', 'PageBlockController@updateOrder')->name('pages.blocks.order');
+                Route::get('{id}', 'PageBlockController@get')->name('pages.blocks.get');
+                Route::put('{id}', 'PageBlockController@update')->name('pages.blocks.update');
+                Route::delete('{id}', 'PageBlockController@delete')->name('pages.blocks.delete');
+
+                Route::get('{id}/preview', 'BlockPreviewController@show')->name('pages.blocks.preview');
             });
 
     });
