@@ -629,6 +629,43 @@ table {
   border-collapse: collapse;
 }
 
+body {
+  font-size: 1.125rem;
+  color: #22292f;
+}
+
+p {
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+ul,
+ol {
+  line-height: 1.5;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+blockquote {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  background-color: #f8fafc;
+  border-left-width: 4px;
+}
+
 .container {
   width: 100%;
 }
@@ -663,25 +700,21 @@ table {
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  margin-left: -0.75rem;
-  margin-right: -0.75rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
 }
 
 .grid > div {
-  padding-left: .75rem;
-  padding-right: .75rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .page\:landing-page {
-  background-image: url("/static/background_image.jpg");
+  /*background-image: url("/static/background_image.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-}
-
-.text-block .header {
-  margin-bottom: 2rem;
+  background-attachment: fixed;*/
 }
 
 .list-reset {

@@ -4,6 +4,7 @@
 namespace App\Pages\Blocks\Text;
 
 use App\Pages\Blocks\Parser;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Str;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\Div;
@@ -70,7 +71,7 @@ class TextParser extends Parser
                 'content',
                 $this->getAlignmentClass(),
             ])
-            ->text($this->block->getData('content'));
+            ->html(Markdown::convertToHtml($this->block->getData('content')));
     }
 
 }

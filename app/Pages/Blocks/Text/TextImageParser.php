@@ -5,6 +5,7 @@ namespace App\Pages\Blocks\Text;
 
 
 use App\Pages\Blocks\Parser;
+use GrahamCampbell\Markdown\Facades\Markdown;
 use Illuminate\Support\Str;
 use Spatie\Html\BaseElement;
 use Spatie\Html\Elements\Div;
@@ -79,7 +80,7 @@ class TextImageParser extends Parser
                 $this->getAlignmentClass(),
                 $this->imagesInlined() ? 'inline' : '',
             ])
-            ->text($this->block->content());
+            ->html(Markdown::convertToHtml($this->block->getData('content')));
     }
 
     private function createImages(): BaseElement

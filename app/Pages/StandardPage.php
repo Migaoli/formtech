@@ -5,6 +5,7 @@ namespace App\Pages;
 
 
 use App\Fields\Select;
+use App\Pages\Blocks\Block;
 
 class StandardPage extends Page
 {
@@ -29,5 +30,17 @@ class StandardPage extends Page
                 return $layout['name'];
             })
             ->toArray();
+    }
+
+    public function blocks()
+    {
+        return $this->hasMany(Block::class, 'page_id');
+    }
+
+    public function blocksInContainer($container)
+    {
+        return $this->blocks->filter(function ($block) use ($container) {
+            return $block->container === $container;
+        });
     }
 }

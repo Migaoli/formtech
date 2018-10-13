@@ -1,15 +1,31 @@
 @tailwind preflight;
 
+body {
+  @apply text-lg text-primary;
+}
+
+p {
+  @apply leading-normal my-4;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply mb-4 font-semibold;
+}
+
+ul, ol {
+  @apply leading-normal my-4;
+}
+
+blockquote {
+  @apply px-4 py-2 bg-grey-lightest border-l-4;
+}
+
+
+
 @tailwind components;
 
 @import "grid.less";
 
 @import "landing-page.less";
-
-.text-block {
-  .header {
-    @apply mb-8;
-  }
-}
 
 @tailwind utilities;
