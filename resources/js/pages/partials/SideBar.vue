@@ -1,5 +1,5 @@
 <template>
-    <div class="border-r relative px-8 py-6">
+    <div class="border-r relative px-4 py-6 w-64">
         <div class="flex flex-col whitespace-no-wrap">
             <div v-for="group in navigation"
                  class="mb-8 w-full">
@@ -7,8 +7,8 @@
                 <router-link v-for="item in group.items"
                              :key="item.name"
                              :to="{name: item.route}"
-                             :active-class="activeClass"
-                             class="flex py-2 no-underline text-secondary text-lg hover:text-brand">
+                             active-class="nav-link:active"
+                             class="nav-link">
                     <icon :icon="item.icon" class="w-5 h-5 mr-3"></icon>
                     {{ item.name }}
                 </router-link>
@@ -27,32 +27,19 @@
             return {
                 navigation: [
                     {
-                        name: 'Quick links',
+                        name: '',
                         items: [
                             {
-                                name: 'Home',
-                                route: 'home',
-                                icon: 'home'
-                            }
-                        ]
-                    }, {
-                        name: 'Website',
-                        items: [
-                            {
-                                name: 'Publish',
-                                route: 'pages',
-                                icon: 'cloud-upload'
-                            }, {
-                                name: 'Preview',
-                                route: 'pages',
-                                icon: 'view-show'
+                                name: 'Dashboard',
+                                route: 'dashboard',
+                                icon: 'dashboard'
                             }, {
                                 name: 'Pages',
                                 route: 'pages',
                                 icon: 'news-paper'
                             }
                         ]
-                    }
+                    },
                 ]
             }
         },

@@ -15,22 +15,6 @@
                         <icon icon="arrow-thin-left" class="w-4 h-4 mr-2"></icon>
                         Back to content
                     </router-link>
-
-                    <div class="flex justify-end">
-                        <button class="btn btn-tertiary btn-default mr-4"
-                                type="button"
-                                :disabled="creating"
-                                v-on="resetActions">
-                            Cancel
-                        </button>
-                        <button class="btn btn-primary btn-blue"
-                                type="submit"
-                                :disabled="creating"
-                                v-on="submitActions">
-                            <span v-if="creating">Creating...</span>
-                            <span v-else>Create</span>
-                        </button>
-                    </div>
                 </div>
 
                 <generic-field v-for="field in fields"
@@ -162,7 +146,10 @@
             },
 
             cancel() {
-
+                this.$router.push({
+                    name:'pages.view.content',
+                    params: {id: this.pageId}
+                })
             },
         },
     }

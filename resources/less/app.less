@@ -24,3 +24,19 @@
 }
 
 @tailwind utilities;
+
+.nav-link {
+  @apply flex py-2 no-underline text-lg text-secondary;
+
+  &:hover {
+    @apply text-brand;
+  }
+
+  &.nav-link\:active {
+  @apply text-brand !important;
+
+    .nav-link-icon {
+    @apply text-brand;
+    }
+  }
+}

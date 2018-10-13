@@ -1,5 +1,6 @@
 import TestPage from '../pages/Test';
 import Index from '../pages/Index';
+import Dashboard from '../pages/Dashboard';
 import PageIndex from '../pages/website/page/Index';
 import PageOverview from '../pages/website/page/Overview';
 import PageCreate from '../pages/website/page/PageCreate';
@@ -13,10 +14,14 @@ const routes = [
     {
         path: '/',
         component: Index,
-        /*redirect: 'home',*/
+        redirect: 'dashboard',
         meta: {auth: true},
         children: [
             {
+                path: 'dashboard',
+                name: 'dashboard',
+                component: Dashboard,
+            }, {
                 path: 'pages',
                 component: PageIndex,
                 children: [

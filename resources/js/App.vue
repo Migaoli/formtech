@@ -1,5 +1,5 @@
 <template>
-    <div class="h-full">
+    <div class="h-full bg-grey-lighter">
         <router-view></router-view>
         <portal-target name="modals"></portal-target>
         <flash-message-container></flash-message-container>

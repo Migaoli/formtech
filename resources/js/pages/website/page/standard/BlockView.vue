@@ -17,12 +17,6 @@
                                 <icon icon="arrow-thin-left" class="w-4 h-4 mr-2"></icon>
                                 Back to content
                             </router-link>
-
-                            <form-toolbar :is-dirty="isDirty"
-                                          :saving="saving"
-                                          :submit-actions="submitActions"
-                                          :reset-actions="resetActions"
-                            ></form-toolbar>
                         </div>
 
 

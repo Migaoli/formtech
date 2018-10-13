@@ -12,7 +12,7 @@
 
     <title>Formtech</title>
 </head>
-<body class="bg-grey-lighter text-primary font-sans">
+<body class="h-full h-screen text-base text-primary font-sans">
 
 <app></app>
 

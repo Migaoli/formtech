@@ -57585,22 +57585,25 @@ window.Router = router;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_Test___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__pages_Test__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_Index__ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_Index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__pages_Index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_website_page_Index__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_website_page_Index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__pages_website_page_Index__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_website_page_Overview__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_website_page_Overview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__pages_website_page_Overview__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_website_page_PageCreate__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_website_page_PageCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__pages_website_page_PageCreate__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_website_page_View__ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_website_page_View___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__pages_website_page_View__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_website_page_PageSettings__ = __webpack_require__(233);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_website_page_PageSettings___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__pages_website_page_PageSettings__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageContent__ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageContent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageContent__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_website_page_standard_BlockView__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_website_page_standard_BlockView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__pages_website_page_standard_BlockView__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockCreate__ = __webpack_require__(287);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockCreate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_Dashboard__ = __webpack_require__(348);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_Dashboard___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__pages_Dashboard__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_website_page_Index__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_website_page_Index___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__pages_website_page_Index__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_website_page_Overview__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_website_page_Overview___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__pages_website_page_Overview__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_website_page_PageCreate__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_website_page_PageCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__pages_website_page_PageCreate__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_website_page_View__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_website_page_View___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__pages_website_page_View__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageSettings__ = __webpack_require__(233);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageSettings___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageSettings__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_website_page_PageContent__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_website_page_PageContent___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_8__pages_website_page_PageContent__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockView__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockView___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockView__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_website_page_standard_BlockCreate__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_website_page_standard_BlockCreate___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_10__pages_website_page_standard_BlockCreate__);
+
 
 
 
@@ -57615,23 +57618,27 @@ window.Router = router;
 var routes = [{
     path: '/',
     component: __WEBPACK_IMPORTED_MODULE_1__pages_Index___default.a,
-    /*redirect: 'home',*/
+    redirect: 'dashboard',
     meta: { auth: true },
     children: [{
+        path: 'dashboard',
+        name: 'dashboard',
+        component: __WEBPACK_IMPORTED_MODULE_2__pages_Dashboard___default.a
+    }, {
         path: 'pages',
-        component: __WEBPACK_IMPORTED_MODULE_2__pages_website_page_Index___default.a,
+        component: __WEBPACK_IMPORTED_MODULE_3__pages_website_page_Index___default.a,
         children: [{
             path: '',
             name: 'pages',
-            component: __WEBPACK_IMPORTED_MODULE_3__pages_website_page_Overview___default.a
+            component: __WEBPACK_IMPORTED_MODULE_4__pages_website_page_Overview___default.a
         }, {
             path: 'new',
             name: 'pages.create',
-            component: __WEBPACK_IMPORTED_MODULE_4__pages_website_page_PageCreate___default.a
+            component: __WEBPACK_IMPORTED_MODULE_5__pages_website_page_PageCreate___default.a
         }, {
             path: ':id',
             name: 'pages.view',
-            component: __WEBPACK_IMPORTED_MODULE_5__pages_website_page_View___default.a,
+            component: __WEBPACK_IMPORTED_MODULE_6__pages_website_page_View___default.a,
             children: [{
                 path: '',
                 name: 'pages.view',
@@ -57639,19 +57646,19 @@ var routes = [{
             }, {
                 path: 'settings',
                 name: 'pages.view.settings',
-                component: __WEBPACK_IMPORTED_MODULE_6__pages_website_page_PageSettings___default.a
+                component: __WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageSettings___default.a
             }, {
                 path: 'content',
                 name: 'pages.view.content',
-                component: __WEBPACK_IMPORTED_MODULE_7__pages_website_page_PageContent___default.a
+                component: __WEBPACK_IMPORTED_MODULE_8__pages_website_page_PageContent___default.a
             }, {
                 path: 'content/new',
                 name: 'pages.blocks.create',
-                component: __WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockCreate___default.a
+                component: __WEBPACK_IMPORTED_MODULE_10__pages_website_page_standard_BlockCreate___default.a
             }, {
                 path: 'content/:blockId',
                 name: 'pages.blocks.view',
-                component: __WEBPACK_IMPORTED_MODULE_8__pages_website_page_standard_BlockView___default.a
+                component: __WEBPACK_IMPORTED_MODULE_9__pages_website_page_standard_BlockView___default.a
             }]
         }]
     }]
@@ -57925,7 +57932,7 @@ var staticRenderFns = [
       "div",
       {
         staticClass:
-          "border-t-4 border-brand w-full flex justify-between px-8 shadow"
+          "border-t-4 border-brand w-full flex justify-between px-8 shadow z-50"
       },
       [
         _c(
@@ -58033,22 +58040,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             navigation: [{
-                name: 'Quick links',
+                name: '',
                 items: [{
-                    name: 'Home',
-                    route: 'home',
-                    icon: 'home'
-                }]
-            }, {
-                name: 'Website',
-                items: [{
-                    name: 'Publish',
-                    route: 'pages',
-                    icon: 'cloud-upload'
-                }, {
-                    name: 'Preview',
-                    route: 'pages',
-                    icon: 'view-show'
+                    name: 'Dashboard',
+                    route: 'dashboard',
+                    icon: 'dashboard'
                 }, {
                     name: 'Pages',
                     route: 'pages',
@@ -58141,7 +58137,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "border-r relative px-8 py-6" }, [
+  return _c("div", { staticClass: "border-r relative px-4 py-6 w-64" }, [
     _c(
       "div",
       { staticClass: "flex flex-col whitespace-no-wrap" },
@@ -58164,11 +58160,10 @@ var render = function() {
                 "router-link",
                 {
                   key: item.name,
-                  staticClass:
-                    "flex py-2 no-underline text-secondary text-lg hover:text-brand",
+                  staticClass: "nav-link",
                   attrs: {
                     to: { name: item.route },
-                    "active-class": _vm.activeClass
+                    "active-class": "nav-link:active"
                   }
                 },
                 [
@@ -70399,6 +70394,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
+//
 
 
 
@@ -70425,19 +70421,12 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "mb-8 flex justify-between items-center" }, [
-    _c("div", [
-      _c(
-        "span",
-        {
-          staticClass:
-            "inline-block py-2 px-4 rounded-full bg-brand text-primary-inverse mr-2"
-        },
-        [_vm._v(_vm._s(_vm.page.title))]
-      ),
+    _c("div", { staticClass: "text-secondary" }, [
+      _c("span", {}, [_vm._v("Pages")]),
       _vm._v(" "),
-      _c("span", { staticClass: "text-secondary mr-1" }, [
-        _vm._v(_vm._s(_vm.page.slug))
-      ])
+      _c("span", { staticClass: "mx-2" }, [_vm._v("/")]),
+      _vm._v(" "),
+      _c("span", {}, [_vm._v(_vm._s(_vm.page.title))])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "text-tertiary text-sm" }, [
@@ -72082,12 +72071,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 
 
@@ -72473,16 +72456,7 @@ var render = function() {
                                     )
                                   ],
                                   1
-                                ),
-                                _vm._v(" "),
-                                _c("form-toolbar", {
-                                  attrs: {
-                                    "is-dirty": isDirty,
-                                    saving: _vm.saving,
-                                    "submit-actions": submitActions,
-                                    "reset-actions": resetActions
-                                  }
-                                })
+                                )
                               ],
                               1
                             ),
@@ -72640,22 +72614,6 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -72757,7 +72715,12 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
                 this.$set(this.block, key, value);
             }
         },
-        cancel: function cancel() {}
+        cancel: function cancel() {
+            this.$router.push({
+                name: 'pages.view.content',
+                params: { id: this.pageId }
+            });
+        }
     }
 });
 
@@ -72821,41 +72784,7 @@ var render = function() {
                           )
                         ],
                         1
-                      ),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "flex justify-end" }, [
-                        _c(
-                          "button",
-                          _vm._g(
-                            {
-                              staticClass: "btn btn-tertiary btn-default mr-4",
-                              attrs: { type: "button", disabled: _vm.creating }
-                            },
-                            resetActions
-                          ),
-                          [
-                            _vm._v(
-                              "\n                        Cancel\n                    "
-                            )
-                          ]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "button",
-                          _vm._g(
-                            {
-                              staticClass: "btn btn-primary btn-blue",
-                              attrs: { type: "submit", disabled: _vm.creating }
-                            },
-                            submitActions
-                          ),
-                          [
-                            _vm.creating
-                              ? _c("span", [_vm._v("Creating...")])
-                              : _c("span", [_vm._v("Create")])
-                          ]
-                        )
-                      ])
+                      )
                     ],
                     1
                   ),
@@ -73511,7 +73440,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "h-full" },
+    { staticClass: "h-full bg-grey-lighter" },
     [
       _c("router-view"),
       _vm._v(" "),
@@ -84001,6 +83930,92 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(349)
+/* template */
+var __vue_template__ = __webpack_require__(350)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\js\\pages\\Dashboard.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-34eee96e", Component.options)
+  } else {
+    hotAPI.reload("data-v-34eee96e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 349 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    name: ''
+});
+
+/***/ }),
+/* 350 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-34eee96e", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
