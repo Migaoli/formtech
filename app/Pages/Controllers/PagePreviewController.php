@@ -29,4 +29,8 @@ class PagePreviewController extends Controller
 
         return (new StandardPageBuilder($this->factoy))->build($page);
     }
+
+    public function build($id) {
+
+    }
 }
